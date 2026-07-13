@@ -1,889 +1,387 @@
 {
-  "lastUpdate": "2026-07-13 16:46 北京时间",
-  "duration": 32.8,
+  "lastUpdate": "2026-07-13 17:24 北京时间",
+  "duration": 33.6,
   "stats": {
-    "channels": 67,
-    "totalSources": 268,
-    "availableSources": 74,
-    "okRate": 27.6,
-    "mainWithIssues": 3
+    "channels": 100,
+    "totalSources": 301,
+    "availableSources": 103,
+    "okRate": 34.2,
+    "mainWithIssues": 8
   },
   "channels": [
     {
-      "name": "CCTV1综合",
+      "name": "CCTV-1综合HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/608807420",
-        "latency": 1.28,
+        "url": "http://74.91.26.218:82/live/cctv1hd.m3u8",
+        "latency": 1.13,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/608807420",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/608807420",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608807420",
-          "latency": 0.18,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV2财经",
+      "name": "CCTV-2财经HD",
       "group": "央视",
       "main": {
-        "url": "http://183.247.194.196:7788/631780532",
-        "latency": 6.01,
-        "status": "错误"
-      },
-      "backups": [
-        {
-          "url": "http://182.85.163.168:5678/631780532",
-          "latency": 0.22,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://112.85.93.6:7788/631780532",
-          "latency": 1.22,
-          "status": "HTTP 607"
-        },
-        {
-          "url": "http://2280.eu.org:1234/631780532",
-          "latency": 0.16,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "CCTV3综艺",
-      "group": "央视",
-      "main": {
-        "url": "http://112.85.93.6:7788/624878271",
-        "latency": 0.35,
+        "url": "http://74.91.26.218:82/live/cctv2hd.m3u8",
+        "latency": 1.07,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878271",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878271",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878271",
-          "latency": 0.19,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV4中文国际",
+      "name": "CCTV-3综艺HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/631780421",
-        "latency": 0.4,
+        "url": "http://74.91.26.218:82/live/cctv3hd.m3u8",
+        "latency": 1.07,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/631780421",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/631780421",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/631780421",
-          "latency": 0.17,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV4欧洲",
+      "name": "CCTV-4中文国际HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/608807419",
-        "latency": 0.28,
+        "url": "http://74.91.26.218:82/live/cctv4hd.m3u8",
+        "latency": 1.17,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/608807419",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/608807419",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608807419",
-          "latency": 0.36,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV4美洲",
+      "name": "CCTV-5体育HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/608807416",
-        "latency": 0.31,
+        "url": "http://74.91.26.218:82/live/cctv5hd.m3u8",
+        "latency": 0.62,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/608807416",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/608807416",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608807416",
-          "latency": 0.33,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV5体育",
+      "name": "CCTV-5+体育赛事HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/641886683",
-        "latency": 0.38,
+        "url": "http://74.91.26.218:82/live/cctv5phd.m3u8",
+        "latency": 1.21,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/641886683",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/641886683",
-          "latency": 1.22,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/641886683",
-          "latency": 0.16,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV5+体育赛事",
+      "name": "CCTV-6电影HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/641886773",
-        "latency": 0.32,
+        "url": "http://74.91.26.218:82/live/cctv6hd.m3u8",
+        "latency": 1.19,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/641886773",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/641886773",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/641886773",
-          "latency": 0.2,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV6电影",
+      "name": "CCTV-7国防军事HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/624878396",
-        "latency": 1.68,
+        "url": "http://74.91.26.218:82/live/cctv7hd.m3u8",
+        "latency": 1.13,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878396",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878396",
-          "latency": 0.3,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878396",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV7国防军事",
+      "name": "CCTV-8电视剧HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/673168121",
-        "latency": 0.3,
+        "url": "http://74.91.26.218:82/live/cctv8hd.m3u8",
+        "latency": 0.97,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/673168121",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/673168121",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/673168121",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV8电视剧",
+      "name": "CCTV-9纪录HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/624878356",
-        "latency": 0.28,
+        "url": "http://74.91.26.218:82/live/cctv9hd.m3u8",
+        "latency": 1.19,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878356",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878356",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878356",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV9纪录",
+      "name": "CCTV-10科教HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/673168140",
-        "latency": 2.51,
+        "url": "http://74.91.26.218:82/live/cctv10hd.m3u8",
+        "latency": 1.17,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/673168140",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/673168140",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/673168140",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV10科教",
+      "name": "CCTV-11戏曲HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/624878405",
-        "latency": 0.36,
+        "url": "http://74.91.26.218:82/live/cctv11hd.m3u8",
+        "latency": 1.16,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878405",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878405",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878405",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV11戏曲",
+      "name": "CCTV-12社会与法HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/667987558",
-        "latency": 0.25,
+        "url": "http://74.91.26.218:82/live/cctv12hd.m3u8",
+        "latency": 0.95,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/667987558",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/667987558",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/667987558",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV12社会与法",
+      "name": "CCTV-13新闻HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/673168185",
-        "latency": 0.29,
+        "url": "http://74.91.26.218:82/live/cctv13hd.m3u8",
+        "latency": 1.1,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/673168185",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/673168185",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/673168185",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV13新闻",
+      "name": "CCTV-14少儿HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/608807423",
-        "latency": 0.38,
+        "url": "http://74.91.26.218:82/live/cctv14hd.m3u8",
+        "latency": 0.97,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/608807423",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/608807423",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608807423",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV14少儿",
+      "name": "CCTV-15音乐HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/624878440",
-        "latency": 0.39,
+        "url": "http://74.91.26.218:82/live/cctv15hd.m3u8",
+        "latency": 1.16,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878440",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878440",
-          "latency": 0.22,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878440",
-          "latency": 0.16,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV15音乐",
+      "name": "CCTV-16奥林匹克HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/673168223",
-        "latency": 0.31,
+        "url": "http://74.91.26.218:82/live/cctv16hd.m3u8",
+        "latency": 0.53,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/673168223",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/673168223",
-          "latency": 0.19,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/673168223",
-          "latency": 0.32,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CCTV17农业农村",
+      "name": "CCTV-17农业农村HD",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/673168256",
-        "latency": 0.34,
+        "url": "http://74.91.26.218:82/live/cctv17hd.m3u8",
+        "latency": 1.19,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/673168256",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/673168256",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/673168256",
-          "latency": 0.3,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN外语纪录",
+      "name": "CCTV-4K超高清",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609006487",
+        "url": "http://74.91.26.218:82/live/cctv4k.m3u8",
+        "latency": 0.57,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CGTN高清",
+      "group": "央视",
+      "main": {
+        "url": "http://74.91.26.218:82/live/cgtnhd.m3u8",
         "latency": 0.61,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609006487",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609006487",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609006487",
-          "latency": 0.19,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN阿拉伯语",
+      "name": "CCTV-8K (8K)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609154345",
-        "latency": 0.54,
+        "url": "https://cdn3.163189.xyz/163189/cctv8k",
+        "latency": 0.45,
+        "status": "错误"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-Storm Football (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvzq.m3u8",
+        "latency": 0.51,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609154345",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609154345",
-          "latency": 0.29,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609154345",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN西班牙语",
+      "name": "CCTV-Storm Music (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609006450",
-        "latency": 0.3,
+        "url": "http://69.30.245.50/live/cctvyy.m3u8",
+        "latency": 0.61,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609006450",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609006450",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609006450",
-          "latency": 0.36,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN法语",
+      "name": "CCTV-Storm Theater (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609006476",
-        "latency": 0.25,
+        "url": "http://69.30.245.50/live/cctvjc.m3u8",
+        "latency": 0.49,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609006476",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609006476",
-          "latency": 0.17,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609006476",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN俄语",
+      "name": "CCTV-The First Theater (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609006446",
+        "url": "http://69.30.245.50/live/cctvdyjc.m3u8",
+        "latency": 0.57,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-Nostalgia Theater (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvhx.m3u8",
+        "latency": 0.61,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-Culture of Quality (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvzp.m3u8",
+        "latency": 0.51,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-World Geography (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvdl.m3u8",
+        "latency": 0.48,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-Women's Fashion (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvns.m3u8",
         "latency": 0.6,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609006446",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609006446",
-          "latency": 0.22,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609006446",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "CGTN",
+      "name": "CCTV-Health (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/609017205",
-        "latency": 0.28,
+        "url": "http://69.30.245.50/live/cctvjk.m3u8",
+        "latency": 0.59,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/609017205",
-          "latency": 6.01,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/609017205",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/609017205",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "中学生",
+      "name": "CCTV-Weapon & Technology (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/708869532",
+        "url": "http://69.30.245.50/live/cctvwq.m3u8",
+        "latency": 0.6,
+        "status": "ok"
+      },
+      "backups": []
+    },
+    {
+      "name": "CCTV-Billiards (1080p)",
+      "group": "央视",
+      "main": {
+        "url": "http://69.30.245.50/live/cctvtq.m3u8",
         "latency": 0.58,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/708869532",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/708869532",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/708869532",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
-      "name": "发现之旅",
+      "name": "CCTV-Golf & Tennis (1080p)",
       "group": "央视",
       "main": {
-        "url": "http://112.85.93.6:7788/624878970",
-        "latency": 0.35,
+        "url": "http://69.30.245.50/live/cctvgl.m3u8",
+        "latency": 0.47,
         "status": "ok"
       },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/624878970",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/624878970",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/624878970",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "老故事",
-      "group": "央视",
-      "main": {
-        "url": "http://112.85.93.6:7788/884121956",
-        "latency": 0.31,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/884121956",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/884121956",
-          "latency": 0.4,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/884121956",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "财富天下",
-      "group": "央视",
-      "main": {
-        "url": "http://112.85.93.6:7788/956923159",
-        "latency": 0.29,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/956923159",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/956923159",
-          "latency": 0.2,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/956923159",
-          "latency": 0.18,
-          "status": "HTTP 604"
-        }
-      ]
+      "backups": []
     },
     {
       "name": "三沙卫视",
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/961023778",
-        "latency": 0.33,
+        "latency": 0.64,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/961023778",
-          "latency": 6.03,
+          "latency": 6.01,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/961023778",
-          "latency": 0.31,
+          "latency": 0.24,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/961023778",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "上海新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/651632657",
-        "latency": 0.3,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/651632657",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/651632657",
-          "latency": 0.32,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/651632657",
-          "latency": 0.17,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "上海第一财经",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/608780988",
-        "latency": 1.44,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/608780988",
-          "latency": 6.04,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/608780988",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608780988",
-          "latency": 0.23,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "上视东方影视",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/617290047",
-        "latency": 0.44,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/617290047",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/617290047",
-          "latency": 0.32,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/617290047",
-          "latency": 0.27,
+          "latency": 0.18,
           "status": "HTTP 604"
         }
       ]
     },
     {
       "name": "东南卫视",
-      "group": "卫视",
+      "group": "备用",
       "main": {
-        "url": "http://2280.eu.org:1234/849116810",
-        "latency": 0.13,
+        "url": "http://182.85.163.168:5678/849116810",
+        "latency": 0.22,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/849116810",
-          "latency": 0.16,
+          "url": "http://2280.eu.org:1234/849116810",
+          "latency": 0.24,
           "status": "ok"
         },
         {
           "url": "http://112.85.93.6:7788/849116810",
-          "latency": 0.41,
+          "latency": 0.36,
           "status": "ok"
         },
         {
@@ -898,23 +396,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/651632648",
-        "latency": 0.42,
+        "latency": 0.53,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/651632648",
-          "latency": 0.73,
+          "latency": 1.0,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/651632648",
-          "latency": 0.27,
+          "latency": 0.28,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/651632648",
-          "latency": 0.21,
+          "latency": 0.25,
           "status": "HTTP 604"
         }
       ]
@@ -924,49 +422,49 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/956904896",
-        "latency": 0.41,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/956904896",
-          "latency": 6.04,
+          "latency": 6.02,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/956904896",
-          "latency": 0.3,
+          "latency": 0.25,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/956904896",
-          "latency": 0.23,
+          "latency": 0.18,
           "status": "HTTP 604"
         }
       ]
     },
     {
       "name": "兵团卫视",
-      "group": "卫视",
+      "group": "备用",
       "main": {
-        "url": "http://183.247.194.196:7788/956923145",
-        "latency": 6.01,
-        "status": "错误"
+        "url": "http://112.85.93.6:7788/956923145",
+        "latency": 0.25,
+        "status": "ok"
       },
       "backups": [
         {
+          "url": "http://183.247.194.196:7788/956923145",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
           "url": "http://182.85.163.168:5678/956923145",
-          "latency": 0.24,
+          "latency": 0.29,
           "status": "HTTP 604"
         },
         {
-          "url": "http://112.85.93.6:7788/956923145",
-          "latency": 0.29,
-          "status": "HTTP 607"
-        },
-        {
           "url": "http://2280.eu.org:1234/956923145",
-          "latency": 0.17,
+          "latency": 0.23,
           "status": "HTTP 604"
         }
       ]
@@ -976,49 +474,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/630287636",
-        "latency": 0.34,
+        "latency": 0.25,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/630287636",
-          "latency": 6.03,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/630287636",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/630287636",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "南通新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/955227985",
-        "latency": 1.45,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/955227985",
           "latency": 6.02,
           "status": "错误"
         },
         {
-          "url": "http://182.85.163.168:5678/955227985",
-          "latency": 0.33,
+          "url": "http://182.85.163.168:5678/630287636",
+          "latency": 0.25,
           "status": "HTTP 604"
         },
         {
-          "url": "http://2280.eu.org:1234/955227985",
-          "latency": 0.28,
+          "url": "http://2280.eu.org:1234/630287636",
+          "latency": 0.22,
           "status": "HTTP 604"
         }
       ]
@@ -1028,23 +500,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472500",
-        "latency": 0.3,
+        "latency": 0.25,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/947472500",
-          "latency": 6.04,
+          "latency": 6.02,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/947472500",
-          "latency": 0.33,
+          "latency": 0.25,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/947472500",
-          "latency": 0.24,
+          "latency": 0.21,
           "status": "HTTP 604"
         }
       ]
@@ -1054,7 +526,7 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/608917627",
-        "latency": 0.69,
+        "latency": 0.29,
         "status": "ok"
       },
       "backups": [
@@ -1065,12 +537,12 @@
         },
         {
           "url": "http://182.85.163.168:5678/608917627",
-          "latency": 0.27,
+          "latency": 0.25,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608917627",
-          "latency": 0.27,
+          "latency": 0.19,
           "status": "HTTP 604"
         }
       ]
@@ -1080,75 +552,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738910535",
-        "latency": 0.45,
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/738910535",
-          "latency": 6.04,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/738910535",
-          "latency": 0.64,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/738910535",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "宜兴新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/955227996",
-        "latency": 0.55,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/955227996",
           "latency": 6.03,
           "status": "错误"
         },
         {
-          "url": "http://182.85.163.168:5678/955227996",
-          "latency": 0.27,
+          "url": "http://182.85.163.168:5678/738910535",
+          "latency": 0.21,
           "status": "HTTP 604"
         },
         {
-          "url": "http://2280.eu.org:1234/955227996",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "宿迁新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731832",
-        "latency": 0.35,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731832",
-          "latency": 0.89,
-          "status": "ok"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731832",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731832",
-          "latency": 0.25,
+          "url": "http://2280.eu.org:1234/738910535",
+          "latency": 0.2,
           "status": "HTTP 604"
         }
       ]
@@ -1158,49 +578,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/608831231",
-        "latency": 1.34,
+        "latency": 0.27,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608831231",
-          "latency": 6.03,
-          "status": "错误"
+          "latency": 0.63,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/608831231",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/608831231",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "徐州新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731747",
-        "latency": 0.26,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731747",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731747",
           "latency": 0.23,
           "status": "HTTP 604"
         },
         {
-          "url": "http://2280.eu.org:1234/639731747",
-          "latency": 0.26,
+          "url": "http://2280.eu.org:1234/608831231",
+          "latency": 0.19,
           "status": "HTTP 604"
         }
       ]
@@ -1210,7 +604,7 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/623899368",
-        "latency": 0.3,
+        "latency": 0.28,
         "status": "ok"
       },
       "backups": [
@@ -1221,7 +615,7 @@
         },
         {
           "url": "http://182.85.163.168:5678/623899368",
-          "latency": 0.2,
+          "latency": 1.27,
           "status": "HTTP 604"
         },
         {
@@ -1232,105 +626,27 @@
       ]
     },
     {
-      "name": "江苏国际",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/626064674",
-        "latency": 0.37,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/626064674",
-          "latency": 6.04,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/626064674",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/626064674",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "江苏教育",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/628008321",
-        "latency": 0.37,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/628008321",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/628008321",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/628008321",
-          "latency": 0.29,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
       "name": "江西卫视",
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/783847495",
-        "latency": 0.43,
-        "status": "ok"
+        "latency": 0.2,
+        "status": "HTTP 607"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/783847495",
-          "latency": 6.03,
+          "latency": 6.01,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/783847495",
-          "latency": 0.53,
+          "latency": 0.28,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/783847495",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "江阴新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://183.247.194.196:7788/955227979",
-        "latency": 6.04,
-        "status": "错误"
-      },
-      "backups": [
-        {
-          "url": "http://182.85.163.168:5678/955227979",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://112.85.93.6:7788/955227979",
-          "latency": 0.29,
-          "status": "HTTP 607"
-        },
-        {
-          "url": "http://2280.eu.org:1234/955227979",
-          "latency": 0.21,
+          "latency": 0.22,
           "status": "HTTP 604"
         }
       ]
@@ -1340,8 +656,8 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/962042070",
-        "latency": 0.37,
-        "status": "ok"
+        "latency": 0.22,
+        "status": "HTTP 607"
       },
       "backups": [
         {
@@ -1351,12 +667,12 @@
         },
         {
           "url": "http://182.85.163.168:5678/962042070",
-          "latency": 0.29,
+          "latency": 0.22,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/962042070",
-          "latency": 0.25,
+          "latency": 0.18,
           "status": "HTTP 604"
         }
       ]
@@ -1366,8 +682,8 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/790187291",
-        "latency": 1.42,
-        "status": "ok"
+        "latency": 0.27,
+        "status": "HTTP 607"
       },
       "backups": [
         {
@@ -1377,38 +693,12 @@
         },
         {
           "url": "http://182.85.163.168:5678/790187291",
-          "latency": 0.34,
+          "latency": 0.23,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/790187291",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "泰州新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731818",
-        "latency": 0.28,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731818",
-          "latency": 0.78,
-          "status": "ok"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731818",
-          "latency": 0.3,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731818",
-          "latency": 0.26,
+          "latency": 0.18,
           "status": "HTTP 604"
         }
       ]
@@ -1418,23 +708,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472502",
-        "latency": 0.54,
+        "latency": 0.32,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/947472502",
-          "latency": 6.03,
+          "latency": 6.02,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/947472502",
-          "latency": 0.3,
+          "latency": 0.27,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/947472502",
-          "latency": 0.18,
+          "latency": 0.22,
           "status": "HTTP 604"
         }
       ]
@@ -1444,18 +734,18 @@
       "group": "卫视",
       "main": {
         "url": "http://2280.eu.org:1234/849119120",
-        "latency": 0.17,
+        "latency": 0.15,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/849119120",
-          "latency": 0.22,
+          "url": "http://112.85.93.6:7788/849119120",
+          "latency": 0.18,
           "status": "ok"
         },
         {
-          "url": "http://112.85.93.6:7788/849119120",
-          "latency": 0.36,
+          "url": "http://182.85.163.168:5678/849119120",
+          "latency": 0.2,
           "status": "ok"
         },
         {
@@ -1466,43 +756,17 @@
       ]
     },
     {
-      "name": "淮安新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731826",
-        "latency": 0.35,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731826",
-          "latency": 0.83,
-          "status": "ok"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731826",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731826",
-          "latency": 0.25,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
       "name": "湖北卫视",
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472496",
-        "latency": 0.31,
+        "latency": 0.79,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/947472496",
-          "latency": 6.02,
+          "latency": 6.03,
           "status": "错误"
         },
         {
@@ -1512,59 +776,7 @@
         },
         {
           "url": "http://2280.eu.org:1234/947472496",
-          "latency": 0.19,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "溧水新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639737327",
-        "latency": 0.43,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639737327",
-          "latency": 6.02,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639737327",
-          "latency": 0.26,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639737327",
-          "latency": 0.19,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "盐城新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731825",
-        "latency": 0.33,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731825",
-          "latency": 0.83,
-          "status": "ok"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731825",
-          "latency": 0.28,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731825",
-          "latency": 0.26,
+          "latency": 0.43,
           "status": "HTTP 604"
         }
       ]
@@ -1574,7 +786,7 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/630291707",
-        "latency": 0.29,
+        "latency": 0.45,
         "status": "ok"
       },
       "backups": [
@@ -1585,38 +797,12 @@
         },
         {
           "url": "http://182.85.163.168:5678/630291707",
-          "latency": 0.2,
+          "latency": 0.28,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/630291707",
-          "latency": 0.21,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "连云港新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731715",
-        "latency": 0.3,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731715",
-          "latency": 6.04,
-          "status": "错误"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731715",
-          "latency": 1.22,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731715",
-          "latency": 0.25,
+          "latency": 0.23,
           "status": "HTTP 604"
         }
       ]
@@ -1642,33 +828,7 @@
         },
         {
           "url": "http://2280.eu.org:1234/738910914",
-          "latency": 0.27,
-          "status": "HTTP 604"
-        }
-      ]
-    },
-    {
-      "name": "镇江新闻综合",
-      "group": "地方台",
-      "main": {
-        "url": "http://112.85.93.6:7788/639731783",
-        "latency": 0.38,
-        "status": "ok"
-      },
-      "backups": [
-        {
-          "url": "http://183.247.194.196:7788/639731783",
-          "latency": 0.61,
-          "status": "ok"
-        },
-        {
-          "url": "http://182.85.163.168:5678/639731783",
-          "latency": 0.24,
-          "status": "HTTP 604"
-        },
-        {
-          "url": "http://2280.eu.org:1234/639731783",
-          "latency": 0.27,
+          "latency": 0.18,
           "status": "HTTP 604"
         }
       ]
@@ -1678,7 +838,7 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738910838",
-        "latency": 1.31,
+        "latency": 0.25,
         "status": "ok"
       },
       "backups": [
@@ -1689,12 +849,12 @@
         },
         {
           "url": "http://182.85.163.168:5678/738910838",
-          "latency": 0.21,
+          "latency": 0.27,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/738910838",
-          "latency": 0.28,
+          "latency": 0.2,
           "status": "HTTP 604"
         }
       ]
@@ -1704,23 +864,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472506",
-        "latency": 0.49,
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/947472506",
-          "latency": 6.03,
+          "latency": 6.04,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/947472506",
-          "latency": 0.26,
+          "latency": 0.22,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/947472506",
-          "latency": 0.23,
+          "latency": 0.2,
           "status": "HTTP 604"
         }
       ]
@@ -1730,23 +890,1193 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738906901",
-        "latency": 0.49,
+        "latency": 0.42,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/738906901",
-          "latency": 6.02,
+          "latency": 6.01,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/738906901",
-          "latency": 0.32,
+          "latency": 0.54,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/738906901",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "上海新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/651632657",
+        "latency": 0.27,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/651632657",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/651632657",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/651632657",
+          "latency": 0.16,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "上海第一财经",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/608780988",
+        "latency": 0.41,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/608780988",
+          "latency": 6.01,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/608780988",
+          "latency": 0.22,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/608780988",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "上视东方影视",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/617290047",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/617290047",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/617290047",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/617290047",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "南通新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/955227985",
+        "latency": 0.27,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/955227985",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/955227985",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/955227985",
+          "latency": 0.19,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "宜兴新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/955227996",
+        "latency": 0.32,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/955227996",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/955227996",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/955227996",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "宿迁新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731832",
+        "latency": 0.3,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731832",
+          "latency": 6.01,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731832",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731832",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "徐州新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731747",
+        "latency": 0.38,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731747",
+          "latency": 0.62,
+          "status": "ok"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731747",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731747",
+          "latency": 0.21,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "江苏国际",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/626064674",
+        "latency": 0.3,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/626064674",
+          "latency": 0.89,
+          "status": "ok"
+        },
+        {
+          "url": "http://182.85.163.168:5678/626064674",
+          "latency": 0.53,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/626064674",
+          "latency": 0.16,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "江苏教育",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/628008321",
+        "latency": 0.31,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/628008321",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/628008321",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/628008321",
+          "latency": 0.15,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "江阴新闻综合",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/955227979",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/955227979",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/955227979",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/955227979",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "泰州新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731818",
+        "latency": 0.33,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731818",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731818",
+          "latency": 0.19,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731818",
+          "latency": 0.16,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "淮安新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731826",
+        "latency": 0.26,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731826",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731826",
           "latency": 0.28,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731826",
+          "latency": 0.19,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "溧水新闻综合",
+      "group": "备用",
+      "main": {
+        "url": "http://183.247.194.196:7788/639737327",
+        "latency": 1.03,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://112.85.93.6:7788/639737327",
+          "latency": 0.24,
+          "status": "HTTP 607"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639737327",
+          "latency": 0.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639737327",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "盐城新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731825",
+        "latency": 0.21,
+        "status": "HTTP 607"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731825",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731825",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731825",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "连云港新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731715",
+        "latency": 0.31,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731715",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731715",
+          "latency": 0.26,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731715",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "镇江新闻综合",
+      "group": "地方台",
+      "main": {
+        "url": "http://112.85.93.6:7788/639731783",
+        "latency": 0.29,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/639731783",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/639731783",
+          "latency": 0.53,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/639731783",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV1综合",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/608807420",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/608807420",
+          "latency": 6.01,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/608807420",
+          "latency": 0.26,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/608807420",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV2财经",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/631780532",
+        "latency": 0.28,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/631780532",
+          "latency": 0.97,
+          "status": "ok"
+        },
+        {
+          "url": "http://182.85.163.168:5678/631780532",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/631780532",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV3综艺",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878271",
+        "latency": 0.37,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878271",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878271",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878271",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV4中文国际",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/631780421",
+        "latency": 0.27,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/631780421",
+          "latency": 0.98,
+          "status": "ok"
+        },
+        {
+          "url": "http://182.85.163.168:5678/631780421",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/631780421",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV4欧洲",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/608807419",
+        "latency": 0.24,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/608807419",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/608807419",
+          "latency": 1.3,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/608807419",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV4美洲",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/608807416",
+        "latency": 0.39,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/608807416",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/608807416",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/608807416",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV5体育",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/641886683",
+        "latency": 0.24,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/641886683",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/641886683",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/641886683",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV5+体育赛事",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/641886773",
+        "latency": 0.56,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/641886773",
+          "latency": 0.9,
+          "status": "ok"
+        },
+        {
+          "url": "http://182.85.163.168:5678/641886773",
+          "latency": 0.28,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/641886773",
+          "latency": 0.23,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV6电影",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878396",
+        "latency": 0.26,
+        "status": "HTTP 607"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878396",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878396",
+          "latency": 0.29,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878396",
+          "latency": 0.22,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV7国防军事",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/673168121",
+        "latency": 0.3,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/673168121",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/673168121",
+          "latency": 1.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/673168121",
+          "latency": 0.19,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV8电视剧",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878356",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878356",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878356",
+          "latency": 0.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878356",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV9纪录",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/673168140",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/673168140",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/673168140",
+          "latency": 0.28,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/673168140",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV10科教",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878405",
+        "latency": 0.27,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878405",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878405",
+          "latency": 0.26,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878405",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV11戏曲",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/667987558",
+        "latency": 0.32,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/667987558",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/667987558",
+          "latency": 0.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/667987558",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV12社会与法",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/673168185",
+        "latency": 0.29,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/673168185",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/673168185",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/673168185",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV13新闻",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/608807423",
+        "latency": 0.26,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/608807423",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/608807423",
+          "latency": 1.28,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/608807423",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV14少儿",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878440",
+        "latency": 0.24,
+        "status": "HTTP 607"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878440",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878440",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878440",
+          "latency": 0.36,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV15音乐",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/673168223",
+        "latency": 0.25,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/673168223",
+          "latency": 6.01,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/673168223",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/673168223",
+          "latency": 0.22,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CCTV17农业农村",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/673168256",
+        "latency": 0.28,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/673168256",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/673168256",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/673168256",
+          "latency": 0.16,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN外语纪录",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609006487",
+        "latency": 0.23,
+        "status": "HTTP 607"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609006487",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609006487",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609006487",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN阿拉伯语",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609154345",
+        "latency": 0.26,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609154345",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609154345",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609154345",
+          "latency": 0.16,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN西班牙语",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609006450",
+        "latency": 0.27,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609006450",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609006450",
+          "latency": 0.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609006450",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN法语",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609006476",
+        "latency": 3.07,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609006476",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609006476",
+          "latency": 0.38,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609006476",
+          "latency": 0.24,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN俄语",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609006446",
+        "latency": 2.62,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609006446",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609006446",
+          "latency": 0.28,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609006446",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "CGTN",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/609017205",
+        "latency": 1.9,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/609017205",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/609017205",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/609017205",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "中学生",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/708869532",
+        "latency": 1.05,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/708869532",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/708869532",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/708869532",
+          "latency": 0.2,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "发现之旅",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/624878970",
+        "latency": 0.39,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/624878970",
+          "latency": 6.03,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/624878970",
+          "latency": 0.25,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/624878970",
+          "latency": 0.18,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "老故事",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/884121956",
+        "latency": 0.26,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/884121956",
+          "latency": 6.04,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/884121956",
+          "latency": 0.21,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/884121956",
+          "latency": 0.17,
+          "status": "HTTP 604"
+        }
+      ]
+    },
+    {
+      "name": "财富天下",
+      "group": "备用",
+      "main": {
+        "url": "http://112.85.93.6:7788/956923159",
+        "latency": 0.43,
+        "status": "ok"
+      },
+      "backups": [
+        {
+          "url": "http://183.247.194.196:7788/956923159",
+          "latency": 6.02,
+          "status": "错误"
+        },
+        {
+          "url": "http://182.85.163.168:5678/956923159",
+          "latency": 0.27,
+          "status": "HTTP 604"
+        },
+        {
+          "url": "http://2280.eu.org:1234/956923159",
+          "latency": 0.36,
           "status": "HTTP 604"
         }
       ]
