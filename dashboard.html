@@ -270,6 +270,27 @@
     });
   };
   window.setFilter = function(f) { filter = f; expanded = null; render(); };
+  window.triggerRefresh = function() {
+    const btn = document.getElementById('refreshBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 测速中...';
+    btn.style.opacity = '0.6';
+    
+    fetch('https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'probe_trigger', time: Date.now() })
+    }).then(() => {
+      btn.textContent = '✅ 已请求刷新';
+      btn.style.opacity = '1';
+      // 等15秒后自动重新加载页面
+      setTimeout(() => location.reload(), 15000);
+    }).catch(() => {
+      btn.textContent = '❌ 请求失败，重试';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    });
+  };
   window.toggle = function(name) {
     expanded = expanded === name ? null : name;
     render();
@@ -288,6 +309,7 @@
         <h1>📺 IPTV 频道状态</h1>
         <div class="header-right">
           <span class="update-badge"><span class="dot"></span>${data.lastUpdate || '未知'} 北京时间</span>
+          <button id="refreshBtn" class="filter-btn" onclick="triggerRefresh()" style="font-size:13px">🔄 手动测速</button>
         </div>
       </div>
       <div class="url-card">
