@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IPTV 频道状态看板</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #0d1117; color: #c9d1d9; padding: 20px; min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid #21262d; margin-bottom: 24px;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .header h1 {
+    font-size: 24px; font-weight: 600;
+    background: linear-gradient(135deg, #58a6ff, #3fb950);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .update-badge {
+    font-size: 13px; color: #8b949e;
+    background: #161b22; padding: 6px 14px; border-radius: 20px;
+    border: 1px solid #30363d; white-space: nowrap;
+  }
+  .url-card {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 16px; margin-bottom: 20px;
+  }
+  .url-card .row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; flex-wrap: wrap;
+  }
+  .url-card .row:first-child { padding-top: 0; }
+  .url-card .label {
+    font-size: 12px; font-weight: 600; color: #8b949e;
+    min-width: 60px; letter-spacing: 0.5px;
+  }
+  .url-card .url {
+    flex: 1; font-size: 13px; font-family: 'SFMono-Regular', Consolas, monospace;
+    color: #58a6ff; word-break: break-all; min-width: 0;
+    padding: 6px 10px; background: #0d1117; border: 1px solid #21262d;
+    border-radius: 4px; cursor: text;
+  }
+  .url-card .copy-btn {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid #30363d;
+    background: transparent; color: #c9d1d9; cursor: pointer;
+    font-size: 12px; transition: all 0.15s; white-space: nowrap;
+  }
+  .url-card .copy-btn:hover { border-color: #58a6ff; color: #58a6ff; background: #1f6feb22; }
+  .url-card .copy-btn.copied { border-color: #3fb950; color: #3fb950; background: #3fb95022; }
+  .update-badge .dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: #3fb950; margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  .stat-card {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 16px; text-align: center;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  .stat-card .label { font-size: 12px; color: #8b949e; letter-spacing: 0.5px; margin-top: 4px; }
+  .stat-card.green .num { color: #3fb950; }
+  .stat-card.red .num { color: #f85149; }
+  .stat-card.orange .num { color: #d29922; }
+  .stat-card.blue .num { color: #58a6ff; }
+
+  .duration-bar {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 24px;
+    font-size: 13px; color: #8b949e;
+  }
+
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid #30363d;
+    background: transparent; color: #c9d1d9; cursor: pointer;
+    font-size: 13px; transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: #58a6ff; color: #58a6ff; }
+  .filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+  .filter-btn.bad { border-color: #f85149; color: #f85149; }
+  .filter-btn.bad.active { background: #da3633; border-color: #da3633; color: #fff; }
+
+  .channel-list { display: flex; flex-direction: column; gap: 4px; }
+
+  .channel-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 40px;
+    gap: 12px; align-items: center;
+    padding: 10px 14px; background: #161b22;
+    border: 1px solid #21262d; border-radius: 6px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .channel-row:hover { border-color: #30363d; background: #1c2128; }
+
+  .channel-name {
+    font-size: 14px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .channel-name .group-tag {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    padding: 1px 6px; border-radius: 4px; margin-right: 6px;
+    vertical-align: middle;
+  }
+  .group-tag.cctv { background: #1f6feb33; color: #58a6ff; }
+  .group-tag.weishi { background: #d2992233; color: #d29922; }
+  .group-tag.difang { background: #3fb95033; color: #3fb950; }
+  .group-tag.beiyong { background: #8b949e33; color: #8b949e; }
+
+  .source-bar { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .source-dot {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
+  }
+  .source-dot.ok { background: #3fb95022; color: #3fb950; }
+  .source-dot.slow { background: #d2992222; color: #d29922; }
+  .source-dot.bad { background: #f8514922; color: #f85149; }
+  .source-dot.main { border-left: 2px solid #58a6ff; }
+
+  .ch-status-icon { text-align: center; font-size: 18px; }
+  .ch-status-icon.ok { color: #3fb950; }
+  .ch-status-icon.slow { color: #d29922; }
+  .ch-status-icon.bad { color: #f85149; }
+
+  .channel-detail {
+    background: #0d1117; border: 1px solid #21262d; border-top: none;
+    border-radius: 0 0 6px 6px; padding: 12px 14px 14px;
+    margin-top: -4px; overflow-x: auto;
+  }
+  .detail-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .detail-table th {
+    text-align: left; color: #8b949e; font-weight: 500;
+    padding: 4px 8px; border-bottom: 1px solid #21262d;
+    font-size: 11px; white-space: nowrap;
+  }
+  .detail-table td {
+    padding: 6px 8px; border-bottom: 1px solid #161b22;
+    font-family: 'SFMono-Regular', Consolas, monospace; font-size: 12px;
+    word-break: break-all; max-width: 400px;
+  }
+  .detail-table tr:last-child td { border-bottom: none; }
+
+  .latency-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; margin-right: 4px; vertical-align: middle;
+  }
+  .latency-dot.fast { background: #3fb950; }
+  .latency-dot.medium { background: #d29922; }
+  .latency-dot.slow { background: #f85149; }
+
+  .empty-state { text-align: center; padding: 60px 20px; color: #8b949e; }
+  .empty-state .big { font-size: 48px; margin-bottom: 12px; }
+
+  .loading { text-align: center; padding: 80px 20px; color: #8b949e; }
+  .loading .spinner {
+    width: 32px; height: 32px; border: 3px solid #21262d;
+    border-top: 3px solid #58a6ff; border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin: 0 auto 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-state { text-align: center; padding: 60px 20px; color: #f85149; }
+  .error-state .big { font-size: 48px; margin-bottom: 12px; }
+
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    .channel-row { grid-template-columns: 1fr 1fr; }
+    .ch-status-icon { display: none; }
+    .header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>加载状态数据...</p>
+  </div>
+</div>
+
+<script>
+(async () => {
+  const app = document.getElementById('app');
+  let data;
+
+  try {
+    const res = await fetch('status.json?_=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    data = await res.json();
+  } catch (e) {
+    app.innerHTML = `
+      <div class="error-state">
+        <div class="big">📡</div>
+        <h3>数据加载失败</h3>
+        <p>${e.message}</p>
+        <p style="margin-top:12px;font-size:13px;color:#8b949e">请确认 status.json 已部署到同目录下</p>
+      </div>`;
+    return;
+  }
+
+  if (!data.channels || data.channels.length === 0) {
+    app.innerHTML = `
+      <div class="empty-state">
+        <div class="big">📭</div>
+        <h3>暂无频道数据</h3>
+        <p>等待下一次自动探测更新</p>
+      </div>`;
+    return;
+  }
+
+  const groupColors = { '央视':'cctv', '卫视':'weishi', '地方台':'difang', '备用':'beiyong' };
+  function groupClass(g) {
+    const k = Object.keys(groupColors).find(k => g && g.includes(k));
+    return groupColors[k] || 'beiyong';
+  }
+  function latencyClass(lat) {
+    if (lat === null || lat === undefined) return 'bad';
+    return lat < 0.8 ? 'ok' : lat < 2.0 ? 'slow' : 'bad';
+  }
+  function chStatus(ch) {
+    if (ch.main.status !== 'ok') return 'bad';
+    return ch.main.latency < 0.8 ? 'ok' : ch.main.latency < 2.0 ? 'slow' : 'bad';
+  }
+
+  const groups = {};
+  data.channels.forEach(ch => {
+    const g = ch.group || '未分类';
+    if (!groups[g]) groups[g] = [];
+    groups[g].push(ch);
+  });
+  const groupOrder = ['央视','卫视','地方台'];
+  const groupKeys = Object.keys(groups).sort((a,b) => {
+    const ia = groupOrder.indexOf(a), ib = groupOrder.indexOf(b);
+    if (ia!==-1 && ib!==-1) return ia-ib;
+    if (ia!==-1) return -1; if (ib!==-1) return 1;
+    return a.localeCompare(b);
+  });
+
+  let filter = 'all';
+  let expanded = null;
+
+  window.copyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = '已复制 ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      btn.textContent = '已复制 ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
+    });
+  };
+  window.setFilter = function(f) { filter = f; expanded = null; render(); };
+  window.toggle = function(name) {
+    expanded = expanded === name ? null : name;
+    render();
+  };
+
+  function render() {
+    let fch = [];
+    if (filter === 'all') groupKeys.forEach(g => fch.push(...groups[g]));
+    else if (filter === 'bad') fch = data.channels.filter(ch => chStatus(ch) !== 'ok');
+    else fch = groups[filter] || [];
+
+    const icons = { ok:'✅', slow:'⚠️', bad:'❌' };
+
+    let html = `
+      <div class="header">
+        <h1>📺 IPTV 频道状态</h1>
+        <div class="header-right">
+          <span class="update-badge"><span class="dot"></span>${data.lastUpdate || '未知'} 北京时间</span>
+        </div>
+      </div>
+      <div class="url-card">
+        <div class="row">
+          <span class="label">📋 频道</span>
+          <span class="url" onclick="this.select();document.execCommand('copy')">${window.location.origin}/live.m3u</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/live.m3u')">复制</button>
+        </div>
+        <div class="row">
+          <span class="label">📆 节目单</span>
+          <span class="url" onclick="this.select();document.execCommand('copy')">${window.location.origin}/e.xml</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/e.xml')">复制</button>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card blue"><div class="num">${data.stats.channels}</div><div class="label">频道总数</div></div>
+        <div class="stat-card green"><div class="num">${data.stats.totalSources}</div><div class="label">源总数</div></div>
+        <div class="stat-card ${data.stats.okRate>=70?'green':data.stats.okRate>=50?'orange':'red'}"><div class="num">${data.stats.okRate}%</div><div class="label">可用率</div></div>
+        <div class="stat-card ${data.stats.mainWithIssues===0?'green':'red'}"><div class="num">${data.stats.mainWithIssues}</div><div class="label">主源异常</div></div>
+        <div class="stat-card orange"><div class="num">${data.duration}s</div><div class="label">探测耗时</div></div>
+      </div>
+      <div class="duration-bar">⏱️ 对 ${data.stats.totalSources} 个源并发探测，耗时 ${data.duration} 秒</div>
+      <div class="filter-bar">
+        <button class="filter-btn ${filter==='all'?'active':''}" onclick="setFilter('all')">📋 全部</button>
+        ${groupKeys.map(g => `<button class="filter-btn ${filter===g?'active':''}" onclick="setFilter('${g}')">${g} (${groups[g].length})</button>`).join('')}
+        <button class="filter-btn bad ${filter==='bad'?'active':''}" onclick="setFilter('bad')">⚠️ 异常 (${data.channels.filter(c=>chStatus(c)!=='ok').length})</button>
+      </div>
+      <div class="channel-list">${
+        fch.length === 0
+          ? '<div class="empty-state"><div class="big">✅</div><h3>全部正常</h3></div>'
+          : fch.map(ch => {
+              const sc = chStatus(ch);
+              const exp = expanded === ch.name;
+              const mainLat = ch.main.status==='ok' ? ch.main.latency+'s' : ch.main.status;
+              const badBk = ch.backups.filter(b => b.status!=='ok').length;
+              return `
+        <div class="channel-row" onclick="toggle('${ch.name.replace(/'/g,"\\'")}')">
+          <div class="channel-name"><span class="group-tag ${groupClass(ch.group)}">${ch.group||'?'}</span>${ch.name}</div>
+          <div class="source-bar">
+            <span class="source-dot ok main">主 ${mainLat}</span>
+            ${ch.backups.filter(b=>b.status==='ok').slice(0,3).map((b,i)=>`<span class="source-dot ${latencyClass(b.latency)}">备${i+1} ${b.latency}s</span>`).join('')}
+            ${badBk ? `<span class="source-dot bad">${badBk}个离线</span>` : ''}
+          </div>
+          <div class="ch-status-icon ${sc}">${icons[sc]}</div>
+        </div>
+        <div class="channel-detail" style="display:${exp?'block':'none'}">
+          <table class="detail-table">
+            <tr><th>类型</th><th>延迟</th><th>状态</th><th>URL</th></tr>
+            <tr>
+              <td>🔵 主源</td>
+              <td><span class="latency-dot ${ch.main.latency<0.8?'fast':ch.main.latency<2?'medium':'slow'}"></span>${ch.main.status==='ok'?ch.main.latency+'s':'-'}</td>
+              <td style="color:${ch.main.status==='ok'?'#3fb950':'#f85149'}">${ch.main.status}</td>
+              <td style="font-size:11px;color:#8b949e">${ch.main.url}</td>
+            </tr>
+            ${ch.backups.map((b,i)=>`
+            <tr>
+              <td>🟢 备${i+1}</td>
+              <td><span class="latency-dot ${b.latency<0.8?'fast':b.latency<2?'medium':'slow'}"></span>${b.status==='ok'?b.latency+'s':'-'}</td>
+              <td style="color:${b.status==='ok'?'#3fb950':'#f85149'}">${b.status}</td>
+              <td style="font-size:11px;color:#8b949e">${b.url}</td>
+            </tr>`).join('')}
+          </table>
+        </div>`; }).join('')
+      }</div>`;
+
+    app.innerHTML = html;
+  }
+
+  render();
+  // 自动刷新
+  setInterval(async () => {
+    try {
+      const r = await fetch('status.json?_='+Date.now());
+      if (r.ok) { data = await r.json(); render(); }
+    } catch(e) {}
+  }, 60000);
+})();
+</script>
+</body>
+</html>
