@@ -739,10 +739,10 @@
         <div class="group-card">
           <div class="stat-grid">
             <div class="s-item"><div class="n" style="color:var(--accent)">${data.stats.channels}</div><div class="l">📡 频道总数</div></div>
-            <div class="s-item"><div class="n" style="color:var(--accent)">${data.stats.totalSources}</div><div class="l">🔗 在线源</div></div>
+            <div class="s-item"><div class="n" style="color:#06b6d4">${data.stats.totalSources}</div><div class="l">🔗 在线源</div></div>
             <div class="s-item"><div class="n" style="color:${okRate>=70?'var(--green)':okRate>=50?'var(--yellow)':'var(--red)'}">${okRate}%</div><div class="l">📊 可用率</div></div>
-            <div class="s-item"><div class="n" style="color:${data.stats.mainWithIssues===0?'var(--green)':'var(--red)'}">${data.stats.mainWithIssues}</div><div class="l">⚠️ 主源异常</div></div>
-            <div class="s-item"><div class="n" style="color:var(--accent)">${data.duration}s</div><div class="l">⏱ 探测耗时</div></div>
+            <div class="s-item"><div class="n" style="color:${data.stats.mainWithIssues===0?'var(--green)':'#f97316'}">${data.stats.mainWithIssues}</div><div class="l">⚠️ 主源异常</div></div>
+            <div class="s-item"><div class="n" style="color:#8b5cf6">${data.duration}s</div><div class="l">⏱ 探测耗时</div></div>
           </div>
         </div>
         <div class="group-card">
