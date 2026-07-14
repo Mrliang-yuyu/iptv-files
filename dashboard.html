@@ -347,7 +347,7 @@
           } else if (rf.status === 'completed') {
             refreshStatus = 'completed';
             const dur = rf.duration ? (rf.duration + '秒') : '';
-            refreshMsg = '✅ 测速完成' + (dur ? ' ('+dur+')' : '') + '，等待部署...';
+            refreshMsg = '✅ 测速完成' + (dur ? ' ('+dur+')' : '') + '，自动部署中...';
             render();
           }
         }
