@@ -227,25 +227,7 @@
   .url-wrap .u-row .cpy:hover { color: var(--accent); }
   .url-wrap .u-row .cpy.copied { color: var(--green); }
 
-  /* ── Trend Chart ── */
-  .chart-card {
-    margin-bottom: 12px;
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    box-shadow: var(--card-shadow);
-    padding: 8px 10px 6px;
-  }
-  .chart-card svg { display: block; width: 100%; height: 140px; }
-  .chart-card .chart-empty {
-    text-align: center; padding: 50px 0;
-    font-size: 14px; color: var(--text3);
-  }
-  @media (max-width: 520px) {
-    .chart-card svg { height: 100px; }
-  }
-
-  .num.green { color: var(--green); }
+.num.green { color: var(--green); }
   .num.yellow { color: var(--yellow); }
   .num.red { color: var(--red); }
   .num.blue { color: var(--blue); }
@@ -729,85 +711,6 @@
 
     const icons = { ok:'✓', slow:'⚠', bad:'✕' };
 
-    // ── 可用率趋势图 ──
-    const HISTORY_KEY = 'iptv-trend';
-    function loadTrendHistory() {
-      try {
-        const raw = localStorage.getItem(HISTORY_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch(e) { return []; }
-    }
-    function saveTrendHistory(h) {
-      try { localStorage.setItem(HISTORY_KEY, JSON.stringify(h)); } catch(e) {}
-    }
-    // Add current data point if new
-    (function() {
-      let hist = loadTrendHistory();
-      const now = new Date();
-      const timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-      const last = hist.length > 0 ? hist[hist.length-1] : null;
-      // Only add if lastUpdate changed or >30min passed
-      const shouldAdd = !last || (last.update !== data.lastUpdate) || (now.getTime() - last.ts > 30*60*1000);
-      if (shouldAdd && okRate > 0) {
-        hist.push({ time: timeStr, okRate: okRate, total: data.stats.channels, update: data.lastUpdate, ts: now.getTime() });
-        if (hist.length > 30) hist = hist.slice(-30);
-        saveTrendHistory(hist);
-      }
-    })();
-    // Render SVG chart
-    function renderTrendChart() {
-      const hist = loadTrendHistory();
-      if (hist.length < 2) return '<div class="chart-card"><div class="chart-empty">数据不足，刷新几次后自动生成</div></div>';
-      const pts = hist.slice(-20);
-      const now = new Date();
-      // Fixed Y: 0-100%
-      const minY = 0, maxY = 100;
-      const rangeY = maxY - minY;
-      const spanW = pts.length - 1;
-      // Virtual coordinate space
-      const padL = 8, padR = 6, padT = 6, padB = 16;
-      const W = 100 + padL + padR;
-      const H = 60 + padT + padB;
-      const iw = 100, ih = 60;
-      // Path
-      const path = pts.map((p, i) => {
-        const x = padL + (i / spanW) * iw;
-        const y = padT + ih - ((p.okRate - minY) / rangeY) * ih;
-        return `${i===0?'M':'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-      }).join(' ');
-      const fillPath = path + ` L${padL+iw},${padT+ih} L${padL},${padT+ih} Z`;
-      const lastRate = pts[pts.length-1].okRate;
-      const rateColor = lastRate >= 80 ? 'var(--green)' : lastRate >= 50 ? 'var(--yellow)' : 'var(--red)';
-      // Y-axis grid lines
-      const yGrid = [];
-      for (let v = 0; v <= 100; v += 25) {
-        const y = padT + ih - ((v - minY) / rangeY) * ih;
-        yGrid.push(`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${padL+iw}" y2="${y.toFixed(1)}" stroke="var(--card-border)" stroke-width="0.5"/>`);
-        if (v > 0) yGrid.push(`<text x="${padL-3}" y="${(y+3.5).toFixed(1)}" text-anchor="end" fill="var(--text3)" font-size="3.5">${v}</text>`);
-      }
-      // X-axis time labels
-      const xLabels = [];
-      const labelIdx = [0, Math.floor(spanW/2), spanW];
-      labelIdx.forEach(idx => {
-        const x = padL + (idx / spanW) * iw;
-        xLabels.push(`<text x="${x.toFixed(1)}" y="${padT+ih+11}" text-anchor="middle" fill="var(--text3)" font-size="3.5">${pts[idx].time}</text>`);
-      });
-      return `<div class="chart-card">
-        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:80px">
-          ${yGrid.join('')}
-          <path d="${fillPath}" fill="${rateColor}" opacity="0.08"/>
-          <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="${(padL + (spanW/spanW)*iw).toFixed(1)}" cy="${(padT + ih - ((lastRate - minY)/rangeY)*ih).toFixed(1)}" r="3" fill="${rateColor}" stroke="var(--card)" stroke-width="1.5"/>
-          ${xLabels.join('')}
-        </svg>
-        <div style="text-align:center;margin-top:-6px;margin-bottom:-4px">
-          <span style="font-weight:700;font-size:14px;color:${rateColor}">${lastRate}%</span>
-          <span style="color:var(--text3);font-size:10px;margin-left:6px">最新</span>
-        </div>
-      </div>`;
-    }
-    const trendChartHtml = renderTrendChart();
-
     let html = `
       <div class="card-header">
         <div class="header-left">
@@ -819,7 +722,6 @@
         </div>
       </div>
       ${statusBar}
-      ${trendChartHtml}
       <div class="card-row">
         <div class="group-card">
           <div class="health-card-wrap">
