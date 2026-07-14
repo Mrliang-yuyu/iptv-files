@@ -490,15 +490,12 @@
   async function initRefreshStatus() {
     const rf = await fetchRefreshStatus();
     if (rf && rf.status === 'running') {
-      refreshStatus = 'running';
-      refreshMsg = '⏳ 测速进行中（页面打开时）';
+      // 页面打开时测速正在进行（可能是上一次触发的）
+      refreshStatus = 'requested';
+      refreshMsg = '⏳ 测速进行中，等待结果...';
       startRefreshPoll();
-    } else if (rf && rf.status === 'completed') {
-      refreshStatus = 'completed';
-      const dur = rf.duration ? ('，耗时 '+rf.duration+'秒') : '';
-      const at = rf.completedAt || '';
-      refreshMsg = '✅ 上次刷新已完成' + dur + (at ? ' ('+at+')' : '');
     }
+    // status: completed 或 idle → 不显示任何状态，按钮保持可用
     render();
   }
   
