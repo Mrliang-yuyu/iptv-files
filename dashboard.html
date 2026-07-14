@@ -20,9 +20,11 @@
     --yellow-bg: rgba(251, 191, 36, 0.15);
     --red: #f87171;
     --red-bg: rgba(248, 113, 113, 0.15);
-    --blue: #38bdf8;
-    --blue-bg: rgba(56, 189, 248, 0.15);
-    --purple: #a78bfa;
+    --blue: #00d4ff;
+    --blue-bg: rgba(0, 212, 255, 0.12);
+    --purple: #c084fc;
+    --pink: #f472b6;
+    --cyan: #22d3ee;
     --radius: 16px;
     --radius-sm: 12px;
     --shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
@@ -31,48 +33,51 @@
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: #080c1a;
     color: var(--text);
     padding: 20px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
+    background:
+      /* 主背景 - 深空蓝紫渐变 */
+      linear-gradient(135deg, #050814 0%, #0a0b2e 25%, #0f0a2e 50%, #0a0b2e 75%, #050814 100%);
   }
-  /* 背景装饰光晕 */
-  body::before, body::after {
-    content: ''; position: fixed; border-radius: 50%;
+  /* 霓虹光晕层 - 固定定位，始终在背景上 */
+  .neon-glow {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none; z-index: 0;
+    overflow: hidden;
   }
-  body::before {
-    width: 600px; height: 600px;
-    top: -200px; left: -150px;
-    background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 70%);
+  .neon-glow .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
   }
-  body::after {
-    width: 500px; height: 500px;
-    bottom: -150px; right: -100px;
-    background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%);
+  .neon-glow .orb-1 {
+    width: 550px; height: 550px;
+    top: -150px; left: -120px;
+    background: radial-gradient(circle, rgba(0, 180, 255, 0.2) 0%, transparent 70%);
   }
-  /* 额外装饰光晕 */
-  .bg-glow-1, .bg-glow-2, .bg-glow-3 {
-    position: fixed; border-radius: 50%;
-    pointer-events: none; z-index: 0;
-  }
-  .bg-glow-1 {
-    width: 350px; height: 350px;
-    top: 40%; left: 60%;
-    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 60%);
-  }
-  .bg-glow-2 {
+  .neon-glow .orb-2 {
     width: 400px; height: 400px;
-    top: 15%; right: -100px;
-    background: radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 60%);
+    top: 20%; right: -80px;
+    background: radial-gradient(circle, rgba(200, 50, 255, 0.15) 0%, transparent 70%);
   }
-  .bg-glow-3 {
+  .neon-glow .orb-3 {
+    width: 350px; height: 350px;
+    bottom: 10%; left: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 200, 0.08) 0%, transparent 60%);
+  }
+  .neon-glow .orb-4 {
+    width: 300px; height: 300px;
+    top: 50%; left: 20%;
+    background: radial-gradient(circle, rgba(255, 100, 200, 0.08) 0%, transparent 60%);
+  }
+  .neon-glow .orb-5 {
     width: 250px; height: 250px;
-    bottom: 30%; left: 30%;
-    background: radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 60%);
+    bottom: 30%; right: 20%;
+    background: radial-gradient(circle, rgba(0, 180, 255, 0.06) 0%, transparent 60%);
   }
   .container {
     max-width: 1100px; margin: 0 auto;
@@ -115,7 +120,7 @@
   .header-left { display: flex; align-items: center; gap: 14px; }
   .header h1 {
     font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #38bdf8 0%, #4ade80 100%);
+    background: linear-gradient(135deg, #00d4ff 0%, #c084fc 50%, #f472b6 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
@@ -201,12 +206,13 @@
   }
   .donut-hole {
     position: absolute; inset: 12px; border-radius: 50%;
-    background: rgba(8, 12, 26, 0.5);
+    background: rgba(8, 12, 30, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.04);
   }
   .donut-hole .num { font-size: 20px; font-weight: 700; line-height: 1; color: var(--text); }
   .donut-hole .lbl { font-size: 10px; color: var(--text3); margin-top: 1px; }
@@ -458,9 +464,13 @@
 </style>
 </head>
 <body>
-<div class="bg-glow-1"></div>
-<div class="bg-glow-2"></div>
-<div class="bg-glow-3"></div>
+<div class="neon-glow">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="orb orb-5"></div>
+</div>
 <div class="container" id="app">
   <div class="loading" id="loading">
     <div class="spinner"></div>
