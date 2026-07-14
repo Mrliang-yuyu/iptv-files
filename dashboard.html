@@ -7,29 +7,29 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --glass: rgba(10, 10, 18, 0.6);
-    --glass2: rgba(14, 14, 24, 0.5);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-border-hover: rgba(139, 92, 246, 0.25);
-    --text: #e4e8f0;
-    --text2: #8898b0;
-    --text3: #4a5a72;
+    --glass: rgba(12, 16, 26, 0.55);
+    --glass2: rgba(14, 18, 28, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-border-hover: rgba(56, 189, 248, 0.15);
+    --text: #e8edf5;
+    --text2: #94a3b8;
+    --text3: #4b5a72;
     --green: #4ade80;
     --green-bg: rgba(74, 222, 128, 0.12);
     --yellow: #fbbf24;
     --yellow-bg: rgba(251, 191, 36, 0.12);
     --red: #f87171;
     --red-bg: rgba(248, 113, 113, 0.12);
-    --accent: #8b5cf6;
-    --accent-bg: rgba(139, 92, 246, 0.15);
-    --accent-glow: rgba(139, 92, 246, 0.2);
-    --blue: #a78bfa;
-    --blue-bg: rgba(139, 92, 246, 0.12);
+    --accent: #3b82f6;
+    --accent-bg: rgba(59, 130, 246, 0.12);
+    --accent-glow: rgba(59, 130, 246, 0.15);
+    --blue: #60a5fa;
+    --blue-bg: rgba(59, 130, 246, 0.1);
     --radius: 16px;
     --radius-sm: 12px;
-    --shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 12px 60px rgba(0, 0, 0, 0.55);
-    --shadow-hover: 0 16px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.1);
+    --shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 72px rgba(0, 0, 0, 0.55);
+    --shadow-hover: 0 16px 72px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.06);
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -39,7 +39,13 @@
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
-    background: #0a0a0f;
+    background: linear-gradient(165deg, #060a14 0%, #0a0e1e 25%, #0e1224 50%, #0b0f1e 75%, #070b16 100%);
+  }
+  body::before {
+    content: ''; position: fixed; top: -300px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 600px;
+    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
   }
   .container {
     max-width: 1100px; margin: 0 auto;
@@ -69,7 +75,7 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 18px 22px; margin-bottom: 20px;
     flex-wrap: wrap; gap: 12px;
-    background: rgba(10, 10, 18, 0.4);
+    background: rgba(8, 12, 24, 0.35);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -83,13 +89,13 @@
     background: linear-gradient(135deg, #00d4ff 0%, #c084fc 40%, #f472b6 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+    text-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
   }
   .update-badge {
     font-size: 12px; color: rgba(255,255,255,0.6);
-    background: rgba(139, 92, 246, 0.08);
+    background: rgba(59, 130, 246, 0.1);
     padding: 5px 14px; border-radius: 20px;
-    border: 1px solid rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.15);
     white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
   }
   .update-badge .dot {
@@ -106,13 +112,13 @@
   .refresh-btn {
     position: relative;
     padding: 8px 22px; border-radius: 24px;
-    border: 1px solid rgba(139, 92, 246, 0.25);
-    background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
     color: #fff; cursor: pointer;
     font-size: 13px; font-weight: 600;
     display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
     box-shadow:
-      0 4px 20px rgba(139, 92, 246, 0.35),
+      0 4px 20px rgba(59, 130, 246, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transition: all 0.2s;
@@ -131,17 +137,17 @@
     pointer-events: none;
   }
   .refresh-btn:hover {
-    background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+    background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
     box-shadow:
-      0 6px 28px rgba(139, 92, 246, 0.5),
-      0 0 40px rgba(139, 92, 246, 0.15),
+      0 6px 28px rgba(59, 130, 246, 0.5),
+      0 0 40px rgba(59, 130, 246, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.25);
     transform: translateY(-1px);
   }
   .refresh-btn:active {
     transform: translateY(0px) scale(0.96);
     box-shadow:
-      0 2px 8px rgba(139, 92, 246, 0.3),
+      0 2px 8px rgba(59, 130, 246, 0.3),
       inset 0 1px 3px rgba(0, 0, 0, 0.2);
   }
   .refresh-btn:disabled {
@@ -167,7 +173,7 @@
   }
   .status-bar .spinner {
     width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.1);
-    border-top-color: var(--accent); border-radius: 50%;
+    border-top-color: var(--blue); border-radius: 50%;
     animation: spin 0.7s linear infinite; flex-shrink: 0;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -360,10 +366,10 @@
     transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
   }
   .copy-btn:hover {
-    border-color: rgba(139, 92, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
     color: var(--blue);
-    background: rgba(139, 92, 246, 0.15);
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.08);
+    background: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.1);
   }
   .copy-btn:active { transform: scale(0.95); }
   .copy-btn.copied {
@@ -395,8 +401,8 @@
   }
   .search-input::placeholder { color: var(--text3); }
   .search-input:focus {
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
     background: rgba(0,0,0,0.35);
   }
   .filter-bar { display: flex; gap: 5px; flex-wrap: wrap; }
@@ -407,15 +413,15 @@
     font-size: 12px; font-weight: 500; transition: all 0.2s;
   }
   .filter-btn:hover {
-    border-color: rgba(139, 92, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
     color: var(--blue);
-    background: rgba(139, 92, 246, 0.08);
+    background: rgba(59, 130, 246, 0.1);
   }
   .filter-btn.active {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1));
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.12));
     border-color: rgba(0, 212, 255, 0.35);
     color: #a78bfa;
-    box-shadow: 0 0 16px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.12);
   }
   .filter-btn.bad {
     border-color: rgba(248,113,113,0.25);
@@ -457,13 +463,13 @@
     user-select: none;
   }
   .section-header:hover { background: rgba(255,255,255,0.03); }
-  .search-section .section-body { border-top: 1px solid rgba(139, 92, 246, 0.15); }
+  .search-section .section-body { border-top: 1px solid rgba(56, 189, 248, 0.12); }
   .section-header .group-tag {
     width: 4px; height: 20px; border-radius: 3px; flex-shrink: 0;
   }
-  .group-tag.cctv { background: linear-gradient(180deg, #8b5cf6, #6d28d9); }
-  .group-tag.weishi { background: linear-gradient(180deg, #a78bfa, #7c3aed); }
-  .group-tag.difang { background: linear-gradient(180deg, #6366f1, #4f46e5); }
+  .group-tag.cctv { background: linear-gradient(180deg, #3b82f6, #2563eb); }
+  .group-tag.weishi { background: linear-gradient(180deg, #60a5fa, #3b82f6); }
+  .group-tag.difang { background: linear-gradient(180deg, #38bdf8, #0ea5e9); }
   .group-tag.beiyong { background: linear-gradient(180deg, #64748b, #475569); }
   .group-tag.bad-section { background: linear-gradient(180deg, #f87171, #dc2626); }
 
@@ -576,7 +582,7 @@
     max-height: 0; overflow: hidden;
     transition: max-height 0.25s ease;
     background: rgba(0,0,0,0.15);
-    border-top: 1px solid rgba(139, 92, 246, 0.15);
+    border-top: 1px solid rgba(56, 189, 248, 0.12);
   }
   .channel-detail.open { max-height: 500px; }
   .detail-inner { padding: 12px 18px; }
@@ -608,7 +614,7 @@
   .error-state { color: var(--red); }
   .loading .spinner {
     width: 28px; height: 28px; border: 2px solid rgba(255,255,255,0.06);
-    border-top-color: var(--accent); border-radius: 50%;
+    border-top-color: var(--blue); border-radius: 50%;
     animation: spin 0.7s linear infinite; margin: 0 auto 12px;
   }
   .loading p, .empty-state p, .error-state p { font-size: 14px; }
@@ -984,7 +990,7 @@
           <table class="detail-table">
             <tr><th style="width:60px">类型</th><th style="width:55px">延迟</th><th style="width:45px">状态</th><th>URL</th></tr>
             <tr>
-              <td style="color:var(--accent)">主源</td>
+              <td style="color:var(--blue)">主源</td>
               <td><span class="latency-dot ${ch.main.latency<0.8?'fast':ch.main.latency<2?'medium':'slow'}"></span>${ch.main.status==='ok'?ch.main.latency+'s':'-'}</td>
               <td style="color:${ch.main.status==='ok'?'var(--green)':'var(--red)'}">${ch.main.status}</td>
               <td style="color:var(--text3)">${ch.main.url}</td>
