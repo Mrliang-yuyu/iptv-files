@@ -120,10 +120,13 @@
     user-select: all;
     display: flex; align-items: center; gap: 8px;
     overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   .code-block .url-text {
-    flex: 1; min-width: 0; overflow: hidden;
+    flex: 1 1 0; min-width: 0; overflow: hidden;
     white-space: nowrap; text-overflow: ellipsis;
+    width: 0;
   }
   .code-block .copy-btn {
     flex-shrink: 0;
@@ -177,8 +180,8 @@
     .step-num { width: 24px; height: 24px; font-size: 11px; }
     .step-title { font-size: 13px; }
     .step-desc { font-size: 12px; }
-    .code-block { padding: 8px 10px; font-size: 11px; flex-wrap: nowrap; gap: 6px; }
-    .code-block span, .code-block .url-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+    .code-block { padding: 6px 8px; font-size: 10px; flex-wrap: nowrap; gap: 4px; }
+    .code-block span, .code-block .url-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 0; min-width: 0; width: 0; }
     .code-block .copy-btn { font-size: 10px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
     .app-grid { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
     .app-card { padding: 8px; }
