@@ -140,13 +140,15 @@
     margin-bottom: 12px;
   }
   .card-row .group-card {
-    flex: 1; min-width: 0;
     background: var(--card);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
     padding: 14px 18px;
   }
+  .card-row .group-card:nth-child(1) { flex: 0 0 auto; }
+  .card-row .group-card:nth-child(2) { flex: 1; min-width: 0; }
+  .card-row .group-card:nth-child(3) { flex: 0 0 auto; }
   /* Card 1: 频道健康 */
   .health-card-wrap {
     display: flex; align-items: center; gap: 14px;
@@ -178,12 +180,13 @@
 
   /* Card 2: 统计 */
   .stat-grid {
-    display: flex; flex-wrap: wrap;
-    gap: 4px 8px;
-    justify-content: space-around;
+    display: flex;
+    gap: 4px 10px;
+    justify-content: space-evenly;
   }
   .stat-grid .s-item {
     text-align: center;
+    flex-shrink: 0;
   }
   .stat-grid .s-item .n {
     font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
