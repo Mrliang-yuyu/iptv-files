@@ -487,6 +487,7 @@
     user-select: none;
   }
   .section-header:hover { background: rgba(255,255,255,0.03); }
+  .search-section .section-body { border-top: 1px solid var(--glass-border); }
   .section-header .group-tag {
     width: 4px; height: 20px; border-radius: 3px; flex-shrink: 0;
   }
@@ -942,24 +943,30 @@
 
   // ── 单独渲染频道列表（搜索时只刷新这部分，不抖键盘）──
   function renderSections() {
-    const bd = computeBreakdown();
     const sectionsRoot = document.getElementById('sections-root');
     if (!sectionsRoot) return;
-    sectionsRoot.innerHTML = buildSectionsHTML(bd);
+    sectionsRoot.innerHTML = buildSectionsHTML();
   }
 
-  function buildSectionsHTML(bd) {
+  function buildSectionsHTML() {
     let groupsHtml = '';
     let renderGroups = [];
-    if (filter === 'all' || groupKeys.includes(filter)) {
+
+    // 搜索模式 → 扁平列表，不分组
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const matched = data.channels.filter(c => c.name.toLowerCase().includes(q));
+      if (matched.length > 0) {
+        renderGroups = [{ key: `🔍 搜索结果 (${matched.length})`, channels: matched, flat: true }];
+      }
+    } else if (filter === 'all' || groupKeys.includes(filter)) {
       const tg = filter === 'all' ? groupKeys : [filter];
       tg.forEach(g => {
-        let chs = searchQuery ? groups[g].filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase())) : groups[g];
+        let chs = groups[g];
         if (chs.length > 0) renderGroups.push({ key: g, channels: chs });
       });
     } else if (filter === 'bad') {
       let badChs = data.channels.filter(ch => chStatus(ch)!=='ok');
-      if (searchQuery) badChs = badChs.filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase()));
       renderGroups = [{ key: '异常频道', channels: badChs, isBad: true }];
     }
 
@@ -969,29 +976,11 @@
 
     const icons = { ok:'✓', slow:'⚠', bad:'✕' };
 
-    renderGroups.forEach(({ key: gk, channels: chs, isBad }) => {
+    renderGroups.forEach(({ key: gk, channels: chs, isBad, flat }) => {
       const gc = isBad ? 'bad-section' : groupClass(gk);
-      const collapsed = collapsedGroups.includes(gk);
-      let gOk=0,gSlow=0,gBad=0;
-      chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
-      const gTotal = chs.length;
-      const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
-      const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
-      const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
+      const collapsed = flat ? false : collapsedGroups.includes(gk);
 
-      let sectionHtml = `<div class="section">
-        <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
-          <span class="group-tag ${gc}"></span>
-          <span class="title">${gk}</span>
-          <span class="badge">${chs.length} 频道</span>
-          <div class="health-line">
-            <div class="seg ok" style="width:${gOkPct}%"></div>
-            <div class="seg slow" style="width:${gSlowPct}%"></div>
-            <div class="seg bad" style="width:${gBadPct}%"></div>
-          </div>
-          <span class="arrow ${collapsed?'':'open'}">▼</span>
-        </div>
-        <div class="section-body" style="display:${collapsed?'none':'block'}">`;
+      let sectionHtml, sectionBodyHtml = '';
 
       chs.forEach(ch => {
         const sc = chStatus(ch);
@@ -1000,7 +989,7 @@
         const okBk = ch.backups.filter(b=>b.status==='ok');
         const badBkCount = ch.backups.filter(b=>b.status!=='ok').length;
 
-        sectionHtml += `<div class="channel-row" onclick="toggleCh('${ch.name.replace(/'/g,"\\'")}')">
+        sectionBodyHtml += `<div class="channel-row" onclick="toggleCh('${ch.name.replace(/'/g,"\\'")}')">
           <div class="channel-info">
             <div class="name"><span class="status-dot ${sc}"></span>${ch.name}</div>
             <div class="meta">
@@ -1036,7 +1025,39 @@
         </div>`;
       });
 
-      sectionHtml += '</div></div>';
+      if (flat) {
+        // 搜索模式：无分组头，直接列出
+        sectionHtml = `<div class="section search-section">
+          <div class="section-header" style="cursor:default">
+            <span class="group-tag" style="background:var(--blue)"></span>
+            <span class="title">${gk}</span>
+          </div>
+          <div class="section-body" style="display:block">${sectionBodyHtml}</div></div>`;
+      } else {
+        // 正常分组模式
+        let gOk=0,gSlow=0,gBad=0;
+        chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
+        const gTotal = chs.length;
+        const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
+        const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
+        const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
+
+        sectionHtml = `<div class="section">
+          <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
+            <span class="group-tag ${gc}"></span>
+            <span class="title">${gk}</span>
+            <span class="badge">${chs.length} 频道</span>
+            <div class="health-line">
+              <div class="seg ok" style="width:${gOkPct}%"></div>
+              <div class="seg slow" style="width:${gSlowPct}%"></div>
+              <div class="seg bad" style="width:${gBadPct}%"></div>
+            </div>
+            <span class="arrow ${collapsed?'':'open'}">▼</span>
+          </div>
+          <div class="section-body" style="display:${collapsed?'none':'block'}">${sectionBodyHtml}</div></div>`;
+      }
+
+      groupsHtml += sectionHtml;
       groupsHtml += sectionHtml;
     });
 
