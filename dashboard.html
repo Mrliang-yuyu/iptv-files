@@ -77,6 +77,22 @@
     display: inline-block;
   }
   .header-actions { display: flex; align-items: center; gap: 10px; }
+  .update-capsule {
+    font-size: 11px; color: var(--text2);
+    background: var(--accent-bg);
+    padding: 2px 10px; border-radius: 20px;
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  .update-capsule .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
   /* ── Status Bar ── */
   .status-bar {
@@ -684,8 +700,7 @@
     let html = `
       <div class="card-header">
         <div class="header-left">
-          <h1><span class="accent-dot"></span>📺 IPTV 频道状态</h1>
-          <span class="update-badge"><span class="dot"></span>${data.lastUpdate||'未知'}</span>
+          <h1><span class="accent-dot"></span>📺 IPTV 频道状态 <span class="update-capsule"><span class="dot"></span>${data.lastUpdate||'未知'}</span></h1>
         </div>
         <div class="header-actions">
           <button class="refresh-btn" onclick="triggerRefresh()" ${btnDisabled?'disabled':''}>${btnLabel}</button>
