@@ -1,0 +1,5 @@
+# Old paths → redirect to landing page
+/dashboard.html / 302
+/config.html / 302
+/live.m3u / 302
+/e.xml / 302
