@@ -684,7 +684,7 @@
           if (rf.status==='running') { refreshStatus='running'; refreshMsg='⏳ 正在测速中'+(rf.progress?' ('+rf.progress+')':'...'); render(); }
           else if (rf.status==='completed') { refreshStatus='completed'; refreshMsg='✅ 测速完成，自动部署中'+(rf.duration?' ('+rf.duration+'秒)':''); render(); }
         }
-        const sr = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now());
+        const sr = await fetch('status.json?_='+Date.now());
         if (sr.ok) {
           const nd = await sr.json();
           if (nd.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
@@ -947,7 +947,7 @@
 
   setInterval(async () => {
     if (refreshStatus==='requested'||refreshStatus==='running') return;
-    try { const r = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
+    try { const r = await fetch('status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
   }, 60000);
 })();
 
