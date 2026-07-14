@@ -122,7 +122,7 @@
     .features { grid-template-columns: 1fr; }
     h1 { font-size: 24px; }
     .logo-wrap { width: 64px; height: 64px; border-radius: 16px; }
-    .logo-wrap svg { width: 38px; height: 34px; }
+    .logo-wrap svg { width: 44px; height: 38px; }
     .enter-btn { padding: 12px 28px; font-size: 15px; }
   }
 </style>
@@ -131,35 +131,15 @@
 <button class="theme-btn" onclick="toggleLandingTheme()" id="landingThemeBtn">🌙</button>
 <div class="landing">
   <div class="logo-wrap">
-  <svg viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Pixel TV icon -->
-    <!-- TV body (pixel grid, each cell = 3x3, grid 8x8) -->
-    <rect x="2" y="5" width="24" height="18" rx="2" fill="white" opacity="0.95"/>
-    <!-- Screen -->
-    <rect x="5" y="8" width="11" height="12" rx="1" fill="rgba(255,255,255,0.2)"/>
-    <!-- Play triangle on screen -->
-    <path d="M8 10 L14 14 L8 18 Z" fill="white" opacity="0.6"/>
-    <!-- Knobs (bright dots on the right side of TV) -->
-    <rect x="18" y="9" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.5)"/>
-    <rect x="18" y="14" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.5)"/>
-    <!-- Antennas -->
-    <line x1="8" y1="5" x2="4" y2="0" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <line x1="14" y1="5" x2="18" y2="0" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <!-- Antenna tips -->
-    <circle cx="4" cy="0" r="1" fill="white" opacity="0.9"/>
-    <circle cx="18" cy="0" r="1" fill="white" opacity="0.9"/>
-    <!-- TV feet -->
-    <path d="M8 23 L6 28 M18 23 L20 28" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-
-    <!-- Bold TV Text -->
-    <g transform="translate(30, 4)">
-      <!-- T -->
-      <rect x="0" y="0" width="16" height="4" rx="1" fill="white"/>
-      <rect x="6" y="4" width="4" height="22" rx="1" fill="white"/>
-      <!-- V -->
-      <path d="M22 1 L30 24" stroke="white" stroke-width="4" stroke-linecap="round"/>
-      <path d="M42 1 L34 24" stroke="white" stroke-width="4" stroke-linecap="round"/>
-    </g>
+  <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- T: horizontal bar (thicker) -->
+    <rect x="0" y="1" width="28" height="6" rx="3" fill="white"/>
+    <!-- T: vertical bar (thicker) -->
+    <rect x="10" y="7" width="7" height="34" rx="3" fill="white"/>
+    <!-- V: left arm (slightly thinner) -->
+    <path d="M30 6 L39 39" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <!-- V: right arm (slightly thinner) -->
+    <path d="M60 6 L51 39" stroke="white" stroke-width="4" stroke-linecap="round"/>
   </svg>
 </div>
   <h1>IPTV Live</h1>
