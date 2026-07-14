@@ -241,17 +241,50 @@ if (isHTTPS) {
 }
 
 // ===== Service Worker Registration =====
-// SW proxies HTTP streams via /p/a25fcf8d/proxy/... 
-// On first visit the SW needs to install; after refresh it will intercept requests.
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js', { scope: '/p/a25fcf8d/' }).catch(e => {
+// SW proxies HTTP streams on HTTPS. First visit needs SW to activate.
+let swReady = !isHTTPS; // HTTP doesn't need SW proxy
+
+if ('serviceWorker' in navigator && isHTTPS) {
+  // Show preparing overlay if SW not yet controlling the page
+  if (!navigator.serviceWorker.controller) {
+    document.getElementById('refreshOverlay').style.display = 'flex';
+    document.getElementById('refreshOverlay').querySelector('span').textContent = '正在准备播放器…';
+  }
+  
+  navigator.serviceWorker.register('./sw.js', { scope: '/p/a25fcf8d/' }).then(reg => {
+    if (navigator.serviceWorker.controller) {
+      // SW already active
+      swReady = true;
+      document.getElementById('refreshOverlay').style.display = 'none';
+    }
+    // Listen for activation
+    function onActivated() {
+      swReady = true;
+      document.getElementById('refreshOverlay').style.display = 'none';
+    }
+    if (reg.installing) {
+      reg.installing.addEventListener('statechange', function handler() {
+        if (reg.installing.state === 'activated') onActivated();
+      });
+    }
+    if (reg.waiting) {
+      reg.waiting.addEventListener('statechange', function handler() {
+        if (reg.waiting.state === 'activated') onActivated();
+      });
+    }
+    navigator.serviceWorker.addEventListener('controllerchange', onActivated);
+  }).catch(e => {
     console.warn('SW unavailable, HTTPS streams may be blocked', e);
+    swReady = true; // Allow anyway
+    document.getElementById('refreshOverlay').style.display = 'none';
   });
+} else {
+  swReady = true;
 }
 
-// Proxy helper: use SW proxy on HTTPS, direct on HTTP
+// Proxy helper: use SW proxy on HTTPS when ready, direct on HTTP
 function streamUrl(url) {
-  if (isHTTPS && url.startsWith('http://')) {
+  if (isHTTPS && url.startsWith('http://') && swReady) {
     return '/p/a25fcf8d/proxy/' + encodeURIComponent(url);
   }
   return url;
@@ -412,6 +445,19 @@ function toggleFav(idx) {
 // ===== Playback =====
 function playChannel(idx) {
   if (idx < 0 || idx >= channels.length) return;
+  // Wait for SW proxy to be ready on HTTPS
+  if (isHTTPS && !swReady) {
+    let msg = '⚠️ 正在准备播放器，请稍候…';
+    document.getElementById('emptyState').querySelector('span').textContent = msg;
+    document.getElementById('emptyState').style.display = 'flex';
+    // Try again once SW is ready
+    function retry() {
+      if (swReady) playChannel(idx);
+      else setTimeout(retry, 200);
+    }
+    setTimeout(retry, 200);
+    return;
+  }
   currentIdx = idx;
   let ch = channels[idx];
   document.getElementById('emptyState').style.display = 'none';
