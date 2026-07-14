@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IPTV Live · 频道状态看板</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f1f4f9;
+    --card: #ffffff;
+    --text: #1a1f36;
+    --text2: #5a6a7e;
+    --text3: #8a9aaa;
+    --accent: #2563eb;
+    --accent-bg: rgba(37, 99, 235, 0.08);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .landing {
+    max-width: 620px; width: 100%;
+    text-align: center;
+  }
+  .logo-wrap {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.2);
+  }
+  .logo-wrap .icon {
+    font-size: 36px; line-height: 1;
+  }
+  h1 {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 15px; color: var(--text2);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    text-align: left; margin-bottom: 32px;
+  }
+  .feature {
+    background: var(--card);
+    border: 1px solid #e4e9f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .feature .f-icon { font-size: 20px; margin-bottom: 6px; }
+  .feature .f-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .feature .f-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+  .enter-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 36px;
+    background: var(--accent);
+    color: #fff; font-size: 16px; font-weight: 600;
+    border: none; border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .enter-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.35);
+  }
+  .enter-btn:active { transform: translateY(0) scale(0.97); }
+  .footer {
+    margin-top: 40px;
+    font-size: 12px; color: var(--text3);
+  }
+  @media (max-width: 520px) {
+    .features { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+    .logo-wrap { width: 64px; height: 64px; border-radius: 18px; }
+    .logo-wrap .icon { font-size: 28px; }
+    .enter-btn { padding: 12px 28px; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="landing">
+  <div class="logo-wrap"><span class="icon">📺</span></div>
+  <h1>IPTV Live</h1>
+  <p class="subtitle">频道状态实时监控看板 · 自动探测 · 一键刷新</p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="f-icon">📡</div>
+      <div class="f-title">频道覆盖</div>
+      <div class="f-desc">央视、卫视、地方台、备用源，超过 100 个频道实时监测</div>
+    </div>
+    <div class="feature">
+      <div class="f-icon">⚡</div>
+      <div class="f-title">毫秒级延迟</div>
+      <div class="f-desc">多线程并发测速，主备源自动切换，低于 0.8s 为极速</div>
+    </div>
+    <div class="feature">
+      <div class="f-icon">🔄</div>
+      <div class="f-title">自动更新</div>
+      <div class="f-desc">定时探测 + Git 自动推送，数据持续更新不中断</div>
+    </div>
+    <div class="feature">
+      <div class="f-icon">📱</div>
+      <div class="f-title">全端适配</div>
+      <div class="f-desc">桌面、平板、手机自适应，iOS 风格卡片式布局</div>
+    </div>
+  </div>
+
+  <a href="/dashboard.html" class="enter-btn">
+    进入看板
+    <span style="font-size:18px;line-height:1">→</span>
+  </a>
+
+  <div class="footer">
+    数据由服务器自动探测 · 每 10 分钟更新一次
+  </div>
+</div>
+</body>
+</html>
