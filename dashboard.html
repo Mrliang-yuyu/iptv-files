@@ -114,34 +114,43 @@
     text-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
   }
   .update-badge {
-    font-size: 12px; color: var(--text2);
-    background: rgba(255,255,255,0.05);
+    font-size: 12px; color: rgba(255,255,255,0.6);
+    background: rgba(0, 212, 255, 0.05);
     padding: 5px 14px; border-radius: 20px;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(0, 212, 255, 0.1);
     white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
   }
   .update-badge .dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-    display: inline-block; animation: pulse 2s infinite;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+    box-shadow: 0 0 8px rgba(74,222,128,0.4);
+    animation: pulse 2s infinite;
   }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
   .header-actions { display: flex; align-items: center; gap: 10px; }
 
   .refresh-btn {
-    padding: 7px 18px; border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,0.04);
-    color: var(--text); cursor: pointer;
-    font-size: 13px; font-weight: 500; transition: all 0.2s;
+    padding: 8px 22px; border-radius: 24px;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(192, 132, 252, 0.08));
+    color: var(--blue); cursor: pointer;
+    font-size: 13px; font-weight: 600; transition: all 0.25s;
     display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.06);
   }
   .refresh-btn:hover {
-    background: var(--blue-bg);
-    border-color: rgba(56,189,248,0.3);
-    color: var(--blue);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(192, 132, 252, 0.15));
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    transform: translateY(-1px);
+    color: #38e0ff;
   }
-  .refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .refresh-btn:active {
+    transform: translateY(0px) scale(0.97);
+  }
+  .refresh-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
 
   /* ── Status Bar ── */
   .status-bar {
@@ -268,13 +277,26 @@
     cursor: text; min-width: 0;
   }
   .copy-btn {
-    padding: 4px 12px; border-radius: 6px;
+    padding: 5px 14px; border-radius: 8px;
     border: 1px solid var(--glass-border);
-    background: transparent; color: var(--text2); cursor: pointer;
-    font-size: 12px; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+    background: rgba(255,255,255,0.03);
+    color: var(--text2); cursor: pointer;
+    font-size: 12px; font-weight: 500;
+    transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
   }
-  .copy-btn:hover { border-color: rgba(56,189,248,0.3); color: var(--blue); background: var(--blue-bg); }
-  .copy-btn.copied { border-color: rgba(74,222,128,0.3); color: var(--green); background: var(--green-bg); }
+  .copy-btn:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    color: var(--blue);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.06);
+  }
+  .copy-btn:active { transform: scale(0.95); }
+  .copy-btn.copied {
+    border-color: rgba(74,222,128,0.3);
+    color: var(--green);
+    background: rgba(74,222,128,0.12);
+    box-shadow: 0 0 12px rgba(74,222,128,0.06);
+  }
 
   /* ── Toolbar ── */
   .toolbar {
@@ -290,25 +312,50 @@
   }
   .search-input {
     flex: 1; min-width: 160px;
-    padding: 7px 14px; border-radius: 20px;
+    padding: 8px 16px; border-radius: 22px;
     border: 1px solid var(--glass-border);
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.25);
     color: var(--text); font-size: 13px;
-    outline: none; transition: border-color 0.15s;
+    outline: none; transition: all 0.2s;
   }
   .search-input::placeholder { color: var(--text3); }
-  .search-input:focus { border-color: rgba(56,189,248,0.3); }
+  .search-input:focus {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.06);
+    background: rgba(0,0,0,0.35);
+  }
   .filter-bar { display: flex; gap: 5px; flex-wrap: wrap; }
   .filter-btn {
-    padding: 5px 12px; border-radius: 16px;
+    padding: 6px 14px; border-radius: 18px;
     border: 1px solid var(--glass-border);
     background: transparent; color: var(--text2); cursor: pointer;
-    font-size: 12px; font-weight: 500; transition: all 0.15s;
+    font-size: 12px; font-weight: 500; transition: all 0.2s;
   }
-  .filter-btn:hover { border-color: rgba(56,189,248,0.3); color: var(--blue); }
-  .filter-btn.active { background: var(--blue-bg); border-color: rgba(56,189,248,0.3); color: var(--blue); }
-  .filter-btn.bad { border-color: rgba(248,113,113,0.3); color: var(--red); }
-  .filter-btn.bad.active { background: var(--red-bg); border-color: rgba(248,113,113,0.4); color: var(--red); }
+  .filter-btn:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    color: var(--blue);
+    background: rgba(0, 212, 255, 0.06);
+  }
+  .filter-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 160, 255, 0.08));
+    border-color: rgba(0, 212, 255, 0.35);
+    color: #38e0ff;
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.08);
+  }
+  .filter-btn.bad {
+    border-color: rgba(248,113,113,0.25);
+    color: var(--red);
+  }
+  .filter-btn.bad:hover {
+    border-color: rgba(248,113,113,0.5);
+    background: rgba(248,113,113,0.06);
+  }
+  .filter-btn.bad.active {
+    background: linear-gradient(135deg, rgba(248,113,113,0.2), rgba(220,38,38,0.1));
+    border-color: rgba(248,113,113,0.4);
+    color: #fca5a5;
+    box-shadow: 0 0 16px rgba(248,113,113,0.08);
+  }
 
   /* ── Section Modules ── */
   .section {
@@ -389,20 +436,53 @@
   }
 
   .source-badge {
-    display: inline-flex; align-items: center; gap: 3px;
-    padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    transition: all 0.15s;
   }
-  .source-badge.ok { background: var(--green-bg); color: var(--green); }
-  .source-badge.slow { background: var(--yellow-bg); color: var(--yellow); }
-  .source-badge.bad { background: var(--red-bg); color: var(--red); }
-  .source-badge.main { outline: 1px solid currentColor; outline-offset: -1px; }
+  .source-badge.ok {
+    background: linear-gradient(135deg, rgba(74,222,128,0.15), rgba(74,222,128,0.05));
+    color: var(--green);
+    border: 1px solid rgba(74,222,128,0.15);
+  }
+  .source-badge.slow {
+    background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(251,191,36,0.05));
+    color: var(--yellow);
+    border: 1px solid rgba(251,191,36,0.15);
+  }
+  .source-badge.bad {
+    background: linear-gradient(135deg, rgba(248,113,113,0.15), rgba(248,113,113,0.05));
+    color: var(--red);
+    border: 1px solid rgba(248,113,113,0.15);
+  }
+  .source-badge.main {
+    outline: none;
+    box-shadow: 0 0 10px currentColor;
+  }
 
   .source-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; justify-self: end; }
 
-  .ch-status { font-size: 15px; font-weight: 600; justify-self: end; }
-  .ch-status.ok { color: var(--green); }
-  .ch-status.slow { color: var(--yellow); }
-  .ch-status.bad { color: var(--red); }
+  .ch-status {
+    font-size: 18px; font-weight: 700; justify-self: end;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+  }
+  .ch-status.ok {
+    color: var(--green);
+    background: var(--green-bg);
+    text-shadow: 0 0 8px rgba(74,222,128,0.3);
+  }
+  .ch-status.slow {
+    color: var(--yellow);
+    background: var(--yellow-bg);
+    text-shadow: 0 0 8px rgba(251,191,36,0.3);
+  }
+  .ch-status.bad {
+    color: var(--red);
+    background: var(--red-bg);
+    text-shadow: 0 0 8px rgba(248,113,113,0.3);
+  }
 
   /* ── Detail Panel ── */
   .channel-detail {
@@ -481,7 +561,7 @@
   let data;
 
   try {
-    const res = await fetch('status.json?_=' + Date.now());
+    const res = await fetch('https://iptv-live-btg.pages.dev/status.json?_=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch (e) {
@@ -567,7 +647,7 @@
   // ── Refresh ──
   async function fetchRefreshStatus() {
     try {
-      const r = await fetch('refresh.json?_='+Date.now());
+      const r = await fetch('https://iptv-live-btg.pages.dev/refresh.json?_='+Date.now());
       if (r.ok) return await r.json();
     } catch(e) {}
     return null;
@@ -625,7 +705,7 @@
           if (rf.status==='running') { refreshStatus='running'; refreshMsg='⏳ 正在测速中'+(rf.progress?' ('+rf.progress+')':'...'); render(); }
           else if (rf.status==='completed') { refreshStatus='completed'; refreshMsg='✅ 测速完成，自动部署中'+(rf.duration?' ('+rf.duration+'秒)':''); render(); }
         }
-        const sr = await fetch('status.json?_='+Date.now());
+        const sr = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now());
         if (sr.ok) {
           const nd = await sr.json();
           if (nd.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
@@ -708,13 +788,13 @@
       <div class="url-card">
         <div class="url-group">
           <span class="url-label">📋 频道</span>
-          <span class="url-value" onclick="this.select()">${window.location.origin}/live.m3u</span>
-          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/live.m3u')">复制</button>
+          <span class="url-value" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/live.m3u</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/live.m3u')">复制</button>
         </div>
         <div class="url-group">
           <span class="url-label">📆 节目单</span>
-          <span class="url-value" onclick="this.select()">${window.location.origin}/e.xml</span>
-          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/e.xml')">复制</button>
+          <span class="url-value" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/e.xml</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/e.xml')">复制</button>
         </div>
       </div>
       <div class="toolbar">
@@ -839,7 +919,7 @@
 
   setInterval(async () => {
     if (refreshStatus==='requested'||refreshStatus==='running') return;
-    try { const r = await fetch('status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
+    try { const r = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
   }, 60000);
 })();
 </script>
