@@ -710,6 +710,81 @@
 
     const icons = { ok:'✓', slow:'⚠', bad:'✕' };
 
+    // ── 可用率趋势图 ──
+    const HISTORY_KEY = 'iptv-trend';
+    function loadTrendHistory() {
+      try {
+        const raw = localStorage.getItem(HISTORY_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch(e) { return []; }
+    }
+    function saveTrendHistory(h) {
+      try { localStorage.setItem(HISTORY_KEY, JSON.stringify(h)); } catch(e) {}
+    }
+    // Add current data point if new
+    (function() {
+      let hist = loadTrendHistory();
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+      const last = hist.length > 0 ? hist[hist.length-1] : null;
+      // Only add if lastUpdate changed or >30min passed
+      const shouldAdd = !last || (last.update !== data.lastUpdate) || (now.getTime() - last.ts > 30*60*1000);
+      if (shouldAdd && okRate > 0) {
+        hist.push({ time: timeStr, okRate: okRate, total: data.stats.channels, update: data.lastUpdate, ts: now.getTime() });
+        if (hist.length > 30) hist = hist.slice(-30);
+        saveTrendHistory(hist);
+      }
+    })();
+    // Render SVG chart
+    function renderTrendChart() {
+      const hist = loadTrendHistory();
+      if (hist.length < 2) return '<div class="chart-card"><div class="chart-title">📈 可用率趋势</div><div class="chart-empty">数据不足，刷新几次后自动生成</div></div>';
+      const W = 600, H = 80, pad = {t:8, r:10, b:18, l:30};
+      const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
+      const pts = hist.slice(-15);
+      const rates = pts.map(p => p.okRate);
+      const maxRate = Math.max(...rates, 60);
+      const minRate = Math.min(...rates, 30);
+      const range = Math.max(maxRate - minRate, 10);
+      const xStep = iw / (pts.length - 1);
+      const path = pts.map((p, i) => {
+        const x = pad.l + i * xStep;
+        const y = pad.t + ih - ((p.okRate - minRate) / range) * ih;
+        return `${i===0?'M':'L'}${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+      const fillPath = path + ` L${pad.l + (pts.length-1)*xStep},${pad.t+ih} L${pad.l},${pad.t+ih} Z`;
+      // Grid lines
+      const gridLines = [];
+      const gridCount = 4;
+      for (let i = 0; i <= gridCount; i++) {
+        const y = pad.t + (ih/gridCount)*i;
+        const val = maxRate - (range/gridCount)*i;
+        gridLines.push(`<line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${pad.l+iw}" y2="${y.toFixed(1)}" stroke="var(--card-border)" stroke-width="0.5"/>`);
+        gridLines.push(`<text x="${pad.l-4}" y="${y.toFixed(1)+3}" text-anchor="end" fill="var(--text3)" font-size="8">${Math.round(val)}%</text>`);
+      }
+      // X labels
+      const xLabels = pts.map((p, i) => {
+        if (i === 0 || i === pts.length-1 || i === Math.floor(pts.length/2)) {
+          const x = pad.l + i * xStep;
+          return `<text x="${x.toFixed(1)}" y="${pad.t+ih+12}" text-anchor="middle" fill="var(--text3)" font-size="7">${p.time}</text>`;
+        }
+        return '';
+      }).join('');
+      const lastRate = pts[pts.length-1].okRate;
+      const rateColor = lastRate >= 80 ? 'var(--green)' : lastRate >= 50 ? 'var(--yellow)' : 'var(--red)';
+      return `<div class="chart-card">
+        <div class="chart-title">📈 可用率趋势 <span style="float:right;font-weight:600;color:${rateColor};font-size:13px">${lastRate}%</span></div>
+        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
+          ${gridLines.join('')}
+          <path d="${fillPath}" fill="${rateColor}" opacity="0.06"/>
+          <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="${(pad.l + (pts.length-1)*xStep).toFixed(1)}" cy="${(pad.t + ih - ((lastRate - minRate)/range)*ih).toFixed(1)}" r="2.5" fill="${rateColor}"/>
+          ${xLabels}
+        </svg>
+      </div>`;
+    }
+    const trendChartHtml = renderTrendChart();
+
     let html = `
       <div class="card-header">
         <div class="header-left">
@@ -721,6 +796,7 @@
         </div>
       </div>
       ${statusBar}
+      ${trendChartHtml}
       <div class="card-row">
         <div class="group-card">
           <div class="health-card-wrap">
