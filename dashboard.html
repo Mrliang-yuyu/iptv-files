@@ -787,22 +787,24 @@
   window.setFilter = function(f) {
     filter = f; expandedCh = null;
     if (f === 'all') {
-      collapsedGroups = [...groupKeys]; // 全部→折叠
+      collapsedGroups = [...groupKeys];
     } else if (f === 'bad') {
-      collapsedGroups = []; // 异常→展开所有
+      collapsedGroups = [];
     } else {
-      // 选单个分类→只展开该分类
       collapsedGroups = groupKeys.filter(k => k !== f);
     }
-    render();
+    render(); // 需要更新工具栏按钮状态
   };
-  window.setSearch = function(q) { searchQuery = q; render(); };
+  window.setSearch = function(q) {
+    searchQuery = q;
+    renderSections();
+  };
   window.toggleGroup = function(g) {
     const i = collapsedGroups.indexOf(g);
     if (i > -1) collapsedGroups.splice(i, 1); else collapsedGroups.push(g);
-    render();
+    renderSections();
   };
-  window.toggleCh = function(name) { expandedCh = expandedCh === name ? null : name; render(); };
+  window.toggleCh = function(name) { expandedCh = expandedCh === name ? null : name; renderSections(); };
 
   window.triggerRefresh = function() {
     if (refreshStatus==='sending'||refreshStatus==='requested'||refreshStatus==='running') return;
@@ -929,7 +931,25 @@
         </div>
       </div>`;
 
-    // ── Channel sections ──
+    // ── 频道列表由 renderSections() 渲染到 #sections-root ──
+
+    html += `<div id="sections-root"></div>`;
+    html += `<div class="footer">✦ 数据每2天自动更新 · 手动刷新后约1-2分钟完成 ✦</div>`;
+    app.innerHTML = html;
+    // 渲染频道列表
+    renderSections();
+  }
+
+  // ── 单独渲染频道列表（搜索时只刷新这部分，不抖键盘）──
+  function renderSections() {
+    const bd = computeBreakdown();
+    const sectionsRoot = document.getElementById('sections-root');
+    if (!sectionsRoot) return;
+    sectionsRoot.innerHTML = buildSectionsHTML(bd);
+  }
+
+  function buildSectionsHTML(bd) {
+    let groupsHtml = '';
     let renderGroups = [];
     if (filter === 'all' || groupKeys.includes(filter)) {
       const tg = filter === 'all' ? groupKeys : [filter];
@@ -940,92 +960,87 @@
     } else if (filter === 'bad') {
       let badChs = data.channels.filter(ch => chStatus(ch)!=='ok');
       if (searchQuery) badChs = badChs.filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase()));
-      const isBadFilter = filter === 'bad';
       renderGroups = [{ key: '异常频道', channels: badChs, isBad: true }];
     }
 
     if (renderGroups.length === 0) {
-      html += `<div class="empty-state"><div class="big">🔍</div><h3>无匹配频道</h3><p>试试其他搜索词</p></div>`;
-    } else {
-      renderGroups.forEach(({ key: gk, channels: chs, isBad }) => {
-        const gc = isBad ? 'bad-section' : groupClass(gk);
-        const collapsed = collapsedGroups.includes(gk);
-        let gOk=0,gSlow=0,gBad=0;
-        chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
-        const gTotal = chs.length;
-        const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
-        const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
-        const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
+      return `<div class="empty-state"><div class="big">🔍</div><h3>无匹配频道</h3><p>试试其他搜索词</p></div>`;
+    }
 
-        html += `<div class="section">
-          <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
-            <span class="group-tag ${gc}"></span>
-            <span class="title">${gk}</span>
-            <span class="badge">${chs.length} 频道</span>
-            <div class="health-line">
-              <div class="seg ok" style="width:${gOkPct}%"></div>
-              <div class="seg slow" style="width:${gSlowPct}%"></div>
-              <div class="seg bad" style="width:${gBadPct}%"></div>
-            </div>
-            <span class="arrow ${collapsed?'':'open'}">▼</span>
+    const icons = { ok:'✓', slow:'⚠', bad:'✕' };
+
+    renderGroups.forEach(({ key: gk, channels: chs, isBad }) => {
+      const gc = isBad ? 'bad-section' : groupClass(gk);
+      const collapsed = collapsedGroups.includes(gk);
+      let gOk=0,gSlow=0,gBad=0;
+      chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
+      const gTotal = chs.length;
+      const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
+      const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
+      const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
+
+      let sectionHtml = `<div class="section">
+        <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
+          <span class="group-tag ${gc}"></span>
+          <span class="title">${gk}</span>
+          <span class="badge">${chs.length} 频道</span>
+          <div class="health-line">
+            <div class="seg ok" style="width:${gOkPct}%"></div>
+            <div class="seg slow" style="width:${gSlowPct}%"></div>
+            <div class="seg bad" style="width:${gBadPct}%"></div>
           </div>
-          <div class="section-body" style="display:${collapsed?'none':'block'}">`;
+          <span class="arrow ${collapsed?'':'open'}">▼</span>
+        </div>
+        <div class="section-body" style="display:${collapsed?'none':'block'}">`;
 
-        chs.forEach(ch => {
-          const sc = chStatus(ch);
-          const exp = expandedCh === ch.name;
-          const mainLat = ch.main.status==='ok' ? ch.main.latency+'s' : ch.main.status;
-          const okBk = ch.backups.filter(b=>b.status==='ok');
-          const badBkCount = ch.backups.filter(b=>b.status!=='ok').length;
+      chs.forEach(ch => {
+        const sc = chStatus(ch);
+        const exp = expandedCh === ch.name;
+        const mainLat = ch.main.status==='ok' ? ch.main.latency+'s' : ch.main.status;
+        const okBk = ch.backups.filter(b=>b.status==='ok');
+        const badBkCount = ch.backups.filter(b=>b.status!=='ok').length;
 
-          html += `<div class="channel-row" onclick="toggleCh('${ch.name.replace(/'/g,"\\'")}')">
-            <div class="channel-info">
-              <div class="name"><span class="status-dot ${sc}"></span>${ch.name}</div>
-              <div class="meta">
-                <span>主 ${mainLat}</span>
-                ${okBk.length>0?`<span>备 ${okBk.length} 在线</span>`:''}
-                ${badBkCount>0?`<span style="color:var(--red)">${badBkCount} 离线</span>`:''}
-              </div>
+        sectionHtml += `<div class="channel-row" onclick="toggleCh('${ch.name.replace(/'/g,"\\'")}')">
+          <div class="channel-info">
+            <div class="name"><span class="status-dot ${sc}"></span>${ch.name}</div>
+            <div class="meta">
+              <span>主 ${mainLat}</span>
+              ${okBk.length>0?`<span>备 ${okBk.length} 在线</span>`:''}
+              ${badBkCount>0?`<span style="color:var(--red)">${badBkCount} 离线</span>`:''}
             </div>
-            <div class="source-row">
-              <span class="source-badge ok main">主 ${mainLat}</span>
-              ${okBk.slice(0,3).map((b,i)=>`<span class="source-badge ${latencyClass(b.latency)}">备${i+1} ${b.latency}s</span>`).join('')}
-            </div>
-            <div class="ch-status ${sc}">${icons[sc]}</div>
           </div>
-          <div class="channel-detail ${exp?'open':''}">
-            <div class="detail-inner">
-            <table class="detail-table">
-              <tr><th style="width:60px">类型</th><th style="width:55px">延迟</th><th style="width:45px">状态</th><th>URL</th></tr>
-              <tr>
-                <td style="color:var(--blue)">主源</td>
-                <td><span class="latency-dot ${ch.main.latency<0.8?'fast':ch.main.latency<2?'medium':'slow'}"></span>${ch.main.status==='ok'?ch.main.latency+'s':'-'}</td>
-                <td style="color:${ch.main.status==='ok'?'var(--green)':'var(--red)'}">${ch.main.status}</td>
-                <td style="color:var(--text3)">${ch.main.url}</td>
-              </tr>
-              ${ch.backups.map((b,i)=>`<tr>
-                <td>备${i+1}</td>
-                <td><span class="latency-dot ${b.latency<0.8?'fast':b.latency<2?'medium':'slow'}"></span>${b.status==='ok'?b.latency+'s':'-'}</td>
-                <td style="color:${b.status==='ok'?'var(--green)':'var(--red)'}">${b.status}</td>
-                <td style="color:var(--text3)">${b.url}</td>
-              </tr>`).join('')}
-            </table>
-            </div>
-          </div>`;
-        });
-
-        html += '</div></div>';
+          <div class="source-row">
+            <span class="source-badge ok main">主 ${mainLat}</span>
+            ${okBk.slice(0,3).map((b,i)=>`<span class="source-badge ${latencyClass(b.latency)}">备${i+1} ${b.latency}s</span>`).join('')}
+          </div>
+          <div class="ch-status ${sc}">${icons[sc]}</div>
+        </div>
+        <div class="channel-detail ${exp?'open':''}">
+          <div class="detail-inner">
+          <table class="detail-table">
+            <tr><th style="width:60px">类型</th><th style="width:55px">延迟</th><th style="width:45px">状态</th><th>URL</th></tr>
+            <tr>
+              <td style="color:var(--blue)">主源</td>
+              <td><span class="latency-dot ${ch.main.latency<0.8?'fast':ch.main.latency<2?'medium':'slow'}"></span>${ch.main.status==='ok'?ch.main.latency+'s':'-'}</td>
+              <td style="color:${ch.main.status==='ok'?'var(--green)':'var(--red)'}">${ch.main.status}</td>
+              <td style="color:var(--text3)">${ch.main.url}</td>
+            </tr>
+            ${ch.backups.map((b,i)=>`<tr>
+              <td>备${i+1}</td>
+              <td><span class="latency-dot ${b.latency<0.8?'fast':b.latency<2?'medium':'slow'}"></span>${b.status==='ok'?b.latency+'s':'-'}</td>
+              <td style="color:${b.status==='ok'?'var(--green)':'var(--red)'}">${b.status}</td>
+              <td style="color:var(--text3)">${b.url}</td>
+            </tr>`).join('')}
+          </table>
+          </div>
+        </div>`;
       });
-    }
 
-    html += `<div class="footer">✦ 数据每2天自动更新 · 手动刷新后约1-2分钟完成 ✦</div>`;
-    app.innerHTML = html;
+      sectionHtml += '</div></div>';
+      groupsHtml += sectionHtml;
+    });
 
-    // 搜索框自动聚焦
-    const $s = document.getElementById('searchInput');
-    if ($s && searchQuery) {
-      $s.setSelectionRange(searchQuery.length, searchQuery.length);
-    }
+    return groupsHtml;
   }
 
   // ── Init ──
