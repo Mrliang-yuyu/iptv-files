@@ -236,13 +236,13 @@
     box-shadow: var(--card-shadow);
     padding: 8px 10px 6px;
   }
-  .chart-card svg { display: block; width: 100%; height: 80px; }
+  .chart-card svg { display: block; width: 100%; height: 140px; }
   .chart-card .chart-empty {
-    text-align: center; padding: 30px 0;
-    font-size: 13px; color: var(--text3);
+    text-align: center; padding: 50px 0;
+    font-size: 14px; color: var(--text3);
   }
   @media (max-width: 520px) {
-    .chart-card svg { height: 60px; }
+    .chart-card svg { height: 100px; }
   }
 
   .num.green { color: var(--green); }
@@ -765,10 +765,10 @@
       const rangeY = maxY - minY;
       const spanW = pts.length - 1;
       // Virtual coordinate space
-      const padL = 6, padR = 4, padT = 4, padB = 10;
+      const padL = 8, padR = 6, padT = 6, padB = 16;
       const W = 100 + padL + padR;
-      const H = 40 + padT + padB;
-      const iw = 100, ih = 40;
+      const H = 60 + padT + padB;
+      const iw = 100, ih = 60;
       // Path
       const path = pts.map((p, i) => {
         const x = padL + (i / spanW) * iw;
@@ -783,21 +783,21 @@
       for (let v = 0; v <= 100; v += 25) {
         const y = padT + ih - ((v - minY) / rangeY) * ih;
         yGrid.push(`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${padL+iw}" y2="${y.toFixed(1)}" stroke="var(--card-border)" stroke-width="0.5"/>`);
-        if (v > 0) yGrid.push(`<text x="${padL-2}" y="${(y+3).toFixed(1)}" text-anchor="end" fill="var(--text3)" font-size="2.5">${v}</text>`);
+        if (v > 0) yGrid.push(`<text x="${padL-3}" y="${(y+3.5).toFixed(1)}" text-anchor="end" fill="var(--text3)" font-size="3.5">${v}</text>`);
       }
       // X-axis time labels
       const xLabels = [];
       const labelIdx = [0, Math.floor(spanW/2), spanW];
       labelIdx.forEach(idx => {
         const x = padL + (idx / spanW) * iw;
-        xLabels.push(`<text x="${x.toFixed(1)}" y="${padT+ih+7}" text-anchor="middle" fill="var(--text3)" font-size="2.5">${pts[idx].time}</text>`);
+        xLabels.push(`<text x="${x.toFixed(1)}" y="${padT+ih+11}" text-anchor="middle" fill="var(--text3)" font-size="3.5">${pts[idx].time}</text>`);
       });
       return `<div class="chart-card">
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:80px">
           ${yGrid.join('')}
           <path d="${fillPath}" fill="${rateColor}" opacity="0.08"/>
-          <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="${(padL + (spanW/spanW)*iw).toFixed(1)}" cy="${(padT + ih - ((lastRate - minY)/rangeY)*ih).toFixed(1)}" r="2" fill="${rateColor}" stroke="var(--card)" stroke-width="1"/>
+          <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="${(padL + (spanW/spanW)*iw).toFixed(1)}" cy="${(padT + ih - ((lastRate - minY)/rangeY)*ih).toFixed(1)}" r="3" fill="${rateColor}" stroke="var(--card)" stroke-width="1.5"/>
           ${xLabels.join('')}
         </svg>
         <div style="text-align:center;margin-top:-6px;margin-bottom:-4px">
