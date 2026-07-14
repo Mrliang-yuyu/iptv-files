@@ -496,9 +496,14 @@
     .header-logo { width: 20px; height: 20px; }
     .update-capsule { font-size: 10px; padding: 2px 6px; }
 
-    /* 三卡纵向堆叠 */
-    .card-row { flex-direction: column; gap: 8px; }
-    .card-row .group-card { padding: 10px 14px; }
+    /* 三卡：健康+网址并排，统计单独 */
+    .card-row { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 8px; 
+    }
+    .card-row .group-card { padding: 10px 12px; }
+    .card-row .group-card:nth-child(3) { grid-column: 1 / -1; }
 
     /* 健康卡横排居中 */
     .health-card-wrap { gap: 12px; justify-content: center; }
