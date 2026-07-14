@@ -7,37 +7,76 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --glass: rgba(18, 24, 36, 0.65);
-    --glass2: rgba(24, 32, 48, 0.55);
-    --glass-border: rgba(255, 255, 255, 0.07);
-    --glass-border-hover: rgba(255, 255, 255, 0.13);
+    --glass: rgba(12, 18, 30, 0.55);
+    --glass2: rgba(16, 22, 36, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(255, 255, 255, 0.15);
     --text: #e8edf5;
     --text2: #9aa8c0;
     --text3: #5a6a82;
     --green: #4ade80;
-    --green-bg: rgba(74, 222, 128, 0.12);
+    --green-bg: rgba(74, 222, 128, 0.15);
     --yellow: #fbbf24;
-    --yellow-bg: rgba(251, 191, 36, 0.12);
+    --yellow-bg: rgba(251, 191, 36, 0.15);
     --red: #f87171;
-    --red-bg: rgba(248, 113, 113, 0.12);
+    --red-bg: rgba(248, 113, 113, 0.15);
     --blue: #38bdf8;
-    --blue-bg: rgba(56, 189, 248, 0.12);
+    --blue-bg: rgba(56, 189, 248, 0.15);
     --purple: #a78bfa;
-    --radius: 14px;
-    --radius-sm: 10px;
-    --shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+    --radius: 16px;
+    --radius-sm: 12px;
+    --shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 60px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 16px 64px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.06);
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: #080c14;
+    background: #080c1a;
     color: var(--text);
     padding: 20px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(ellipse 600px 400px at 10% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 100%),
-      radial-gradient(ellipse 500px 500px at 85% 60%, rgba(74, 222, 128, 0.03) 0%, transparent 100%),
-      radial-gradient(ellipse 400px 400px at 50% 80%, rgba(167, 139, 250, 0.03) 0%, transparent 100%);
+    position: relative;
+    overflow-x: hidden;
+  }
+  /* 背景装饰光晕 */
+  body::before, body::after {
+    content: ''; position: fixed; border-radius: 50%;
+    pointer-events: none; z-index: 0;
+  }
+  body::before {
+    width: 600px; height: 600px;
+    top: -200px; left: -150px;
+    background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 70%);
+  }
+  body::after {
+    width: 500px; height: 500px;
+    bottom: -150px; right: -100px;
+    background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%);
+  }
+  /* 额外装饰光晕 */
+  .bg-glow-1, .bg-glow-2, .bg-glow-3 {
+    position: fixed; border-radius: 50%;
+    pointer-events: none; z-index: 0;
+  }
+  .bg-glow-1 {
+    width: 350px; height: 350px;
+    top: 40%; left: 60%;
+    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 60%);
+  }
+  .bg-glow-2 {
+    width: 400px; height: 400px;
+    top: 15%; right: -100px;
+    background: radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 60%);
+  }
+  .bg-glow-3 {
+    width: 250px; height: 250px;
+    bottom: 30%; left: 30%;
+    background: radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 60%);
+  }
+  .container {
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
   }
   .container {
     max-width: 1100px; margin: 0 auto;
@@ -46,19 +85,19 @@
   /* ── Glass Mixin ── */
   .glass {
     background: var(--glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
   }
   .glass-sm {
     background: var(--glass2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
   }
 
   /* ── Header ── */
@@ -66,12 +105,12 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 18px 22px; margin-bottom: 20px;
     flex-wrap: wrap; gap: 12px;
-    background: var(--glass);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: rgba(12, 18, 30, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
   }
   .header-left { display: flex; align-items: center; gap: 14px; }
   .header h1 {
@@ -114,11 +153,12 @@
   .status-bar {
     padding: 12px 20px; margin-bottom: 16px;
     font-size: 14px; display: flex; align-items: center; gap: 10px;
-    background: var(--glass);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(12, 18, 30, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
+    box-shadow: 0 4px 28px rgba(0,0,0,0.3);
   }
   .status-bar .spinner {
     width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.1);
@@ -139,12 +179,13 @@
   /* ── Donut ── */
   .donut-card {
     padding: 20px;
-    background: var(--glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(14, 20, 34, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    transition: box-shadow 0.25s, border-color 0.25s;
     display: flex; flex-direction: column; gap: 14px;
   }
   .donut-card .card-title {
@@ -159,10 +200,13 @@
     position: relative; flex-shrink: 0;
   }
   .donut-hole {
-    position: absolute; inset: 11px; border-radius: 50%;
-    background: var(--glass); display: flex; flex-direction: column;
+    position: absolute; inset: 12px; border-radius: 50%;
+    background: rgba(8, 12, 26, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    backdrop-filter: blur(4px);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
   }
   .donut-hole .num { font-size: 20px; font-weight: 700; line-height: 1; color: var(--text); }
   .donut-hole .lbl { font-size: 10px; color: var(--text3); margin-top: 1px; }
@@ -180,9 +224,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 12px;
-    background: var(--glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(14, 20, 34, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -206,10 +250,12 @@
   /* ── URL Card ── */
   .url-card {
     padding: 12px 18px; margin-bottom: 14px;
-    background: var(--glass2);
-    backdrop-filter: blur(12px);
+    background: rgba(16, 22, 36, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
+    box-shadow: 0 4px 28px rgba(0,0,0,0.3);
     display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
   }
   .url-group {
@@ -239,10 +285,12 @@
   .toolbar {
     display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
     align-items: center;
-    background: var(--glass);
-    backdrop-filter: blur(14px);
+    background: rgba(12, 18, 30, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
+    box-shadow: 0 4px 28px rgba(0,0,0,0.3);
     padding: 10px 16px;
   }
   .search-input {
@@ -270,15 +318,19 @@
   /* ── Section Modules ── */
   .section {
     margin-bottom: 12px;
-    background: var(--glass);
-    backdrop-filter: blur(16px);
+    background: rgba(14, 20, 34, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: box-shadow 0.25s, border-color 0.25s;
   }
-  .section:hover { border-color: var(--glass-border-hover); }
+  .section:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--shadow-hover);
+  }
 
   .section-header {
     display: flex; align-items: center; gap: 12px;
@@ -406,6 +458,9 @@
 </style>
 </head>
 <body>
+<div class="bg-glow-1"></div>
+<div class="bg-glow-2"></div>
+<div class="bg-glow-3"></div>
 <div class="container" id="app">
   <div class="loading" id="loading">
     <div class="spinner"></div>
