@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>配置方法 · IPTV Live</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f1f4f9;
+    --card: #ffffff;
+    --card-border: #e4e9f0;
+    --text: #1a1f36;
+    --text2: #5a6a7e;
+    --text3: #8a9aaa;
+    --accent: #2563eb;
+    --accent-bg: rgba(37, 99, 235, 0.08);
+    --green: #10b981;
+    --green-bg: rgba(16, 185, 129, 0.08);
+  }
+  [data-theme="dark"] {
+    --bg: #11151f;
+    --card: #1c2230;
+    --card-border: #2a3242;
+    --text: #edf2f7;
+    --text2: #9aa8c0;
+    --text3: #5a6a82;
+    --accent: #60a5fa;
+    --accent-bg: rgba(96, 165, 250, 0.1);
+    --green: #34d399;
+    --green-bg: rgba(52, 211, 153, 0.12);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    min-height: 100vh;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 20px; }
+  .nav-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .nav-link {
+    font-size: 12px; color: var(--text3); font-weight: 500;
+    text-decoration: none; padding: 2px 8px; border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .nav-link:hover { color: var(--accent); }
+  .theme-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--text2); cursor: pointer;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-btn:active { transform: scale(0.9); }
+  .page-title {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .page-title .accent-dot {
+    width: 4px; height: 24px; background: var(--accent);
+    border-radius: 3px; display: inline-block; flex-shrink: 0;
+  }
+  .section {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 14px 18px;
+    font-size: 15px; font-weight: 600;
+    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-body { padding: 14px 18px; }
+  .section-body p {
+    font-size: 14px; line-height: 1.7; color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+  .step {
+    display: flex; gap: 14px; margin-bottom: 16px;
+  }
+  .step:last-child { margin-bottom: 0; }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title {
+    font-size: 14px; font-weight: 600; margin-bottom: 3px;
+  }
+  .step-desc {
+    font-size: 13px; line-height: 1.6; color: var(--text2);
+  }
+  .code-block {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-family: "SF Mono", "Menlo", monospace;
+    font-size: 12px;
+    color: var(--accent);
+    word-break: break-all;
+    user-select: all;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .code-block .copy-btn {
+    flex-shrink: 0;
+    font-size: 11px; color: var(--text2); cursor: pointer;
+    padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--card-border);
+    background: transparent;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .code-block .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .code-block .copy-btn.copied { border-color: var(--green); color: var(--green); }
+  .app-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-top: 8px;
+  }
+  .app-card {
+    padding: 12px; border-radius: 8px;
+    border: 1px solid var(--card-border);
+    text-align: center;
+  }
+  .app-card .icon { font-size: 24px; margin-bottom: 4px; }
+  .app-card .name { font-size: 13px; font-weight: 600; }
+  .app-card .plat { font-size: 11px; color: var(--text3); }
+  .tip {
+    background: var(--green-bg);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px; color: var(--green);
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-top: 12px;
+  }
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+    font-size: 12px; color: var(--text3);
+  }
+  @media (max-width: 520px) {
+    .container { padding: 12px; }
+    .page-title { font-size: 22px; }
+    .app-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="https://iptv-live-btg.pages.dev/p/a25fcf8d/dashboard.html" class="nav-link">← 返回看板</a>
+    <a href="/" class="nav-link">🏠 首页</a>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" style="margin-left:auto">🌙</button>
+  </div>
+
+  <div class="page-title">
+    <span class="accent-dot"></span>
+    配置电视源方法
+  </div>
+
+  <div class="section">
+    <div class="section-header">📋 获取节目源地址</div>
+    <div class="section-body">
+      <p>本服务提供直播频道 m3u 播放列表和电子节目指南（EPG），你可以在任何支持 IPTV 的播放器中直接使用以下地址：</p>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">频道列表（m3u）</div>
+          <div class="step-desc">包含所有可用电视频道的播放地址，添加到播放器即可观看。</div>
+          <div class="code-block" id="m3uUrl">
+            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u</span>
+            <button class="copy-btn" onclick="copyCode(this,'https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u')">复制</button>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">节目指南（EPG）</div>
+          <div class="step-desc">提供当前及未来节目的播出时间表，配合 m3u 使用可显示节目名称。</div>
+          <div class="code-block" id="epgUrl">
+            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml</span>
+            <button class="copy-btn" onclick="copyCode(this,'https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml')">复制</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📱 推荐播放器</div>
+    <div class="section-body">
+      <p>以下播放器均支持 m3u 直播源和 EPG 节目指南，选择适合你设备的即可：</p>
+      <div class="app-grid">
+        <div class="app-card"><div class="icon">🟣</div><div class="name">IPTV Smarters</div><div class="plat">iOS / Android / TV</div></div>
+        <div class="app-card"><div class="icon">🔵</div><div class="name">TiviMate</div><div class="plat">Android TV</div></div>
+        <div class="app-card"><div class="icon">🟢</div><div class="name">VLC</div><div class="plat">全平台</div></div>
+        <div class="app-card"><div class="icon">🟠</div><div class="name">Kodi</div><div class="plat">全平台</div></div>
+        <div class="app-card"><div class="icon">🔴</div><div class="name">GSE Smart IPTV</div><div class="plat">iOS / Android</div></div>
+        <div class="app-card"><div class="icon">⚪</div><div class="name">PotPlayer</div><div class="plat">Windows</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📝 配置步骤</div>
+    <div class="section-body">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">复制播放列表地址</div>
+          <div class="step-desc">点击上方的「复制」按钮，将 m3u 地址复制到剪贴板。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">打开播放器</div>
+          <div class="step-desc">在电视 / 手机 / 电脑上打开你选择的 IPTV 播放器应用。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">添加播放列表</div>
+          <div class="step-desc">在播放器设置中找到「添加播放列表」或「加载 URL」，粘贴刚才复制的地址。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">添加节目指南（可选）</div>
+          <div class="step-desc">同样复制 EPG 地址，在播放器的节目指南设置中粘贴，即可显示节目名称和时间。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">开始观看</div>
+          <div class="step-desc">导入完成后，频道列表会自动加载，选择你喜欢的频道即可观看。</div>
+        </div>
+      </div>
+      <div class="tip">
+        💡 提示：频道状态看板会实时显示每个频道的可用性，建议先查看状态再导入播放器。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    IPTV Live · 频道状态看板 · 数据自动更新
+  </div>
+</div>
+
+<script>
+  function copyCode(btn, url) {
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = '已复制';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('iptv-theme', next);
+    document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+  }
+  (function() {
+    const saved = localStorage.getItem('iptv-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+    }
+  })();
+</script>
+</body>
+</html>
