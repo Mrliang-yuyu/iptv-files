@@ -53,8 +53,8 @@
       "name": "CCTV-5体育HD",
       "group": "央视",
       "main": {
-        "url": "http://74.91.26.218:82/live/cctv5hd.m3u8",
-        "latency": 0.5,
+        "url": "http://112.85.93.6:7788/641886683",
+        "latency": 0.22,
         "status": "ok"
       },
       "backups": []
@@ -63,8 +63,8 @@
       "name": "CCTV-5+体育赛事HD",
       "group": "央视",
       "main": {
-        "url": "http://74.91.26.218:82/live/cctv5phd.m3u8",
-        "latency": 0.52,
+        "url": "http://112.85.93.6:7788/641886773",
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": []
