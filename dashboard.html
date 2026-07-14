@@ -182,26 +182,26 @@
 
   /* Card 2: 统计 */
   .card-row .stats-card {
-    flex: 0 1 240px;
+    flex: 0 1 180px;
     min-width: 0;
   }
   .stats-card .stat-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    padding: 8px 14px;
+    padding: 6px 6px;
   }
   .stats-card .stat-grid .item {
     text-align: center;
     padding: 4px 6px;
   }
   .stats-card .stat-grid .item .n {
-    font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.2px;
     line-height: 1.2;
   }
   .stats-card .stat-grid .item .l {
-    font-size: 9px; color: var(--text2); font-weight: 500;
-    margin-top: 2px; white-space: nowrap;
+    font-size: 8px; color: var(--text2); font-weight: 500;
+    margin-top: 1px; white-space: nowrap;
   }
 
   /* Card 3: 链接 */
@@ -469,7 +469,9 @@
     .card-row .health-card .donut-sm .hole .n { font-size: 13px; }
     .card-row .health-card .donut-sm .hole .l { font-size: 6px; }
     .health-card .legend .item { font-size: 10px; }
-    .card-row .stats-card .stat-grid { grid-template-columns: repeat(2, 1fr); padding: 6px 8px; }
+    .card-row .stats-card .stat-grid { grid-template-columns: repeat(5, 1fr); padding: 4px 4px; }
+    .stats-card .stat-grid .item .n { font-size: 13px; }
+    .stats-card .stat-grid .item .l { font-size: 7px; }
     .stats-card .stat-grid .item .n { font-size: 16px; }
     .stats-card .stat-grid .item .l { font-size: 8px; }
     .card-row .url-card { padding: 8px 12px; gap: 6px; }
