@@ -335,6 +335,10 @@
   .section-header .health-line .seg.ok { background: var(--green); }
   .section-header .health-line .seg.slow { background: var(--yellow); }
   .section-header .health-line .seg.bad { background: var(--red); }
+  .section-header .rate-badge {
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+  }
   .section-header .arrow {
     font-size: 9px; color: var(--text3); transition: transform 0.2s;
   }
@@ -881,6 +885,7 @@
         const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
         const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
         const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
+        const gOkRate = gTotal>0 ? Math.round(gOk/gTotal*100) : 0;
 
         sectionHtml = `<div class="section">
           <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
@@ -892,6 +897,7 @@
               <div class="seg slow" style="width:${gSlowPct}%"></div>
               <div class="seg bad" style="width:${gBadPct}%"></div>
             </div>
+            <span class="rate-badge" style="color:${gOkRate>=70?'var(--green)':gOkRate>=50?'var(--yellow)':'var(--red)'}">${gOkRate}%</span>
             <span class="arrow ${collapsed?'':'open'}">▼</span>
           </div>
           <div class="section-body" style="display:${collapsed?'none':'block'}">${sectionBodyHtml}</div></div>`;
