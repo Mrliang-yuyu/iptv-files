@@ -241,11 +241,11 @@ if (isHTTPS) {
 }
 
 // ===== Service Worker Registration =====
+// SW proxies HTTP streams via /p/a25fcf8d/proxy/... 
+// On first visit the SW needs to install; after refresh it will intercept requests.
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js', { scope: '/p/a25fcf8d/' }).then(reg => {
-    console.log('SW registered:', reg.scope);
-  }).catch(e => {
-    console.warn('SW registration failed:', e);
+  navigator.serviceWorker.register('./sw.js', { scope: '/p/a25fcf8d/' }).catch(e => {
+    console.warn('SW unavailable, HTTPS streams may be blocked', e);
   });
 }
 
@@ -443,6 +443,34 @@ function loadStream(url) {
   let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   let isHLS = url.indexOf('.m3u8') >= 0;
 
+  // Helper: clear overlay when native video plays
+  function onNativePlay() {
+    state.style.display = 'none';
+    isPlaying = true;
+    document.getElementById('playBtn').textContent = '⏸';
+  }
+  // Helper: start native playback with a given src
+  function startNative(src) {
+    video.src = src;
+    video.style.display = 'block';
+    video.addEventListener('play', onNativePlay, { once: true });
+    video.addEventListener('canplay', onNativePlay, { once: true });
+    let p = video.play();
+    if (p !== undefined) p['catch'](() => {
+      if (state.style.display !== 'none') {
+        stateText.textContent = isHTTPS ? '点击播放按钮重试' : '点击播放';
+        spinner.style.display = 'none';
+      }
+    });
+    video.addEventListener('error', function eh() {
+      if (state.style.display !== 'none') {
+        stateText.textContent = '播放失败, 尝试其他源';
+        spinner.style.display = 'none';
+      }
+      video.removeEventListener('error', eh);
+    }, { once: true });
+  }
+
   if (isHLS && !isIOS && typeof Hls !== 'undefined' && Hls.isSupported()) {
     let hls = new Hls();
     hlsInstance = hls;
@@ -456,31 +484,15 @@ function loadStream(url) {
       document.getElementById('playBtn').textContent = '⏸';
     });
     hls.on(Hls.Events.ERROR, (ev, data) => {
-      if (data.fatal) {
-        stateText.textContent = '播放失败: ' + (data.type || '连接超时');
+      // Only handle fatal errors if we haven't already cleared the state
+      if (data.fatal && state.style.display !== 'none') {
+        stateText.textContent = 'HLS切换原生…';
         spinner.style.display = 'none';
-        if (proxyedUrl !== url) { stateText.textContent += '\n尝试直连…'; video.src = url; video.style.display = 'block'; video.play()['catch'](()=>{}); }
+        startNative(url);
       }
     });
   } else {
-    video.src = proxyedUrl;
-    video.style.display = 'block';
-    let pp = video.play();
-    if (pp !== undefined) {
-      pp.then(() => { state.style.display = 'none'; isPlaying = true; document.getElementById('playBtn').textContent = '⏸'; })
-        ['catch'](() => {
-          stateText.textContent = isHTTPS ? '远程播放受限, 点播放按钮重试' : '点击播放';
-          spinner.style.display = 'none';
-          video.addEventListener('play', function h() { isPlaying = true; state.style.display = 'none'; document.getElementById('playBtn').textContent = '⏸'; video.removeEventListener('play', h); }, {once:true});
-          if (proxyedUrl !== url) { video.src = url; video.play()['catch'](()=>{}); }
-        });
-    }
-    video.addEventListener('error', () => {
-      if (state.style.display !== 'none') {
-        stateText.textContent = isHTTPS ? '远程限制: 需使用局域网访问' : '播放失败';
-        spinner.style.display = 'none';
-      }
-    });
+    startNative(proxyedUrl);
   }
   // Scroll to channel in list
   let el = document.querySelector('.ch-item[data-idx="' + currentIdx + '"]');
