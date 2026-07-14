@@ -7,231 +7,312 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #0b0e14;
-    --surface: #131820;
-    --surface2: #1a2230;
-    --border: #1e293b;
-    --border2: #2a3a52;
-    --text: #e2e8f0;
-    --text2: #94a3b8;
-    --text3: #64748b;
-    --accent: #38bdf8;
+    --glass: rgba(18, 24, 36, 0.65);
+    --glass2: rgba(24, 32, 48, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-border-hover: rgba(255, 255, 255, 0.13);
+    --text: #e8edf5;
+    --text2: #9aa8c0;
+    --text3: #5a6a82;
     --green: #4ade80;
-    --green-bg: rgba(74,222,128,0.1);
+    --green-bg: rgba(74, 222, 128, 0.12);
     --yellow: #fbbf24;
-    --yellow-bg: rgba(251,191,36,0.1);
+    --yellow-bg: rgba(251, 191, 36, 0.12);
     --red: #f87171;
-    --red-bg: rgba(248,113,113,0.1);
+    --red-bg: rgba(248, 113, 113, 0.12);
     --blue: #38bdf8;
-    --blue-bg: rgba(56,189,248,0.1);
+    --blue-bg: rgba(56, 189, 248, 0.12);
     --purple: #a78bfa;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg); color: var(--text); padding: 16px; min-height: 100vh;
+    background: #080c14;
+    color: var(--text);
+    padding: 20px;
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 600px 400px at 10% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 100%),
+      radial-gradient(ellipse 500px 500px at 85% 60%, rgba(74, 222, 128, 0.03) 0%, transparent 100%),
+      radial-gradient(ellipse 400px 400px at 50% 80%, rgba(167, 139, 250, 0.03) 0%, transparent 100%);
   }
-  .container { max-width: 1100px; margin: 0 auto; }
+  .container {
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── Glass Mixin ── */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .glass-sm {
+    background: var(--glass2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
 
   /* ── Header ── */
   .header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+    padding: 18px 22px; margin-bottom: 20px;
     flex-wrap: wrap; gap: 12px;
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
+  .header-left { display: flex; align-items: center; gap: 14px; }
   .header h1 {
-    font-size: 22px; font-weight: 700; letter-spacing: -0.3px;
-    background: linear-gradient(135deg, var(--blue), var(--green));
+    font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #38bdf8 0%, #4ade80 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .header-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .update-badge {
-    font-size: 12px; color: var(--text2); background: var(--surface);
-    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
-    white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--text2);
+    background: rgba(255,255,255,0.05);
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
   }
   .update-badge .dot {
     width: 6px; height: 6px; border-radius: 50%; background: var(--green);
     display: inline-block; animation: pulse 2s infinite;
   }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+  .header-actions { display: flex; align-items: center; gap: 10px; }
 
   .refresh-btn {
-    padding: 8px 18px; border-radius: 24px; border: 1px solid var(--border2);
-    background: var(--surface); color: var(--text); cursor: pointer;
+    padding: 7px 18px; border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text); cursor: pointer;
     font-size: 13px; font-weight: 500; transition: all 0.2s;
     display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
   }
-  .refresh-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--blue-bg); }
-  .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .refresh-btn:hover {
+    background: var(--blue-bg);
+    border-color: rgba(56,189,248,0.3);
+    color: var(--blue);
+  }
+  .refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* ── Status Bar ── */
   .status-bar {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 12px 18px; margin-bottom: 16px;
+    padding: 12px 20px; margin-bottom: 16px;
     font-size: 14px; display: flex; align-items: center; gap: 10px;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
   }
   .status-bar .spinner {
-    width: 14px; height: 14px; border: 2px solid var(--border2);
-    border-top-color: var(--accent); border-radius: 50%;
+    width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.1);
+    border-top-color: var(--blue); border-radius: 50%;
     animation: spin 0.7s linear infinite; flex-shrink: 0;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* ── Row 1: Health + Stats ── */
+  .row-cards {
+    display: grid; grid-template-columns: 320px 1fr;
+    gap: 16px; margin-bottom: 16px;
+  }
+  @media (max-width: 720px) {
+    .row-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ── Donut ── */
+  .donut-card {
+    padding: 20px;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .donut-card .card-title {
+    font-size: 13px; font-weight: 600; color: var(--text2);
+    letter-spacing: 0.3px;
+  }
+  .donut-row {
+    display: flex; align-items: center; gap: 20px;
+  }
+  .donut {
+    width: 88px; height: 88px; border-radius: 50%;
+    position: relative; flex-shrink: 0;
+  }
+  .donut-hole {
+    position: absolute; inset: 11px; border-radius: 50%;
+    background: var(--glass); display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .donut-hole .num { font-size: 20px; font-weight: 700; line-height: 1; color: var(--text); }
+  .donut-hole .lbl { font-size: 10px; color: var(--text3); margin-top: 1px; }
+  .legend { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+  .legend .item {
+    display: flex; align-items: center; gap: 8px; font-size: 13px;
+  }
+  .legend .item .dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .legend .item .val { color: var(--text2); margin-left: auto; }
+
+  /* ── Stats Grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-size: 24px; font-weight: 700; letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  .stat-item .lbl {
+    font-size: 11px; color: var(--text3); font-weight: 500;
+    margin-top: 4px; letter-spacing: 0.2px;
+  }
+  .num.green { color: var(--green); }
+  .num.yellow { color: var(--yellow); }
+  .num.red { color: var(--red); }
+  .num.blue { color: var(--blue); }
+  .num.purple { color: var(--purple); }
+
   /* ── URL Card ── */
   .url-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px;
+    padding: 12px 18px; margin-bottom: 14px;
+    background: var(--glass2);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
   }
-  .url-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 6px 0; flex-wrap: wrap;
+  .url-group {
+    display: flex; align-items: center; gap: 8px; flex: 1; min-width: 200px;
   }
-  .url-row:first-child { padding-top: 0; }
   .url-label {
     font-size: 11px; font-weight: 600; color: var(--text3);
-    min-width: 52px; letter-spacing: 0.3px; text-transform: uppercase;
+    letter-spacing: 0.3px; white-space: nowrap;
   }
   .url-value {
-    flex: 1; font-size: 13px; font-family: 'SF Mono', Consolas, monospace;
-    color: var(--accent); word-break: break-all; min-width: 0;
-    padding: 5px 10px; background: var(--bg); border: 1px solid var(--border);
-    border-radius: 6px; cursor: text;
+    flex: 1; font-size: 12px; font-family: 'SF Mono', Consolas, monospace;
+    color: var(--blue); word-break: break-all;
+    padding: 4px 10px; background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border); border-radius: 6px;
+    cursor: text; min-width: 0;
   }
   .copy-btn {
-    padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 6px;
+    border: 1px solid var(--glass-border);
     background: transparent; color: var(--text2); cursor: pointer;
     font-size: 12px; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
   }
-  .copy-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--blue-bg); }
-  .copy-btn.copied { border-color: var(--green); color: var(--green); background: var(--green-bg); }
-
-  /* ── Health Overview ── */
-  .health-overview {
-    display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
-  }
-  .donut-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 18px;
-    display: flex; align-items: center; gap: 18px; flex: 0 0 auto;
-  }
-  .donut {
-    width: 90px; height: 90px; border-radius: 50%;
-    position: relative; flex-shrink: 0;
-    background: conic-gradient(
-      var(--green) 0deg,
-      var(--green) var(--ok-deg, 0deg),
-      var(--yellow) var(--ok-deg, 0deg),
-      var(--yellow) var(--ok-slow-deg, 0deg),
-      var(--red) var(--ok-slow-deg, 0deg),
-      var(--red) 360deg
-    );
-  }
-  .donut-hole {
-    position: absolute; inset: 12px; border-radius: 50%;
-    background: var(--surface); display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-  }
-  .donut-hole .num { font-size: 20px; font-weight: 700; line-height: 1; }
-  .donut-hole .lbl { font-size: 10px; color: var(--text3); margin-top: 2px; }
-  .donut-legend { display: flex; flex-direction: column; gap: 4px; }
-  .donut-legend .item {
-    display: flex; align-items: center; gap: 8px; font-size: 13px;
-  }
-  .donut-legend .item .dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
-  .donut-legend .item .val { color: var(--text2); margin-left: auto; }
-
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 10px; flex: 1; min-width: 200px;
-  }
-  .stat-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 14px 16px;
-    display: flex; flex-direction: column; gap: 2px;
-  }
-  .stat-card .num {
-    font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
-    line-height: 1.2;
-  }
-  .stat-card .lbl {
-    font-size: 11px; color: var(--text3); font-weight: 500;
-    letter-spacing: 0.3px;
-  }
-  .stat-card .num.green { color: var(--green); }
-  .stat-card .num.yellow { color: var(--yellow); }
-  .stat-card .num.red { color: var(--red); }
-  .stat-card .num.blue { color: var(--blue); }
-  .stat-card .num.purple { color: var(--purple); }
+  .copy-btn:hover { border-color: rgba(56,189,248,0.3); color: var(--blue); background: var(--blue-bg); }
+  .copy-btn.copied { border-color: rgba(74,222,128,0.3); color: var(--green); background: var(--green-bg); }
 
   /* ── Toolbar ── */
   .toolbar {
-    display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+    display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
     align-items: center;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
   }
   .search-input {
     flex: 1; min-width: 160px;
-    padding: 8px 14px; border-radius: 24px; border: 1px solid var(--border);
-    background: var(--surface); color: var(--text); font-size: 13px;
+    padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0,0,0,0.2);
+    color: var(--text); font-size: 13px;
     outline: none; transition: border-color 0.15s;
   }
   .search-input::placeholder { color: var(--text3); }
-  .search-input:focus { border-color: var(--accent); }
-
-  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .search-input:focus { border-color: rgba(56,189,248,0.3); }
+  .filter-bar { display: flex; gap: 5px; flex-wrap: wrap; }
   .filter-btn {
-    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+    padding: 5px 12px; border-radius: 16px;
+    border: 1px solid var(--glass-border);
     background: transparent; color: var(--text2); cursor: pointer;
     font-size: 12px; font-weight: 500; transition: all 0.15s;
   }
-  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .filter-btn.active { background: var(--blue-bg); border-color: var(--accent); color: var(--accent); }
-  .filter-btn.bad { border-color: var(--red); color: var(--red); }
-  .filter-btn.bad.active { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+  .filter-btn:hover { border-color: rgba(56,189,248,0.3); color: var(--blue); }
+  .filter-btn.active { background: var(--blue-bg); border-color: rgba(56,189,248,0.3); color: var(--blue); }
+  .filter-btn.bad { border-color: rgba(248,113,113,0.3); color: var(--red); }
+  .filter-btn.bad.active { background: var(--red-bg); border-color: rgba(248,113,113,0.4); color: var(--red); }
 
-  /* ── Section (Channel Group) ── */
+  /* ── Section Modules ── */
   .section {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); margin-bottom: 10px; overflow: hidden;
+    margin-bottom: 12px;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: border-color 0.2s;
   }
+  .section:hover { border-color: var(--glass-border-hover); }
+
   .section-header {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px; cursor: pointer;
-    border-bottom: 1px solid var(--border);
+    padding: 13px 18px; cursor: pointer;
+    border-bottom: 1px solid var(--glass-border);
     transition: background 0.15s;
     user-select: none;
   }
-  .section-header:hover { background: var(--surface2); }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
   .section-header .group-tag {
     width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0;
   }
-  .group-tag.cctv { background: var(--blue); }
-  .group-tag.weishi { background: var(--yellow); }
-  .group-tag.difang { background: var(--green); }
-  .group-tag.beiyong { background: var(--text3); }
+  .group-tag.cctv { background: linear-gradient(var(--blue), #0284c7); }
+  .group-tag.weishi { background: linear-gradient(var(--yellow), #d97706); }
+  .group-tag.difang { background: linear-gradient(var(--green), #16a34a); }
+  .group-tag.beiyong { background: linear-gradient(var(--text3), #475569); }
 
   .section-header .title {
     font-size: 14px; font-weight: 600;
   }
   .section-header .badge {
     font-size: 11px; color: var(--text3);
-    background: var(--bg); padding: 2px 10px; border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    padding: 2px 10px; border-radius: 10px;
   }
   .section-header .health-line {
-    display: flex; gap: 3px; height: 6px; flex: 1; max-width: 200px;
+    display: flex; gap: 2px; height: 5px; flex: 1; max-width: 160px;
     border-radius: 3px; overflow: hidden;
   }
-  .section-header .health-line .seg { transition: width 0.3s; }
   .section-header .health-line .seg.ok { background: var(--green); }
   .section-header .health-line .seg.slow { background: var(--yellow); }
   .section-header .health-line .seg.bad { background: var(--red); }
   .section-header .arrow {
-    font-size: 10px; color: var(--text3); transition: transform 0.2s;
+    font-size: 10px; color: var(--text3); transition: transform 0.25s;
     margin-left: auto;
   }
   .section-header .arrow.open { transform: rotate(180deg); }
@@ -242,27 +323,25 @@
     display: grid;
     grid-template-columns: 1fr auto 28px;
     gap: 12px; align-items: center;
-    padding: 10px 16px 10px 20px;
-    border-bottom: 1px solid var(--border); cursor: pointer;
-    transition: background 0.12s;
+    padding: 10px 18px 10px 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer; transition: background 0.12s;
   }
   .channel-row:last-child { border-bottom: none; }
-  .channel-row:hover { background: var(--surface2); }
+  .channel-row:hover { background: rgba(255,255,255,0.02); }
 
-  .channel-info {
-    display: flex; flex-direction: column; gap: 2px; min-width: 0;
-  }
+  .channel-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .channel-info .name {
     font-size: 14px; font-weight: 500;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .channel-info .meta {
     font-size: 11px; color: var(--text3);
-    display: flex; gap: 8px;
+    display: flex; gap: 10px;
   }
 
   .source-badge {
-    display: inline-flex; align-items: center; gap: 4px;
+    display: inline-flex; align-items: center; gap: 3px;
     padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
   }
   .source-badge.ok { background: var(--green-bg); color: var(--green); }
@@ -270,33 +349,34 @@
   .source-badge.bad { background: var(--red-bg); color: var(--red); }
   .source-badge.main { outline: 1px solid currentColor; outline-offset: -1px; }
 
-  .ch-status { font-size: 16px; justify-self: end; }
+  .source-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; justify-self: end; }
+
+  .ch-status { font-size: 15px; font-weight: 600; justify-self: end; }
   .ch-status.ok { color: var(--green); }
   .ch-status.slow { color: var(--yellow); }
   .ch-status.bad { color: var(--red); }
 
   /* ── Detail Panel ── */
   .channel-detail {
-    background: var(--bg); border-top: 1px solid var(--border);
-    padding: 0; max-height: 0; overflow: hidden;
-    transition: max-height 0.25s ease, padding 0.25s ease;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: rgba(0,0,0,0.15);
+    border-top: 1px solid var(--glass-border);
   }
-  .channel-detail.open {
-    max-height: 500px; padding: 12px 16px;
-  }
+  .channel-detail.open { max-height: 500px; }
+  .detail-inner { padding: 12px 18px; }
   .detail-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .detail-table th {
     text-align: left; color: var(--text3); font-weight: 500;
-    padding: 4px 8px; border-bottom: 1px solid var(--border);
+    padding: 4px 8px; border-bottom: 1px solid var(--glass-border);
     font-size: 11px; white-space: nowrap;
   }
   .detail-table td {
-    padding: 5px 8px; border-bottom: 1px solid var(--border);
+    padding: 5px 8px; border-bottom: 1px solid rgba(255,255,255,0.03);
     font-family: 'SF Mono', Consolas, monospace; font-size: 11px;
     word-break: break-all; max-width: 350px;
   }
   .detail-table tr:last-child td { border-bottom: none; }
-
   .latency-dot {
     display: inline-block; width: 7px; height: 7px;
     border-radius: 50%; margin-right: 4px; vertical-align: middle;
@@ -305,52 +385,23 @@
   .latency-dot.medium { background: var(--yellow); }
   .latency-dot.slow { background: var(--red); }
 
-  /* ── Backup Badges Row ── */
-  .source-row {
-    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-    justify-self: end;
-  }
-
   /* ── Empty / Error / Loading ── */
   .empty-state, .error-state, .loading {
-    text-align: center; padding: 60px 20px; color: var(--text3);
+    text-align: center; padding: 80px 20px; color: var(--text3);
   }
   .empty-state .big, .error-state .big, .loading .big { font-size: 40px; margin-bottom: 12px; }
   .error-state { color: var(--red); }
   .loading .spinner {
-    width: 28px; height: 28px; border: 3px solid var(--border);
-    border-top-color: var(--accent); border-radius: 50%;
+    width: 28px; height: 28px; border: 2px solid rgba(255,255,255,0.06);
+    border-top-color: var(--blue); border-radius: 50%;
     animation: spin 0.7s linear infinite; margin: 0 auto 12px;
   }
   .loading p, .empty-state p, .error-state p { font-size: 14px; }
 
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    body { padding: 10px; }
-    .header h1 { font-size: 18px; }
-    .channel-row {
-      grid-template-columns: 1fr auto;
-      gap: 8px; padding: 10px 14px 10px 16px;
-    }
-    .ch-status { display: none; }
-    .source-row { gap: 4px; }
-    .source-badge { font-size: 10px; padding: 1px 6px; }
-    .donut-card { flex: 1 1 100%; }
-    .donut { width: 72px; height: 72px; }
-    .donut-hole { inset: 10px; }
-    .donut-hole .num { font-size: 16px; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .stat-card { padding: 10px 12px; }
-    .stat-card .num { font-size: 18px; }
-    .section-header { padding: 10px 14px; }
-    .section-header .health-line { max-width: 100px; }
-    .search-input { font-size: 12px; padding: 7px 12px; }
-  }
-
-  @media (max-width: 400px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .update-badge { font-size: 11px; padding: 4px 10px; }
-    .refresh-btn { font-size: 12px; padding: 6px 14px; }
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+    font-size: 11px; color: var(--text3);
   }
 </style>
 </head>
@@ -365,8 +416,6 @@
 <script>
 (async () => {
   const app = document.getElementById('app');
-
-  // ── Data ──
   let data;
 
   try {
@@ -396,11 +445,10 @@
 
   // ── Helpers ──
   const groupColorMap = {
-    '央视': 'cctv', '卫视': 'weishi', '地方台': 'difang', '备用': 'beiyong'
+    '央视':'cctv', '卫视':'weishi', '地方台':'difang', '备用':'beiyong'
   };
   function groupClass(g) {
-    const k = Object.keys(groupColorMap).find(k => g && g.includes(k));
-    return groupColorMap[k] || 'beiyong';
+    return groupColorMap[Object.keys(groupColorMap).find(k => g && g.includes(k))] || 'beiyong';
   }
   function latencyClass(lat) {
     if (lat === null || lat === undefined) return 'bad';
@@ -434,25 +482,19 @@
   let refreshStatus = null;
   let refreshMsg = '';
 
-  // ── Compute derived data ──
   function computeBreakdown() {
-    let ok = 0, slow = 0, bad = 0;
+    let ok=0, slow=0, bad=0;
     data.channels.forEach(ch => {
       const s = chStatus(ch);
-      if (s === 'ok') ok++;
-      else if (s === 'slow') slow++;
-      else bad++;
+      if (s==='ok') ok++; else if (s==='slow') slow++; else bad++;
     });
     return { ok, slow, bad, total: ok+slow+bad };
   }
 
-  // ── get filtered channels ──
   function getFilteredChannels() {
-    let list = [];
-    if (filter === 'all') groupKeys.forEach(g => list.push(...groups[g]));
-    else if (filter === 'bad') list = data.channels.filter(ch => chStatus(ch) !== 'ok');
-    else list = groups[filter] || [];
-
+    let list = filter === 'all' ? data.channels : filter === 'bad'
+      ? data.channels.filter(ch => chStatus(ch)!=='ok')
+      : (groups[filter]||[]);
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       list = list.filter(ch => ch.name.toLowerCase().includes(q));
@@ -460,7 +502,7 @@
     return list;
   }
 
-  // ── Refresh state ──
+  // ── Refresh ──
   async function fetchRefreshStatus() {
     try {
       const r = await fetch('refresh.json?_='+Date.now());
@@ -469,7 +511,6 @@
     return null;
   }
 
-  // ── Window functions ──
   window.copyUrl = function(btn, url) {
     navigator.clipboard.writeText(url).then(() => {
       btn.textContent = '已复制 ✓';
@@ -487,96 +528,50 @@
 
   window.setFilter = function(f) { filter = f; expandedCh = null; render(); };
   window.setSearch = function(q) { searchQuery = q; render(); };
-
   window.toggleGroup = function(g) {
-    const idx = collapsedGroups.indexOf(g);
-    if (idx > -1) collapsedGroups.splice(idx, 1);
-    else collapsedGroups.push(g);
+    const i = collapsedGroups.indexOf(g);
+    if (i > -1) collapsedGroups.splice(i, 1); else collapsedGroups.push(g);
     render();
   };
-
-  window.toggleCh = function(name) {
-    expandedCh = expandedCh === name ? null : name;
-    render();
-  };
+  window.toggleCh = function(name) { expandedCh = expandedCh === name ? null : name; render(); };
 
   window.triggerRefresh = function() {
-    if (refreshStatus === 'sending' || refreshStatus === 'requested' || refreshStatus === 'running') return;
-    refreshStatus = 'sending';
-    refreshMsg = '发送请求...';
-    render();
-
-    const sent = navigator.sendBeacon(
-      'https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43',
-      'probe_trigger'
-    );
-
-    if (sent) {
-      refreshStatus = 'requested';
-      refreshMsg = '已发送请求，等待测速开始...';
-      render();
-      startRefreshPoll();
-    } else {
-      refreshStatus = 'failed';
-      refreshMsg = '请求发送失败';
-      render();
-    }
+    if (refreshStatus==='sending'||refreshStatus==='requested'||refreshStatus==='running') return;
+    refreshStatus = 'sending'; refreshMsg = '发送请求...'; render();
+    const sent = navigator.sendBeacon('https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43','probe_trigger');
+    if (sent) { refreshStatus='requested'; refreshMsg='已发送请求，等待测速开始...'; render(); startRefreshPoll(); }
+    else { refreshStatus='failed'; refreshMsg='请求发送失败'; render(); }
   };
 
   let refreshPollTimer = null;
   function startRefreshPoll() {
     if (refreshPollTimer) clearInterval(refreshPollTimer);
-    const startTime = Date.now();
-    const maxWait = 180000;
+    const start = Date.now(), maxWait=180000;
     let lastUpdateBefore = data ? data.lastUpdate : null;
-
     refreshPollTimer = setInterval(async () => {
-      if (Date.now() - startTime > maxWait) {
-        clearInterval(refreshPollTimer);
-        refreshPollTimer = null;
-        refreshStatus = 'failed';
-        refreshMsg = '超时，请稍后手动刷新页面';
-        render();
-        return;
+      if (Date.now()-start > maxWait) {
+        clearInterval(refreshPollTimer); refreshPollTimer=null;
+        refreshStatus='failed'; refreshMsg='超时，请稍后手动刷新页面'; render(); return;
       }
-
       try {
         const rf = await fetchRefreshStatus();
         if (rf) {
-          if (rf.status === 'running') {
-            refreshStatus = 'running';
-            refreshMsg = '⏳ 正在测速中' + (rf.progress ? ' ('+rf.progress+')' : '...');
-            render();
-          } else if (rf.status === 'completed') {
-            refreshStatus = 'completed';
-            const dur = rf.duration ? (rf.duration + '秒') : '';
-            refreshMsg = '✅ 测速完成，自动部署中' + (dur ? ' ('+dur+')' : '');
-            render();
-          }
+          if (rf.status==='running') { refreshStatus='running'; refreshMsg='⏳ 正在测速中'+(rf.progress?' ('+rf.progress+')':'...'); render(); }
+          else if (rf.status==='completed') { refreshStatus='completed'; refreshMsg='✅ 测速完成，自动部署中'+(rf.duration?' ('+rf.duration+'秒)':''); render(); }
         }
-
         const sr = await fetch('status.json?_='+Date.now());
         if (sr.ok) {
-          const newData = await sr.json();
-          if (newData.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
-            data = newData;
-            refreshStatus = 'complete';
-            refreshMsg = '✅ 数据已更新！3秒后自动刷新...';
-            clearInterval(refreshPollTimer);
-            refreshPollTimer = null;
-            setTimeout(() => location.reload(), 3000);
-            Object.keys(groups).forEach(k => delete groups[k]);
-            data.channels.forEach(ch => {
-              const g = ch.group || '未分类';
-              if (!groups[g]) groups[g] = [];
-              groups[g].push(ch);
-            });
-            render();
-            return;
+          const nd = await sr.json();
+          if (nd.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
+            data = nd; refreshStatus='complete'; refreshMsg='✅ 数据已更新！3秒后自动刷新...';
+            clearInterval(refreshPollTimer); refreshPollTimer=null;
+            setTimeout(()=>location.reload(), 3000);
+            Object.keys(groups).forEach(k=>delete groups[k]);
+            data.channels.forEach(ch=>{const g=ch.group||'未分类';if(!groups[g])groups[g]=[];groups[g].push(ch);});
+            render(); return;
           }
         }
       } catch(e) {}
-
     }, 2000);
   }
 
@@ -584,84 +579,76 @@
   function render() {
     const bd = computeBreakdown();
     const channels = getFilteredChannels();
+    const okDeg = bd.total>0 ? (bd.ok/bd.total*360) : 0;
+    const slowDeg = bd.total>0 ? (bd.slow/bd.total*360) : 0;
+    const okRate = bd.total>0 ? Math.round(bd.ok/bd.total*100) : 0;
+    const slowRate = bd.total>0 ? Math.round(bd.slow/bd.total*100) : 0;
+    const badRate = bd.total>0 ? Math.round(bd.bad/bd.total*100) : 0;
 
-    // Donut chart degrees
-    const okDeg = bd.total > 0 ? (bd.ok / bd.total * 360) : 0;
-    const slowDeg = bd.total > 0 ? (bd.slow / bd.total * 360) : 0;
-    const okRate = bd.total > 0 ? Math.round(bd.ok / bd.total * 100) : 0;
-    const slowRate = bd.total > 0 ? Math.round(bd.slow / bd.total * 100) : 0;
-    const badRate = bd.total > 0 ? Math.round(bd.bad / bd.total * 100) : 0;
-
-    // Button label
-    const btnMap = {
-      sending: '⏳ 请求中…', requested: '⏳ 已请求',
-      running: '⏳ 测速中', completed: '⏳ 部署中',
-      complete: '✅ 已更新', failed: '❌ 重试'
-    };
+    const btnMap = { sending:'⏳ 请求中…', requested:'⏳ 已请求', running:'⏳ 测速中', completed:'⏳ 部署中', complete:'✅ 已更新', failed:'❌ 重试' };
     const btnLabel = btnMap[refreshStatus] || '🔄 手动测速';
-    const btnDisabled = refreshStatus && refreshStatus !== 'failed' && refreshStatus !== 'completed';
+    const btnDisabled = refreshStatus && refreshStatus!=='failed' && refreshStatus!=='completed';
 
-    // Refresh status bar
     const statusBar = refreshStatus ? `
       <div class="status-bar">
-        ${refreshStatus === 'requested' || refreshStatus === 'running'
-          ? '<span class="spinner"></span>' : ''}
-        ${refreshStatus === 'complete' ? '✅' : ''}
+        ${refreshStatus==='requested'||refreshStatus==='running'?'<span class="spinner"></span>':''}
+        ${refreshStatus==='complete'?'✅':''}
         ${refreshMsg}
-        ${refreshStatus === 'complete'
-          ? '<span style="font-size:12px;color:var(--text3);margin-left:auto">页面自动刷新中...</span>'
-          : ''}
+        ${refreshStatus==='complete'?'<span style="font-size:12px;color:var(--text3);margin-left:auto">刷新中...</span>':''}
       </div>` : '';
 
-    // ── Build HTML ──
+    const icons = { ok:'✓', slow:'⚠', bad:'✕' };
+
     let html = `
       <div class="header">
-        <h1>📺 IPTV 频道状态</h1>
+        <div class="header-left">
+          <h1>📺 IPTV 频道状态</h1>
+          <span class="update-badge"><span class="dot"></span>${data.lastUpdate||'未知'}</span>
+        </div>
         <div class="header-actions">
-          <span class="update-badge"><span class="dot"></span>${data.lastUpdate || '未知'}</span>
           <button class="refresh-btn" onclick="triggerRefresh()" ${btnDisabled?'disabled':''}>${btnLabel}</button>
         </div>
       </div>
       ${statusBar}
-      <div class="url-card">
-        <div class="url-row">
-          <span class="url-label">频道</span>
-          <span class="url-value" onclick="this.select()" readonly>${window.location.origin}/live.m3u</span>
-          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/live.m3u')">复制</button>
-        </div>
-        <div class="url-row" style="padding-top:8px;border-top:1px solid var(--border);margin-top:6px">
-          <span class="url-label">节目单</span>
-          <span class="url-value" onclick="this.select()" readonly>${window.location.origin}/e.xml</span>
-          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/e.xml')">复制</button>
-        </div>
-      </div>
-      <div class="health-overview">
+      <div class="row-cards">
         <div class="donut-card">
-          <div class="donut" style="background:conic-gradient(
-            var(--green) 0deg,
-            var(--green) ${okDeg}deg,
-            var(--yellow) ${okDeg}deg,
-            var(--yellow) ${okDeg + slowDeg}deg,
-            var(--red) ${okDeg + slowDeg}deg,
-            var(--red) 360deg
-          )">
-            <div class="donut-hole">
-              <span class="num">${bd.ok}</span>
-              <span class="lbl">/ ${bd.total}</span>
+          <div class="card-title">📊 频道健康概览</div>
+          <div class="donut-row">
+            <div class="donut" style="background:conic-gradient(
+              var(--green) 0deg ${okDeg}deg,
+              var(--yellow) ${okDeg}deg ${okDeg+slowDeg}deg,
+              var(--red) ${okDeg+slowDeg}deg 360deg
+            )">
+              <div class="donut-hole">
+                <span class="num">${bd.ok}</span>
+                <span class="lbl">/ ${bd.total}</span>
+              </div>
             </div>
-          </div>
-          <div class="donut-legend">
-            <div class="item"><span class="dot" style="background:var(--green)"></span>正常 <span class="val">${bd.ok} (${okRate}%)</span></div>
-            <div class="item"><span class="dot" style="background:var(--yellow)"></span>缓慢 <span class="val">${bd.slow} (${slowRate}%)</span></div>
-            <div class="item"><span class="dot" style="background:var(--red)"></span>异常 <span class="val">${bd.bad} (${badRate}%)</span></div>
+            <div class="legend">
+              <div class="item"><span class="dot" style="background:var(--green)"></span>正常 <span class="val">${bd.ok}<span style="font-size:11px;color:var(--text3);margin-left:4px">${okRate}%</span></span></div>
+              <div class="item"><span class="dot" style="background:var(--yellow)"></span>缓慢 <span class="val">${bd.slow}<span style="font-size:11px;color:var(--text3);margin-left:4px">${slowRate}%</span></span></div>
+              <div class="item"><span class="dot" style="background:var(--red)"></span>异常 <span class="val">${bd.bad}<span style="font-size:11px;color:var(--text3);margin-left:4px">${badRate}%</span></span></div>
+            </div>
           </div>
         </div>
         <div class="stats-grid">
-          <div class="stat-card"><span class="num blue">${data.stats.channels}</span><span class="lbl">频道总数</span></div>
-          <div class="stat-card"><span class="num blue">${data.stats.totalSources}</span><span class="lbl">在线源数</span></div>
-          <div class="stat-card"><span class="num ${okRate>=70?'green':okRate>=50?'yellow':'red'}">${okRate}%</span><span class="lbl">可用率</span></div>
-          <div class="stat-card"><span class="num ${data.stats.mainWithIssues===0?'green':'red'}">${data.stats.mainWithIssues}</span><span class="lbl">主源异常</span></div>
-          <div class="stat-card"><span class="num purple">${data.duration}s</span><span class="lbl">探测耗时</span></div>
+          <div class="stat-item"><div class="num blue">${data.stats.channels}</div><div class="lbl">频道总数</div></div>
+          <div class="stat-item"><div class="num blue">${data.stats.totalSources}</div><div class="lbl">在线源数</div></div>
+          <div class="stat-item"><div class="num ${okRate>=70?'green':okRate>=50?'yellow':'red'}">${okRate}%</div><div class="lbl">可用率</div></div>
+          <div class="stat-item"><div class="num ${data.stats.mainWithIssues===0?'green':'red'}">${data.stats.mainWithIssues}</div><div class="lbl">主源异常</div></div>
+          <div class="stat-item"><div class="num purple">${data.duration}s</div><div class="lbl">探测耗时</div></div>
+        </div>
+      </div>
+      <div class="url-card">
+        <div class="url-group">
+          <span class="url-label">📋 频道</span>
+          <span class="url-value" onclick="this.select()">${window.location.origin}/live.m3u</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/live.m3u')">复制</button>
+        </div>
+        <div class="url-group">
+          <span class="url-label">📆 节目单</span>
+          <span class="url-value" onclick="this.select()">${window.location.origin}/e.xml</span>
+          <button class="copy-btn" onclick="copyUrl(this,'${window.location.origin}/e.xml')">复制</button>
         </div>
       </div>
       <div class="toolbar">
@@ -674,27 +661,17 @@
       </div>`;
 
     // ── Channel sections ──
-    const icons = { ok:'✓', slow:'⚠', bad:'✕' };
-
-    // Determine which groups to render
     let renderGroups = [];
     if (filter === 'all' || groupKeys.includes(filter)) {
-      const target = (filter === 'all') ? groupKeys : [filter];
-      target.forEach(g => {
-        let chs = searchQuery
-          ? groups[g].filter(ch => ch.name.toLowerCase().includes(searchQuery.toLowerCase()))
-          : groups[g];
+      const tg = filter === 'all' ? groupKeys : [filter];
+      tg.forEach(g => {
+        let chs = searchQuery ? groups[g].filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase())) : groups[g];
         if (chs.length > 0) renderGroups.push({ key: g, channels: chs });
       });
     } else if (filter === 'bad') {
-      // Build groups from bad channels
-      const badChs = data.channels.filter(ch => chStatus(ch) !== 'ok');
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        renderGroups = [{ key: '异常频道', channels: badChs.filter(ch => ch.name.toLowerCase().includes(q)) }];
-      } else {
-        renderGroups = [{ key: '异常频道', channels: badChs }];
-      }
+      let badChs = data.channels.filter(ch => chStatus(ch)!=='ok');
+      if (searchQuery) badChs = badChs.filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      renderGroups = [{ key: '异常频道', channels: badChs }];
     }
 
     if (renderGroups.length === 0) {
@@ -703,19 +680,12 @@
       renderGroups.forEach(({ key: gk, channels: chs }) => {
         const gc = groupClass(gk);
         const collapsed = collapsedGroups.includes(gk);
-
-        // Section health
-        let gOk = 0, gSlow = 0, gBad = 0;
-        chs.forEach(ch => {
-          const s = chStatus(ch);
-          if (s === 'ok') gOk++;
-          else if (s === 'slow') gSlow++;
-          else gBad++;
-        });
+        let gOk=0,gSlow=0,gBad=0;
+        chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
         const gTotal = chs.length;
-        const gOkPct = gTotal > 0 ? (gOk/gTotal*100) : 0;
-        const gSlowPct = gTotal > 0 ? (gSlow/gTotal*100) : 0;
-        const gBadPct = gTotal > 0 ? (gBad/gTotal*100) : 0;
+        const gOkPct = gTotal>0 ? (gOk/gTotal*100) : 0;
+        const gSlowPct = gTotal>0 ? (gSlow/gTotal*100) : 0;
+        const gBadPct = gTotal>0 ? (gBad/gTotal*100) : 0;
 
         html += `<div class="section">
           <div class="section-header" onclick="toggleGroup('${gk.replace(/'/g,"\\'")}')">
@@ -735,44 +705,42 @@
           const sc = chStatus(ch);
           const exp = expandedCh === ch.name;
           const mainLat = ch.main.status==='ok' ? ch.main.latency+'s' : ch.main.status;
-          const okBk = ch.backups.filter(b => b.status === 'ok');
-          const badBkCount = ch.backups.filter(b => b.status !== 'ok').length;
+          const okBk = ch.backups.filter(b=>b.status==='ok');
+          const badBkCount = ch.backups.filter(b=>b.status!=='ok').length;
 
           html += `<div class="channel-row" onclick="toggleCh('${ch.name.replace(/'/g,"\\'")}')">
             <div class="channel-info">
               <div class="name">${ch.name}</div>
               <div class="meta">
                 <span>主 ${mainLat}</span>
-                ${okBk.length > 0 ? `<span>备 ${okBk.length}在线</span>` : ''}
-                ${badBkCount > 0 ? `<span style="color:var(--red)">${badBkCount}离线</span>` : ''}
+                ${okBk.length>0?`<span>备 ${okBk.length} 在线</span>`:''}
+                ${badBkCount>0?`<span style="color:var(--red)">${badBkCount} 离线</span>`:''}
               </div>
             </div>
             <div class="source-row">
               <span class="source-badge ok main">主 ${mainLat}</span>
-              ${okBk.slice(0,3).map((b,i) =>
-                `<span class="source-badge ${latencyClass(b.latency)}">备${i+1} ${b.latency}s</span>`
-              ).join('')}
+              ${okBk.slice(0,3).map((b,i)=>`<span class="source-badge ${latencyClass(b.latency)}">备${i+1} ${b.latency}s</span>`).join('')}
             </div>
             <div class="ch-status ${sc}">${icons[sc]}</div>
           </div>
           <div class="channel-detail ${exp?'open':''}">
+            <div class="detail-inner">
             <table class="detail-table">
-              <tr><th style="width:60px">类型</th><th style="width:60px">延迟</th><th style="width:50px">状态</th><th>URL</th></tr>
+              <tr><th style="width:60px">类型</th><th style="width:55px">延迟</th><th style="width:45px">状态</th><th>URL</th></tr>
               <tr>
-                <td style="color:var(--accent)">主源</td>
+                <td style="color:var(--blue)">主源</td>
                 <td><span class="latency-dot ${ch.main.latency<0.8?'fast':ch.main.latency<2?'medium':'slow'}"></span>${ch.main.status==='ok'?ch.main.latency+'s':'-'}</td>
                 <td style="color:${ch.main.status==='ok'?'var(--green)':'var(--red)'}">${ch.main.status}</td>
                 <td style="color:var(--text3)">${ch.main.url}</td>
               </tr>
-              ${ch.backups.map((b,i) =>
-                `<tr>
-                  <td>备${i+1}</td>
-                  <td><span class="latency-dot ${b.latency<0.8?'fast':b.latency<2?'medium':'slow'}"></span>${b.status==='ok'?b.latency+'s':'-'}</td>
-                  <td style="color:${b.status==='ok'?'var(--green)':'var(--red)'}">${b.status}</td>
-                  <td style="color:var(--text3)">${b.url}</td>
-                </tr>`
-              ).join('')}
+              ${ch.backups.map((b,i)=>`<tr>
+                <td>备${i+1}</td>
+                <td><span class="latency-dot ${b.latency<0.8?'fast':b.latency<2?'medium':'slow'}"></span>${b.status==='ok'?b.latency+'s':'-'}</td>
+                <td style="color:${b.status==='ok'?'var(--green)':'var(--red)'}">${b.status}</td>
+                <td style="color:var(--text3)">${b.url}</td>
+              </tr>`).join('')}
             </table>
+            </div>
           </div>`;
         });
 
@@ -787,9 +755,7 @@
   async function initRefreshStatus() {
     const rf = await fetchRefreshStatus();
     if (rf && rf.status === 'running') {
-      refreshStatus = 'requested';
-      refreshMsg = '⏳ 测速进行中，等待结果...';
-      startRefreshPoll();
+      refreshStatus = 'requested'; refreshMsg = '⏳ 测速进行中，等待结果...'; startRefreshPoll();
     }
     render();
   }
@@ -797,13 +763,9 @@
   render();
   initRefreshStatus();
 
-  // ── Auto refresh ──
   setInterval(async () => {
-    if (refreshStatus === 'requested' || refreshStatus === 'running') return;
-    try {
-      const r = await fetch('status.json?_='+Date.now());
-      if (r.ok) { data = await r.json(); render(); }
-    } catch(e) {}
+    if (refreshStatus==='requested'||refreshStatus==='running') return;
+    try { const r = await fetch('status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
   }, 60000);
 })();
 </script>
