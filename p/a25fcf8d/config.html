@@ -119,6 +119,11 @@
     color: var(--accent);
     user-select: all;
     display: flex; align-items: center; gap: 8px;
+    overflow: hidden;
+  }
+  .code-block .url-text {
+    flex: 1; min-width: 0; overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis;
   }
   .code-block .copy-btn {
     flex-shrink: 0;
@@ -173,7 +178,7 @@
     .step-title { font-size: 13px; }
     .step-desc { font-size: 12px; }
     .code-block { padding: 8px 10px; font-size: 11px; flex-wrap: nowrap; gap: 6px; }
-    .code-block span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: none; flex: 1; min-width: 0; margin-right: 4px; }
+    .code-block span, .code-block .url-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
     .code-block .copy-btn { font-size: 10px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
     .app-grid { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
     .app-card { padding: 8px; }
@@ -208,7 +213,7 @@
           <div class="step-title">频道列表（m3u）</div>
           <div class="step-desc">包含所有可用电视频道的播放地址，添加到播放器即可观看。</div>
           <div class="code-block" id="m3uUrl">
-            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u</span>
+            <span class="url-text">https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u</span>
             <button class="copy-btn" onclick="copyCode(this,'https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u')">复制</button>
           </div>
         </div>
@@ -219,7 +224,7 @@
           <div class="step-title">节目指南（EPG）</div>
           <div class="step-desc">提供当前及未来节目的播出时间表，配合 m3u 使用可显示节目名称。</div>
           <div class="code-block" id="epgUrl">
-            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml</span>
+            <span class="url-text">https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml</span>
             <button class="copy-btn" onclick="copyCode(this,'https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml')">复制</button>
           </div>
         </div>
