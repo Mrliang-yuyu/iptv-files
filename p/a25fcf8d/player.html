@@ -443,32 +443,6 @@ function toggleFav(idx) {
 }
 
 // ===== Playback =====
-function playChannel(idx) {
-  if (idx < 0 || idx >= channels.length) return;
-  // Wait for SW proxy to be ready on HTTPS
-  if (isHTTPS && !swReady) {
-    let msg = '⚠️ 正在准备播放器，请稍候…';
-    document.getElementById('emptyState').querySelector('span').textContent = msg;
-    document.getElementById('emptyState').style.display = 'flex';
-    // Try again once SW is ready
-    function retry() {
-      if (swReady) playChannel(idx);
-      else setTimeout(retry, 200);
-    }
-    setTimeout(retry, 200);
-    return;
-  }
-  currentIdx = idx;
-  let ch = channels[idx];
-  document.getElementById('emptyState').style.display = 'none';
-  document.getElementById('osdName').textContent = ch.name;
-  renderChannels();
-  updateEPG(ch.name);
-  showOSD();
-  if (isMobile) switchMobile('player');
-  loadStream(ch.url);
-}
-
 // ===== Playback =====
 function playChannel(idx) {
   if (idx < 0 || idx >= channels.length) return;
