@@ -152,9 +152,9 @@
   }
   /* Card 1: 频道健康 donut */
   .card-row .health-card {
-    flex: 0 0 auto;
-    display: flex; align-items: center; gap: 16px;
-    padding: 14px 18px;
+    flex: 1;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px;
   }
   .health-card .donut-sm {
     width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
@@ -170,6 +170,7 @@
   .health-card .donut-sm .hole .l { font-size: 7px; color: var(--text3); line-height: 1; }
   .health-card .legend {
     display: flex; flex-direction: column; gap: 3px;
+    flex: 1;
   }
   .health-card .legend .item {
     display: flex; align-items: center; gap: 5px;
@@ -182,32 +183,32 @@
 
   /* Card 2: 统计 */
   .card-row .stats-card {
-    flex: 0 1 180px;
+    flex: 1;
     min-width: 0;
   }
   .stats-card .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    padding: 6px 6px;
+    display: flex; flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 4px 10px;
+    padding: 6px 10px;
   }
   .stats-card .stat-grid .item {
     text-align: center;
     padding: 4px 6px;
   }
   .stats-card .stat-grid .item .n {
-    font-size: 16px; font-weight: 700; letter-spacing: -0.2px;
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
     line-height: 1.2;
   }
   .stats-card .stat-grid .item .l {
-    font-size: 8px; color: var(--text2); font-weight: 500;
-    margin-top: 1px; white-space: nowrap;
+    font-size: 9px; color: var(--text2); font-weight: 500;
+    margin-top: 2px; white-space: nowrap;
   }
 
   /* Card 3: 链接 */
   .card-row .url-card {
-    flex: 0 0 auto;
-    display: flex; flex-direction: column; gap: 8px;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 6px;
     padding: 12px 14px;
   }
   .url-card .url-row {
@@ -215,17 +216,21 @@
   }
   .url-card .url-row .lbl {
     font-size: 11px; color: var(--text2); font-weight: 500;
+    flex-shrink: 0;
   }
   .url-card .url-row .val {
-    font-size: 11px; color: var(--accent);
+    font-size: 10px; color: var(--accent);
     padding: 2px 8px; border-radius: 4px;
     background: var(--accent-bg);
     user-select: all; cursor: pointer;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    flex: 1; min-width: 0;
   }
   .url-card .url-row .cpy {
     font-size: 10px; color: var(--text2); cursor: pointer;
     padding: 2px 6px; border-radius: 3px;
     transition: color 0.15s;
+    flex-shrink: 0;
   }
   .url-card .url-row .cpy:hover { color: var(--accent); }
   .url-card .url-row .cpy.copied { color: var(--green); }
@@ -463,20 +468,21 @@
     .card-header { padding: 12px 14px; gap: 8px; }
     .card-header h1 { font-size: 17px; }
     .card-row { gap: 8px; }
-    .card-row .health-card { padding: 10px 14px; gap: 12px; }
-    .card-row .health-card .donut-sm { width: 42px; height: 42px; }
+    .card-row .health-card { padding: 10px 12px; gap: 10px; }
+    .card-row .health-card .donut-sm { width: 40px; height: 40px; }
     .card-row .health-card .donut-sm .hole { inset: 6px; }
     .card-row .health-card .donut-sm .hole .n { font-size: 13px; }
     .card-row .health-card .donut-sm .hole .l { font-size: 6px; }
     .health-card .legend .item { font-size: 10px; }
-    .card-row .stats-card .stat-grid { grid-template-columns: repeat(5, 1fr); padding: 4px 4px; }
-    .stats-card .stat-grid .item .n { font-size: 13px; }
+    .card-row .stats-card .stat-grid { padding: 4px 6px; gap: 2px 6px; }
+    .stats-card .stat-grid .item .n { font-size: 14px; }
     .stats-card .stat-grid .item .l { font-size: 7px; }
     .stats-card .stat-grid .item .n { font-size: 16px; }
     .stats-card .stat-grid .item .l { font-size: 8px; }
-    .card-row .url-card { padding: 8px 12px; gap: 6px; }
-    .url-card .url-row .val { font-size: 10px; }
-    .url-card .url-row .cpy { font-size: 9px; }
+    .card-row .url-card { padding: 8px 12px; gap: 4px; }
+    .url-card .url-row { gap: 4px; }
+    .url-card .url-row .val { font-size: 9px; padding: 1px 5px; }
+    .url-card .url-row .cpy { font-size: 8px; padding: 1px 4px; }
     .refresh-btn { padding: 6px 12px; font-size: 12px; }
 
 
