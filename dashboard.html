@@ -182,14 +182,14 @@
 
   /* Card 2: 统计 */
   .card-row .stats-card {
-    flex: 1 1 320px;
+    flex: 0 1 240px;
     min-width: 0;
   }
   .stats-card .stat-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
-    padding: 8px 10px;
+    padding: 8px 14px;
   }
   .stats-card .stat-grid .item {
     text-align: center;
@@ -469,7 +469,7 @@
     .card-row .health-card .donut-sm .hole .n { font-size: 13px; }
     .card-row .health-card .donut-sm .hole .l { font-size: 6px; }
     .health-card .legend .item { font-size: 10px; }
-    .card-row .stats-card .stat-grid { grid-template-columns: repeat(3, 1fr); padding: 6px 6px; }
+    .card-row .stats-card .stat-grid { grid-template-columns: repeat(2, 1fr); padding: 6px 8px; }
     .stats-card .stat-grid .item .n { font-size: 16px; }
     .stats-card .stat-grid .item .l { font-size: 8px; }
     .card-row .url-card { padding: 8px 12px; gap: 6px; }
@@ -750,8 +750,7 @@
           </div>
         </div>
         <div class="group-card stats-card">
-          <div class="g-title">统计</div>
-          <div class="stat-grid">
+          <div class="stat-grid" style="padding-top:4px">
             <div class="item"><div class="n" style="color:var(--accent)">${data.stats.channels}</div><div class="l">📡 频道总数</div></div>
             <div class="item"><div class="n" style="color:var(--accent)">${data.stats.totalSources}</div><div class="l">🔗 在线源</div></div>
             <div class="item"><div class="n" style="color:${okRate>=70?'var(--green)':okRate>=50?'var(--yellow)':'var(--red)'}">${okRate}%</div><div class="l">📊 可用率</div></div>
@@ -760,15 +759,14 @@
           </div>
         </div>
         <div class="group-card url-card">
-          <div class="g-title">链接</div>
-          <div class="url-row">
+          <div class="url-row" style="padding-top:4px">
             <span class="lbl">📋</span>
-            <span class="val" onclick="this.select()">live.m3u</span>
+            <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/live.m3u</span>
             <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/live.m3u')">复制</span>
           </div>
           <div class="url-row">
             <span class="lbl">📆</span>
-            <span class="val" onclick="this.select()">e.xml</span>
+            <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/e.xml</span>
             <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/e.xml')">复制</span>
           </div>
         </div>
