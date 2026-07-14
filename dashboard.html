@@ -253,6 +253,21 @@
 
   let filter = 'all';
   let expanded = null;
+  let refreshStatus = null; // null | 'sending' | 'requested' | 'running' | 'completed' | 'failed'
+  let refreshMsg = '';
+  let refreshFailed = false;
+
+  // 获取刷新状态
+  async function fetchRefreshStatus() {
+    try {
+      const r = await fetch('refresh.json?_='+Date.now());
+      if (r.ok) {
+        const d = await r.json();
+        return d;
+      }
+    } catch(e) {}
+    return null;
+  }
 
   window.copyUrl = function(btn, url) {
     navigator.clipboard.writeText(url).then(() => {
@@ -271,10 +286,14 @@
   };
   window.setFilter = function(f) { filter = f; expanded = null; render(); };
   window.triggerRefresh = function() {
+    if (refreshStatus === 'sending' || refreshStatus === 'requested' || refreshStatus === 'running') return;
     const btn = document.getElementById('refreshBtn');
     btn.disabled = true;
     btn.textContent = '⏳ 请求中...';
     btn.style.opacity = '0.6';
+    refreshStatus = 'sending';
+    refreshMsg = '发送请求...';
+    render();
     
     // sendBeacon 不触发 CORS 预检，比 fetch 可靠很多
     const sent = navigator.sendBeacon(
@@ -283,16 +302,86 @@
     );
     
     if (sent) {
-      btn.textContent = '✅ 已请求刷新';
-      btn.style.opacity = '1';
-      // 2分钟后自动重新加载（测速+部署大概这么久）
-      setTimeout(() => location.reload(), 120000);
+      refreshStatus = 'requested';
+      refreshMsg = '已发送请求，等待测速开始...';
+      render();
+      // 开始轮询刷新状态
+      startRefreshPoll();
     } else {
+      refreshStatus = 'failed';
+      refreshMsg = '请求发送失败';
       btn.textContent = '❌ 请求失败，重试';
       btn.style.opacity = '1';
       btn.disabled = false;
+      render();
     }
   };
+  
+  let refreshPollTimer = null;
+  function startRefreshPoll() {
+    if (refreshPollTimer) clearInterval(refreshPollTimer);
+    const startTime = Date.now();
+    const maxWait = 180000; // 最多等3分钟
+    let lastUpdateBefore = data ? data.lastUpdate : null;
+    
+    refreshPollTimer = setInterval(async () => {
+      if (Date.now() - startTime > maxWait) {
+        clearInterval(refreshPollTimer);
+        refreshPollTimer = null;
+        refreshStatus = 'failed';
+        refreshMsg = '超时，请稍后手动刷新页面';
+        document.getElementById('refreshBtn').disabled = false;
+        document.getElementById('refreshBtn').textContent = '🔄 重试';
+        render();
+        return;
+      }
+      
+      try {
+        // 1. 检查 refresh.json
+        const rf = await fetchRefreshStatus();
+        if (rf) {
+          if (rf.status === 'running') {
+            refreshStatus = 'running';
+            refreshMsg = '⏳ 正在测速中' + (rf.progress ? ' ('+rf.progress+')' : '...');
+            render();
+          } else if (rf.status === 'completed') {
+            refreshStatus = 'completed';
+            const dur = rf.duration ? (rf.duration + '秒') : '';
+            refreshMsg = '✅ 测速完成' + (dur ? ' ('+dur+')' : '') + '，等待部署...';
+            render();
+          }
+        }
+        
+        // 2. 检查 status.json 是否已更新
+        const sr = await fetch('status.json?_='+Date.now());
+        if (sr.ok) {
+          const newData = await sr.json();
+          if (newData.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
+            // 数据已更新！
+            data = newData;
+            refreshStatus = 'complete';
+            refreshMsg = '✅ 数据已更新！3秒后自动刷新...';
+            clearInterval(refreshPollTimer);
+            refreshPollTimer = null;
+            document.getElementById('refreshBtn').disabled = true;
+            document.getElementById('refreshBtn').textContent = '✅ 已更新';
+            setTimeout(() => location.reload(), 3000);
+            // 更新分组
+            Object.keys(groups).forEach(k => delete groups[k]);
+            data.channels.forEach(ch => {
+              const g = ch.group || '未分类';
+              if (!groups[g]) groups[g] = [];
+              groups[g].push(ch);
+            });
+            render();
+            return;
+          }
+        }
+      } catch(e) {}
+      
+      // 每2秒检查一次
+    }, 2000);
+  }
   window.toggle = function(name) {
     expanded = expanded === name ? null : name;
     render();
@@ -306,14 +395,32 @@
 
     const icons = { ok:'✅', slow:'⚠️', bad:'❌' };
 
+    const btnLabel = {
+      'sending': '⏳ 请求中…',
+      'requested': '⏳ 已请求',
+      'running': '⏳ 测速中',
+      'completed': '⏳ 等待部署',
+      'complete': '✅ 已更新',
+      'failed': '❌ 重试'
+    }[refreshStatus] || '🔄 手动测速';
+    const btnDisabled = refreshStatus && refreshStatus !== 'failed' && refreshStatus !== 'completed';
+    
+    const refreshBar = refreshStatus ? `
+      <div style="background:#1c2128;border:1px solid #30363d;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:14px">
+        ${refreshMsg}
+        ${refreshStatus === 'requested' || refreshStatus === 'running' ? '<span style="margin-left:8px;display:inline-block;width:12px;height:12px;border:2px solid #58a6ff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;vertical-align:middle"></span>' : ''}
+        ${refreshStatus === 'complete' ? '<span style="margin-left:8px;font-size:13px;color:#8b949e">页面即将刷新...</span>' : ''}
+      </div>` : '';
+    
     let html = `
       <div class="header">
         <h1>📺 IPTV 频道状态</h1>
         <div class="header-right">
           <span class="update-badge"><span class="dot"></span>${data.lastUpdate || '未知'} 北京时间</span>
-          <button id="refreshBtn" class="filter-btn" onclick="triggerRefresh()" style="font-size:13px">🔄 手动测速</button>
+          <button id="refreshBtn" class="filter-btn" onclick="triggerRefresh()" style="font-size:13px" ${btnDisabled?'disabled':''}>${btnLabel}</button>
         </div>
       </div>
+      ${refreshBar}
       <div class="url-card">
         <div class="row">
           <span class="label">📋 频道</span>
@@ -380,9 +487,28 @@
     app.innerHTML = html;
   }
 
+  async function initRefreshStatus() {
+    const rf = await fetchRefreshStatus();
+    if (rf && rf.status === 'running') {
+      refreshStatus = 'running';
+      refreshMsg = '⏳ 测速进行中（页面打开时）';
+      startRefreshPoll();
+    } else if (rf && rf.status === 'completed') {
+      refreshStatus = 'completed';
+      const dur = rf.duration ? ('，耗时 '+rf.duration+'秒') : '';
+      const at = rf.completedAt || '';
+      refreshMsg = '✅ 上次刷新已完成' + dur + (at ? ' ('+at+')' : '');
+    }
+    render();
+  }
+  
   render();
+  initRefreshStatus();
+  
   // 自动刷新
   setInterval(async () => {
+    // 如果正在等待刷新结果，跳过（poll 已经在处理）
+    if (refreshStatus === 'requested' || refreshStatus === 'running') return;
     try {
       const r = await fetch('status.json?_='+Date.now());
       if (r.ok) { data = await r.json(); render(); }
