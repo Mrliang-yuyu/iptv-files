@@ -140,85 +140,72 @@
     margin-bottom: 12px;
   }
   .card-row .group-card {
+    flex: 1; min-width: 0;
     background: var(--card);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
+    padding: 14px 18px;
   }
-  .card-row .group-card .g-title {
-    font-size: 10px; font-weight: 600; color: var(--text2);
-    text-transform: uppercase; letter-spacing: 0.5px;
-    padding: 10px 14px 0;
-  }
-  /* Card 1: 频道健康 donut */
-  .card-row .health-card {
-    flex: 1;
+  /* Card 1: 频道健康 */
+  .health-card-wrap {
     display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px;
   }
-  .health-card .donut-sm {
+  .health-card-wrap .donut-sm {
     width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
     position: relative;
   }
-  .health-card .donut-sm .hole {
+  .health-card-wrap .donut-sm .hole {
     position: absolute; inset: 7px; border-radius: 50%;
     background: var(--card);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
   }
-  .health-card .donut-sm .hole .n { font-size: 15px; font-weight: 700; line-height: 1; color: var(--text); }
-  .health-card .donut-sm .hole .l { font-size: 7px; color: var(--text3); line-height: 1; }
-  .health-card .legend {
+  .health-card-wrap .donut-sm .hole .n { font-size: 15px; font-weight: 700; line-height: 1; color: var(--text); }
+  .health-card-wrap .donut-sm .hole .l { font-size: 7px; color: var(--text3); line-height: 1; }
+  .health-card-wrap .legend {
     display: flex; flex-direction: column; gap: 3px;
     flex: 1;
   }
-  .health-card .legend .item {
+  .health-card-wrap .legend .item {
     display: flex; align-items: center; gap: 5px;
     font-size: 11px; white-space: nowrap;
   }
-  .health-card .legend .item .dot {
+  .health-card-wrap .legend .item .dot {
     width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
   }
-  .health-card .legend .item .val { color: var(--text2); margin-left: 6px; }
+  .health-card-wrap .legend .item .val { color: var(--text2); margin-left: 6px; }
 
   /* Card 2: 统计 */
-  .card-row .stats-card {
-    flex: 1;
-    min-width: 0;
-  }
-  .stats-card .stat-grid {
+  .stat-grid {
     display: flex; flex-wrap: wrap;
+    gap: 4px 8px;
     justify-content: space-around;
-    gap: 4px 10px;
-    padding: 6px 10px;
   }
-  .stats-card .stat-grid .item {
+  .stat-grid .s-item {
     text-align: center;
-    padding: 4px 6px;
   }
-  .stats-card .stat-grid .item .n {
+  .stat-grid .s-item .n {
     font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
     line-height: 1.2;
   }
-  .stats-card .stat-grid .item .l {
+  .stat-grid .s-item .l {
     font-size: 9px; color: var(--text2); font-weight: 500;
     margin-top: 2px; white-space: nowrap;
   }
 
   /* Card 3: 链接 */
-  .card-row .url-card {
-    flex: 1;
+  .url-wrap {
     display: flex; flex-direction: column; gap: 6px;
-    padding: 12px 14px;
   }
-  .url-card .url-row {
+  .url-wrap .u-row {
     display: flex; align-items: center; gap: 6px;
   }
-  .url-card .url-row .lbl {
+  .url-wrap .u-row .lbl {
     font-size: 11px; color: var(--text2); font-weight: 500;
     flex-shrink: 0;
   }
-  .url-card .url-row .val {
+  .url-wrap .u-row .val {
     font-size: 10px; color: var(--accent);
     padding: 2px 8px; border-radius: 4px;
     background: var(--accent-bg);
@@ -226,14 +213,14 @@
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     flex: 1; min-width: 0;
   }
-  .url-card .url-row .cpy {
+  .url-wrap .u-row .cpy {
     font-size: 10px; color: var(--text2); cursor: pointer;
     padding: 2px 6px; border-radius: 3px;
     transition: color 0.15s;
     flex-shrink: 0;
   }
-  .url-card .url-row .cpy:hover { color: var(--accent); }
-  .url-card .url-row .cpy.copied { color: var(--green); }
+  .url-wrap .u-row .cpy:hover { color: var(--accent); }
+  .url-wrap .u-row .cpy.copied { color: var(--green); }
   .num.green { color: var(--green); }
   .num.yellow { color: var(--yellow); }
   .num.red { color: var(--red); }
@@ -468,21 +455,7 @@
     .card-header { padding: 12px 14px; gap: 8px; }
     .card-header h1 { font-size: 17px; }
     .card-row { gap: 8px; }
-    .card-row .health-card { padding: 10px 12px; gap: 10px; }
-    .card-row .health-card .donut-sm { width: 40px; height: 40px; }
-    .card-row .health-card .donut-sm .hole { inset: 6px; }
-    .card-row .health-card .donut-sm .hole .n { font-size: 13px; }
-    .card-row .health-card .donut-sm .hole .l { font-size: 6px; }
-    .health-card .legend .item { font-size: 10px; }
-    .card-row .stats-card .stat-grid { padding: 4px 6px; gap: 2px 6px; }
-    .stats-card .stat-grid .item .n { font-size: 14px; }
-    .stats-card .stat-grid .item .l { font-size: 7px; }
-    .stats-card .stat-grid .item .n { font-size: 16px; }
-    .stats-card .stat-grid .item .l { font-size: 8px; }
-    .card-row .url-card { padding: 8px 12px; gap: 4px; }
-    .url-card .url-row { gap: 4px; }
-    .url-card .url-row .val { font-size: 9px; padding: 1px 5px; }
-    .url-card .url-row .cpy { font-size: 8px; padding: 1px 4px; }
+
     .refresh-btn { padding: 6px 12px; font-size: 12px; }
 
 
@@ -740,42 +713,46 @@
       </div>
       ${statusBar}
       <div class="card-row">
-        <div class="group-card health-card">
-          <div class="donut-sm" style="background:conic-gradient(
-            var(--green) 0deg ${okDeg}deg,
-            var(--yellow) ${okDeg}deg ${okDeg+slowDeg}deg,
-            var(--red) ${okDeg+slowDeg}deg 360deg
-          )">
-            <div class="hole">
-              <span class="n">${bd.ok}</span>
-              <span class="l">/${bd.total}</span>
+        <div class="group-card">
+          <div class="health-card-wrap">
+            <div class="donut-sm" style="background:conic-gradient(
+              var(--green) 0deg ${okDeg}deg,
+              var(--yellow) ${okDeg}deg ${okDeg+slowDeg}deg,
+              var(--red) ${okDeg+slowDeg}deg 360deg
+            )">
+              <div class="hole">
+                <span class="n">${bd.ok}</span>
+                <span class="l">/${bd.total}</span>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="item"><span class="dot" style="background:var(--green)"></span>正常 ${bd.ok} <span class="val">${okRate}%</span></div>
+              <div class="item"><span class="dot" style="background:var(--yellow)"></span>缓慢 ${bd.slow} <span class="val">${slowRate}%</span></div>
+              <div class="item"><span class="dot" style="background:var(--red)"></span>异常 ${bd.bad} <span class="val">${badRate}%</span></div>
             </div>
           </div>
-          <div class="legend">
-            <div class="item"><span class="dot" style="background:var(--green)"></span>正常 ${bd.ok} <span class="val">${okRate}%</span></div>
-            <div class="item"><span class="dot" style="background:var(--yellow)"></span>缓慢 ${bd.slow} <span class="val">${slowRate}%</span></div>
-            <div class="item"><span class="dot" style="background:var(--red)"></span>异常 ${bd.bad} <span class="val">${badRate}%</span></div>
+        </div>
+        <div class="group-card">
+          <div class="stat-grid">
+            <div class="s-item"><div class="n" style="color:var(--accent)">${data.stats.channels}</div><div class="l">📡 频道总数</div></div>
+            <div class="s-item"><div class="n" style="color:var(--accent)">${data.stats.totalSources}</div><div class="l">🔗 在线源</div></div>
+            <div class="s-item"><div class="n" style="color:${okRate>=70?'var(--green)':okRate>=50?'var(--yellow)':'var(--red)'}">${okRate}%</div><div class="l">📊 可用率</div></div>
+            <div class="s-item"><div class="n" style="color:${data.stats.mainWithIssues===0?'var(--green)':'var(--red)'}">${data.stats.mainWithIssues}</div><div class="l">⚠️ 主源异常</div></div>
+            <div class="s-item"><div class="n" style="color:var(--accent)">${data.duration}s</div><div class="l">⏱ 探测耗时</div></div>
           </div>
         </div>
-        <div class="group-card stats-card">
-          <div class="stat-grid" style="padding-top:4px">
-            <div class="item"><div class="n" style="color:var(--accent)">${data.stats.channels}</div><div class="l">📡 频道总数</div></div>
-            <div class="item"><div class="n" style="color:var(--accent)">${data.stats.totalSources}</div><div class="l">🔗 在线源</div></div>
-            <div class="item"><div class="n" style="color:${okRate>=70?'var(--green)':okRate>=50?'var(--yellow)':'var(--red)'}">${okRate}%</div><div class="l">📊 可用率</div></div>
-            <div class="item"><div class="n" style="color:${data.stats.mainWithIssues===0?'var(--green)':'var(--red)'}">${data.stats.mainWithIssues}</div><div class="l">⚠️ 主源异常</div></div>
-            <div class="item"><div class="n" style="color:var(--accent)">${data.duration}s</div><div class="l">⏱ 探测耗时</div></div>
-          </div>
-        </div>
-        <div class="group-card url-card">
-          <div class="url-row" style="padding-top:4px">
-            <span class="lbl">📋</span>
-            <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/live.m3u</span>
-            <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/live.m3u')">复制</span>
-          </div>
-          <div class="url-row">
-            <span class="lbl">📆</span>
-            <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/e.xml</span>
-            <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/e.xml')">复制</span>
+        <div class="group-card">
+          <div class="url-wrap">
+            <div class="u-row">
+              <span class="lbl">📋</span>
+              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/live.m3u</span>
+              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/live.m3u')">复制</span>
+            </div>
+            <div class="u-row">
+              <span class="lbl">📆</span>
+              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/e.xml</span>
+              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/e.xml')">复制</span>
+            </div>
           </div>
         </div>
       </div>
