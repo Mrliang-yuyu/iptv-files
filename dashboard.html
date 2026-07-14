@@ -99,6 +99,7 @@
   .header-logo { display: inline-flex; width: 24px; height: 24px; vertical-align: middle; }
   .top-nav {
     margin-bottom: 6px;
+    display: flex; justify-content: space-between; align-items: center;
   }
   .back-link {
     display: inline-flex; align-items: center; gap: 4px;
@@ -109,6 +110,13 @@
   }
   .back-link:hover { color: var(--accent); }
   .back-link .back-arrow { font-size: 13px; }
+  .config-link {
+    font-size: 12px; color: var(--text3); font-weight: 500;
+    text-decoration: none;
+    padding: 2px 8px; border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .config-link:hover { color: var(--accent); }
 
   .theme-toggle {
     width: 34px; height: 34px; border-radius: 50%;
@@ -735,7 +743,7 @@
           <button class="refresh-btn" onclick="triggerRefresh()" ${btnDisabled?'disabled':''}>${btnLabel}</button>
         </div>
       </div>
-      <div class="top-nav"><a href="/" class="back-link"><span class="back-arrow">←</span> 返回首页</a></div>
+      <div class="top-nav"><a href="/" class="back-link"><span class="back-arrow">←</span> 返回首页</a><a href="/config.html" class="config-link">查看配置方法</a></div>
       ${statusBar}
       <div class="card-row">
         <div class="group-card">
