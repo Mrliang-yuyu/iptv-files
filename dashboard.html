@@ -847,6 +847,15 @@
     }, 2000);
   }
 
+  // ── 只更新刷新按钮状态（不下全量渲染）──
+  function updateRefreshBtn() {
+    const btn = document.querySelector('.refresh-btn');
+    if (!btn) return;
+    const btnMap = { sending:'⏳ 请求中…', requested:'⏳ 已请求', running:'⏳ 测速中', completed:'⏳ 部署中', complete:'✅ 已更新', failed:'❌ 重试' };
+    btn.textContent = btnMap[refreshStatus] || '🔄 手动测速';
+    btn.disabled = refreshStatus && refreshStatus!=='failed' && refreshStatus!=='completed';
+  }
+
   // ── Render ──
   function render() {
     const bd = computeBreakdown();
@@ -1077,16 +1086,16 @@
   }
 
   // ── Init ──
-  async function initRefreshStatus() {
+  render();
+  // 异步检测状态，不重复 render
+  setTimeout(async () => {
     const rf = await fetchRefreshStatus();
     if (rf && rf.status === 'running') {
-      refreshStatus = 'requested'; refreshMsg = '⏳ 测速进行中，等待结果...'; startRefreshPoll();
+      refreshStatus = 'requested'; refreshMsg = '⏳ 测速进行中，等待结果...';
+      updateRefreshBtn();
+      startRefreshPoll();
     }
-    render();
-  }
-
-  render();
-  initRefreshStatus();
+  }, 100);
 
   setInterval(async () => {
     if (refreshStatus==='requested'||refreshStatus==='running') return;
