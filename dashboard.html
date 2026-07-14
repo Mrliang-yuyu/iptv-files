@@ -273,23 +273,25 @@
   window.triggerRefresh = function() {
     const btn = document.getElementById('refreshBtn');
     btn.disabled = true;
-    btn.textContent = '⏳ 测速中...';
+    btn.textContent = '⏳ 请求中...';
     btn.style.opacity = '0.6';
     
-    fetch('https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'probe_trigger', time: Date.now() })
-    }).then(() => {
+    // sendBeacon 不触发 CORS 预检，比 fetch 可靠很多
+    const sent = navigator.sendBeacon(
+      'https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43',
+      'probe_trigger'
+    );
+    
+    if (sent) {
       btn.textContent = '✅ 已请求刷新';
       btn.style.opacity = '1';
-      // 等15秒后自动重新加载页面
-      setTimeout(() => location.reload(), 15000);
-    }).catch(() => {
+      // 2分钟后自动重新加载（测速+部署大概这么久）
+      setTimeout(() => location.reload(), 120000);
+    } else {
       btn.textContent = '❌ 请求失败，重试';
       btn.style.opacity = '1';
       btn.disabled = false;
-    });
+    }
   };
   window.toggle = function(name) {
     expanded = expanded === name ? null : name;
