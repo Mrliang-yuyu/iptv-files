@@ -234,21 +234,17 @@
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
-    padding: 8px 10px;
     position: relative;
+    min-height: 100px;
   }
-  .chart-card .chart-title {
-    font-size: 13px; font-weight: 600; color: var(--text2);
-    letter-spacing: 0.3px; margin-bottom: 10px;
-  }
-  .chart-card svg { display: block; width: 100%; height: 110px; }
+  .chart-card svg { display: block; width: 100%; height: 100px; }
   .chart-card .chart-empty {
-    text-align: center; padding: 30px 0;
+    text-align: center; padding: 35px 0;
     font-size: 13px; color: var(--text3);
   }
   @media (max-width: 520px) {
-    .chart-card { padding: 6px 8px; }
-    .chart-card svg { height: 80px; }
+    .chart-card { min-height: 70px; }
+    .chart-card svg { height: 70px; }
   }
 
   .num.green { color: var(--green); }
@@ -764,48 +760,40 @@
     function renderTrendChart() {
       const hist = loadTrendHistory();
       if (hist.length < 2) return '<div class="chart-card"><div class="chart-empty">数据不足，刷新几次后自动生成</div></div>';
-      const W = 600, H = 110, pad = {t:4, r:6, b:14, l:28};
-      const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
       const pts = hist.slice(-15);
       const rates = pts.map(p => p.okRate);
-      const maxRate = Math.max(...rates, 60);
-      const minRate = Math.min(...rates, 30);
+      const maxRate = Math.max(...rates, 65);
+      const minRate = Math.min(...rates, 35);
       const range = Math.max(maxRate - minRate, 10);
-      const xStep = iw / (pts.length - 1);
+      // Make SVG fill the card: use card-width ratio
+      const spanW = pts.length - 1;
+      const W = 100; // percentage-based virtual width
+      const H = 36;   // height units
       const path = pts.map((p, i) => {
-        const x = pad.l + i * xStep;
-        const y = pad.t + ih - ((p.okRate - minRate) / range) * ih;
+        const x = (i / spanW) * W;
+        const y = H - ((p.okRate - minRate) / range) * H;
         return `${i===0?'M':'L'}${x.toFixed(1)},${y.toFixed(1)}`;
       }).join(' ');
-      const fillPath = path + ` L${pad.l + (pts.length-1)*xStep},${pad.t+ih} L${pad.l},${pad.t+ih} Z`;
-      // Grid lines
-      const gridLines = [];
-      const gridCount = 4;
-      for (let i = 0; i <= gridCount; i++) {
-        const y = pad.t + (ih/gridCount)*i;
-        const val = maxRate - (range/gridCount)*i;
-        gridLines.push(`<line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${pad.l+iw}" y2="${y.toFixed(1)}" stroke="var(--card-border)" stroke-width="0.5"/>`);
-        gridLines.push(`<text x="${pad.l-6}" y="${y.toFixed(1)+4}" text-anchor="end" fill="var(--text3)" font-size="9">${Math.round(val)}%</text>`);
-      }
-      // X labels
-      const xLabels = pts.map((p, i) => {
-        if (i === 0 || i === pts.length-1 || i === Math.floor(pts.length/2)) {
-          const x = pad.l + i * xStep;
-          return `<text x="${x.toFixed(1)}" y="${pad.t+ih+14}" text-anchor="middle" fill="var(--text3)" font-size="8">${p.time}</text>`;
-        }
-        return '';
-      }).join('');
+      const fillY = H;
+      const fillPath = path + ` L${W},${fillY} L0,${fillY} Z`;
       const lastRate = pts[pts.length-1].okRate;
       const rateColor = lastRate >= 80 ? 'var(--green)' : lastRate >= 50 ? 'var(--yellow)' : 'var(--red)';
-      return `<div class="chart-card">
-        <div style="text-align:right;margin-bottom:4px"><span style="font-weight:600;color:${rateColor};font-size:13px">${lastRate}%</span></div>
-        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
-          ${gridLines.join('')}
-          <path d="${fillPath}" fill="${rateColor}" opacity="0.08"/>
-          <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="${(pad.l + (pts.length-1)*xStep).toFixed(1)}" cy="${(pad.t + ih - ((lastRate - minRate)/range)*ih).toFixed(1)}" r="3.5" fill="${rateColor}" stroke="var(--card)" stroke-width="1.5"/>
-          ${xLabels}
-        </svg>
+      // X labels at bottom
+      const xLabels = [0, Math.floor(spanW/2), spanW].map(i => {
+        const x = (i / spanW) * W;
+        const time = pts[i].time;
+        return `<text x="${x.toFixed(1)}" y="${H+3}" text-anchor="middle" fill="var(--text3)" font-size="3">${time}</text>`;
+      }).join('');
+      return `<div class="chart-card" style="padding:4px 6px">
+        <div style="display:flex;align-items:center;height:100%;position:relative">
+          <span style="position:absolute;right:8px;top:4px;font-weight:700;color:${rateColor};font-size:18px;z-index:1">${lastRate}%</span>
+          <svg viewBox="-2 -2 ${W+4} ${H+8}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%">
+            <path d="${fillPath}" fill="${rateColor}" opacity="0.08"/>
+            <path d="${path}" fill="none" stroke="${rateColor}" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="${W.toFixed(1)}" cy="${(H - ((lastRate - minRate)/range)*H).toFixed(1)}" r="1.8" fill="${rateColor}"/>
+            ${xLabels}
+          </svg>
+        </div>
       </div>`;
     }
     const trendChartHtml = renderTrendChart();
