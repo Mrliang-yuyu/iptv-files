@@ -531,7 +531,7 @@
   let data;
 
   try {
-    const res = await fetch('https://iptv-live-btg.pages.dev/status.json?_=' + Date.now());
+    const res = await fetch('status.json?_=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch (e) {
@@ -617,7 +617,7 @@
   // ── Refresh ──
   async function fetchRefreshStatus() {
     try {
-      const r = await fetch('https://iptv-live-btg.pages.dev/refresh.json?_='+Date.now());
+      const r = await fetch('refresh.json?_='+Date.now());
       if (r.ok) return await r.json();
     } catch(e) {}
     return null;
