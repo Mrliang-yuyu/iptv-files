@@ -51,8 +51,13 @@
   }
   .logo-wrap {
     width: 80px; height: 80px;
+    background: var(--card);
+    border: 1px solid var(--card-border, #e4e9f0);
+    border-radius: 22px;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 24px;
+    box-shadow: var(--card-shadow, 0 1px 6px rgba(0,0,0,0.06));
+    transition: all 0.2s;
   }
   .logo-wrap svg {
     width: 42px; height: 42px;
@@ -129,11 +134,11 @@
   <div class="logo-wrap">
   <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round">
     <!-- Center dot -->
-    <circle cx="24" cy="24" r="2.5" fill="white" stroke="none"/>
+    <circle cx="24" cy="24" r="2.5" fill="var(--accent)" stroke="none"/>
     <!-- Signal arcs -->
-    <path d="M14 34 A18 18 0 0 1 34 34" stroke="white" stroke-width="2.2" fill="none" opacity="0.85"/>
-    <path d="M9 29 A24 24 0 0 1 39 29" stroke="white" stroke-width="1.8" fill="none" opacity="0.5"/>
-    <path d="M4 24 A30 30 0 0 1 44 24" stroke="white" stroke-width="1.4" fill="none" opacity="0.25"/>
+    <path d="M14 34 A18 18 0 0 1 34 34" stroke="var(--accent)" stroke-width="2.5" fill="none" opacity="0.85"/>
+    <path d="M9 29 A24 24 0 0 1 39 29" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M4 24 A30 30 0 0 1 44 24" stroke="var(--accent)" stroke-width="1.5" fill="none" opacity="0.25"/>
   </svg>
 </div>
   <h1>IPTV Live</h1>
