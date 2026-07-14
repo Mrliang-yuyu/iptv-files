@@ -73,9 +73,6 @@
     max-width: 1100px; margin: 0 auto;
     position: relative; z-index: 1;
   }
-  .container {
-    max-width: 1100px; margin: 0 auto;
-  }
 
   /* ── Glass Mixin ── */
   .glass {
@@ -345,6 +342,7 @@
   .group-tag.weishi { background: linear-gradient(180deg, #fbbf24, #d97706); }
   .group-tag.difang { background: linear-gradient(180deg, #4ade80, #16a34a); }
   .group-tag.beiyong { background: linear-gradient(180deg, #64748b, #475569); }
+  .group-tag.bad-section { background: linear-gradient(180deg, #f87171, #dc2626); }
 
   .section-header .title {
     font-size: 14px; font-weight: 600;
@@ -449,9 +447,16 @@
   .loading p, .empty-state p, .error-state p { font-size: 14px; }
 
   /* ── Footer ── */
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
+
   .footer {
     text-align: center; padding: 24px 0 8px;
-    font-size: 11px; color: var(--text3);
+    font-size: 11px; color: rgba(255,255,255,0.12);
+    letter-spacing: 0.2px;
   }
 </style>
 </head>
@@ -583,7 +588,11 @@
     });
   };
 
-  window.setFilter = function(f) { filter = f; expandedCh = null; render(); };
+  window.setFilter = function(f) {
+    filter = f; expandedCh = null;
+    collapsedGroups = []; // 切换筛选时重置折叠状态
+    render();
+  };
   window.setSearch = function(q) { searchQuery = q; render(); };
   window.toggleGroup = function(g) {
     const i = collapsedGroups.indexOf(g);
@@ -709,7 +718,7 @@
         </div>
       </div>
       <div class="toolbar">
-        <input class="search-input" type="text" placeholder="🔍 搜索频道..." value="${searchQuery}" oninput="window.setSearch(this.value)" />
+        <input class="search-input" id="searchInput" type="text" placeholder="🔍 搜索频道..." value="${searchQuery}" oninput="window.setSearch(this.value)" />
         <div class="filter-bar">
           <button class="filter-btn ${filter==='all'?'active':''}" onclick="setFilter('all')">全部 <span style="font-size:11px;color:var(--text3)">${data.stats.channels}</span></button>
           ${groupKeys.map(g => `<button class="filter-btn ${filter===g?'active':''}" onclick="setFilter('${g}')">${g} <span style="font-size:11px;color:var(--text3)">${groups[g].length}</span></button>`).join('')}
@@ -728,14 +737,15 @@
     } else if (filter === 'bad') {
       let badChs = data.channels.filter(ch => chStatus(ch)!=='ok');
       if (searchQuery) badChs = badChs.filter(c=>c.name.toLowerCase().includes(searchQuery.toLowerCase()));
-      renderGroups = [{ key: '异常频道', channels: badChs }];
+      const isBadFilter = filter === 'bad';
+      renderGroups = [{ key: '异常频道', channels: badChs, isBad: true }];
     }
 
     if (renderGroups.length === 0) {
       html += `<div class="empty-state"><div class="big">🔍</div><h3>无匹配频道</h3><p>试试其他搜索词</p></div>`;
     } else {
-      renderGroups.forEach(({ key: gk, channels: chs }) => {
-        const gc = groupClass(gk);
+      renderGroups.forEach(({ key: gk, channels: chs, isBad }) => {
+        const gc = isBad ? 'bad-section' : groupClass(gk);
         const collapsed = collapsedGroups.includes(gk);
         let gOk=0,gSlow=0,gBad=0;
         chs.forEach(ch=>{const s=chStatus(ch);if(s==='ok')gOk++;else if(s==='slow')gSlow++;else gBad++;});
@@ -805,7 +815,14 @@
       });
     }
 
+    html += `<div class="footer">✦ 数据每2天自动更新 · 手动刷新后约1-2分钟完成 ✦</div>`;
     app.innerHTML = html;
+
+    // 搜索框自动聚焦
+    const $s = document.getElementById('searchInput');
+    if ($s && searchQuery) {
+      $s.setSelectionRange(searchQuery.length, searchQuery.length);
+    }
   }
 
   // ── Init ──
