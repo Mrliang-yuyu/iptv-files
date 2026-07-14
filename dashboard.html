@@ -27,6 +27,25 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
+  [data-theme="dark"] {
+    --bg: #11151f;
+    --card: #1c2230;
+    --card-hover: #242b3a;
+    --card-border: #2a3242;
+    --card-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    --text: #edf2f7;
+    --text2: #9aa8c0;
+    --text3: #5a6a82;
+    --green: #34d399;
+    --green-bg: rgba(52, 211, 153, 0.12);
+    --yellow: #fbbf24;
+    --yellow-bg: rgba(251, 191, 36, 0.12);
+    --red: #f87171;
+    --red-bg: rgba(248, 113, 113, 0.12);
+    --accent: #60a5fa;
+    --accent-bg: rgba(96, 165, 250, 0.1);
+    --blue: #93c5fd;
+  }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", sans-serif;
     color: var(--text);
@@ -77,6 +96,16 @@
     display: inline-block;
   }
   .header-actions { display: flex; align-items: center; gap: 10px; }
+  .theme-toggle {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--text2); cursor: pointer;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle:active { transform: scale(0.88); }
   .update-capsule {
     font-size: 11px; color: var(--text2);
     background: var(--accent-bg);
@@ -703,6 +732,7 @@
           <h1><span class="accent-dot"></span>📺 IPTV 频道状态 <span class="update-capsule"><span class="dot"></span>${data.lastUpdate||'未知'}</span></h1>
         </div>
         <div class="header-actions">
+          <button class="theme-toggle" onclick="toggleTheme()" title="切换日夜模式">${getThemeIcon()}</button>
           <button class="refresh-btn" onclick="triggerRefresh()" ${btnDisabled?'disabled':''}>${btnLabel}</button>
         </div>
       </div>
@@ -907,6 +937,24 @@
     try { const r = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
   }, 60000);
 })();
+
+  function getThemeIcon() {
+    return document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+  }
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('iptv-theme', next);
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) btn.innerHTML = getThemeIcon();
+  }
+  // Apply saved theme on load
+  (function() {
+    const saved = localStorage.getItem('iptv-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  })();
 </script>
 </body>
 </html>
