@@ -31,14 +31,16 @@
   }
   .logo-wrap {
     width: 80px; height: 80px;
-    background: linear-gradient(135deg, var(--accent), #7c3aed);
-    border-radius: 24px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    border-radius: 22px;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 24px;
     box-shadow: 0 8px 32px rgba(37, 99, 235, 0.2);
+    position: relative;
   }
-  .logo-wrap .icon {
-    font-size: 36px; line-height: 1;
+  .logo-wrap svg {
+    width: 42px; height: 42px;
+    display: block;
   }
   h1 {
     font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
@@ -87,15 +89,34 @@
   @media (max-width: 520px) {
     .features { grid-template-columns: 1fr; }
     h1 { font-size: 24px; }
-    .logo-wrap { width: 64px; height: 64px; border-radius: 18px; }
-    .logo-wrap .icon { font-size: 28px; }
+    .logo-wrap { width: 64px; height: 64px; border-radius: 16px; }
+    .logo-wrap svg { width: 34px; height: 34px; }
     .enter-btn { padding: 12px 28px; font-size: 15px; }
   }
 </style>
 </head>
 <body>
 <div class="landing">
-  <div class="logo-wrap"><span class="icon">📺</span></div>
+  <div class="logo-wrap">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- TV body -->
+    <rect x="3" y="10" width="42" height="28" rx="4" stroke="white" stroke-width="2.5" fill="none"/>
+    <!-- Screen glow -->
+    <rect x="7" y="14" width="34" height="20" rx="2" fill="rgba(255,255,255,0.15)"/>
+    <!-- Antenna -->
+    <line x1="24" y1="6" x2="24" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="14" y1="4" x2="24" y2="10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="34" y1="4" x2="24" y2="10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Stand base -->
+    <line x1="24" y1="38" x2="24" y2="44" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="16" y1="44" x2="32" y2="44" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Signal wave on screen -->
+    <path d="M15 24 Q18 20 21 24" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M13 21 Q18 16 23 21" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <!-- Play triangle -->
+    <path d="M28 20 L36 24 L28 28 Z" fill="white" opacity="0.9"/>
+  </svg>
+</div>
   <h1>IPTV Live</h1>
   <p class="subtitle">频道状态实时监控看板 · 自动探测 · 一键刷新</p>
 
