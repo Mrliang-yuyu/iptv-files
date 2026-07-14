@@ -234,7 +234,7 @@
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
-    padding: 14px 18px;
+    padding: 8px 10px;
     position: relative;
   }
   .chart-card .chart-title {
@@ -247,7 +247,7 @@
     font-size: 13px; color: var(--text3);
   }
   @media (max-width: 520px) {
-    .chart-card { padding: 10px 12px; }
+    .chart-card { padding: 6px 8px; }
     .chart-card svg { height: 80px; }
   }
 
@@ -764,7 +764,7 @@
     function renderTrendChart() {
       const hist = loadTrendHistory();
       if (hist.length < 2) return '<div class="chart-card"><div class="chart-empty">数据不足，刷新几次后自动生成</div></div>';
-      const W = 600, H = 110, pad = {t:12, r:12, b:22, l:36};
+      const W = 600, H = 110, pad = {t:4, r:6, b:14, l:28};
       const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
       const pts = hist.slice(-15);
       const rates = pts.map(p => p.okRate);
