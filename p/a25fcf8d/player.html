@@ -217,10 +217,11 @@ const BASE = 'https://iptv-live-btg.pages.dev/p/a25fcf8d';
 const M3U = BASE + '/live.m3u?_=' + Date.now();
 const EPG = BASE + '/e.xml?_=' + Date.now();
 
+// ===== Variables =====
 let channels = [], epgData = {};
 let favorites = JSON.parse(localStorage.getItem('iptv-favs') || '[]');
 let currentIdx = -1, currentGroup = '全部', searchQ = '', onlyFavs = false;
-let isPlaying = false, hlsInstance = null, isMobile = window.innerWidth <= 820;
+let isPlaying = false, isMobile = window.innerWidth <= 820;
 let osdTimer = null;
 
 // ===== Theme =====
@@ -446,13 +447,11 @@ function toggleFav(idx) {
 // ===== Playback =====
 function playChannel(idx) {
   if (idx < 0 || idx >= channels.length) return;
-  // Wait for SW proxy to be ready on HTTPS
   if (isHTTPS && !swReady) {
-    let msg = '⚠️ 正在准备播放器，请稍候…';
-    document.getElementById('emptyState').querySelector('span').textContent = msg;
+    document.getElementById('emptyState').querySelector('span').textContent = '⏳ 准备中…';
     document.getElementById('emptyState').style.display = 'flex';
-    function retry() { if (swReady) playChannel(idx); else setTimeout(retry, 200); }
-    setTimeout(retry, 200);
+    function retry() { if (swReady) playChannel(idx); else setTimeout(retry, 300); }
+    setTimeout(retry, 300);
     return;
   }
   currentIdx = idx;
@@ -463,88 +462,22 @@ function playChannel(idx) {
   updateEPG(ch.name);
   showOSD();
   if (isMobile) switchMobile('player');
-  loadStream(ch.url);
-}
-
-function loadStream(url) {
+  
+  // Native video only - works with SW proxy on HTTPS
   let video = document.getElementById('videoEl');
   let state = document.getElementById('videoState');
-  let stateText = document.getElementById('stateText');
   let spinner = document.getElementById('spinner');
-
-  if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+  
   video.pause();
   video.removeAttribute('src');
   video.style.display = 'none';
   state.style.display = 'flex';
   spinner.style.display = 'block';
-  stateText.textContent = '加载中…';
+  document.getElementById('stateText').textContent = '';
   isPlaying = false;
   document.getElementById('playBtn').textContent = '▶';
-
-  let proxyedUrl = streamUrl(url);
-
-  // Try HLS.js with proxy for ALL requests (including segments)
-  let tryHLS = function(hlsUrl) {
-    let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (isIOS || typeof Hls === 'undefined' || !Hls.isSupported()) return false;
-    try {
-      // Custom loader that routes ALL requests through the SW proxy
-      let PLoader = Hls.DefaultConfig.loader;
-      let orgConstructor = PLoader.prototype.constructor;
-      
-      class ProxyLoader extends PLoader {
-        constructor(config) { super(config); }
-        load(context, config, callbacks) {
-          // Proxy manifest and segment URLs
-          if (context.url || (context.frag && context.frag.url)) {
-            let target = context.url || context.frag.url;
-            let proxied = streamUrl(target);
-            if (proxied !== target) {
-              if (context.url) context.url = proxied;
-              if (context.frag) context.frag.url = proxied;
-            }
-          }
-          super.load(context, config, callbacks);
-        }
-      }
-      
-      let hls = new Hls({ loader: ProxyLoader });
-      hlsInstance = hls;
-      hls.loadSource(hlsUrl);
-      hls.attachMedia(video);
-      
-      hls.on(Hls.Events.MANIFEST_PARSED, function() {
-        video.style.display = 'block';
-        state.style.display = 'none';
-        video.play()['catch'](function(){});
-        isPlaying = true;
-        document.getElementById('playBtn').textContent = '⏸';
-      });
-      hls.on(Hls.Events.ERROR, function(ev, data) {
-        if (data.fatal && state.style.display !== 'none') {
-          // HLS.js failed, fall back to native video
-          hls.destroy(); hlsInstance = null;
-          startNative(proxyedUrl);
-        }
-      });
-      return true;
-    } catch(e) { return false; }
-  };
-
-  if (tryHLS(proxyedUrl)) return; // HLS.js is handling it
   
-  // Fallback: native video
-  startNative(proxyedUrl);
-}
-
-function startNative(src) {
-  let video = document.getElementById('videoEl');
-  let state = document.getElementById('videoState');
-  let stateText = document.getElementById('stateText');
-  let spinner = document.getElementById('spinner');
-  
-  video.src = src;
+  video.src = streamUrl(ch.url);
   video.style.display = 'block';
   
   function onPlay() {
@@ -552,29 +485,16 @@ function startNative(src) {
     isPlaying = true;
     document.getElementById('playBtn').textContent = '⏸';
   }
-  
   video.addEventListener('play', onPlay, { once: true });
   video.addEventListener('canplay', onPlay, { once: true });
   
-  let p = video.play();
-  if (p !== undefined) {
-    p['catch'](function() {
-      if (state.style.display !== 'none') {
-        stateText.textContent = isHTTPS ? '点击播放按钮重试' : '点击播放';
-        spinner.style.display = 'none';
-      }
-    });
-  }
+  let pp = video.play();
+  if (pp !== undefined) pp['catch'](function(){
+    spinner.style.display = 'none';
+  });
+  video.addEventListener('error', function(){ spinner.style.display = 'none'; }, { once: true });
   
-  video.addEventListener('error', function eh() {
-    if (state.style.display !== 'none') {
-      stateText.textContent = '播放失败';
-      spinner.style.display = 'none';
-    }
-    video.removeEventListener('error', eh);
-  }, { once: true });
-  
-  // Scroll to channel
+  // Scroll
   let el = document.querySelector('.ch-item[data-idx="' + currentIdx + '"]');
   if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
