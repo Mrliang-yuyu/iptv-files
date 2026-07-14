@@ -39,45 +39,35 @@
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
-    background:
-      /* 主背景 - 霓虹深空 */
-      linear-gradient(135deg, #030712 0%, #0b0a2e 30%, #140a2e 50%, #0b0a3e 70%, #030712 100%);
+    background: linear-gradient(160deg, #060816 0%, #0c0a2a 20%, #100828 40%, #1a0a30 55%, #0c0a32 75%, #060818 100%);
   }
-  /* 霓虹光晕层 - 固定定位，始终在背景上 */
-  .neon-glow {
+  .neon-bg {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none; z-index: 0;
     overflow: hidden;
   }
-  .neon-glow .orb {
+  .neon-bg .blob {
     position: absolute; border-radius: 50%;
-    filter: blur(100px);
-    -webkit-filter: blur(100px);
   }
-  .neon-glow .orb-1 {
-    width: 700px; height: 700px;
-    top: -250px; left: -200px;
-    background: radial-gradient(circle, rgba(0, 150, 255, 0.35) 0%, transparent 70%);
+  .neon-bg .blob-1 {
+    width: 800px; height: 800px; top: -200px; left: -200px;
+    background: radial-gradient(circle, rgba(0, 140, 255, 0.4) 0%, transparent 70%);
   }
-  .neon-glow .orb-2 {
-    width: 500px; height: 500px;
-    top: 10%; right: -150px;
-    background: radial-gradient(circle, rgba(180, 40, 255, 0.3) 0%, transparent 70%);
+  .neon-bg .blob-2 {
+    width: 550px; height: 550px; top: 5%; right: -100px;
+    background: radial-gradient(circle, rgba(200, 30, 255, 0.35) 0%, transparent 70%);
   }
-  .neon-glow .orb-3 {
-    width: 450px; height: 450px;
-    bottom: 5%; left: 40%;
-    background: radial-gradient(circle, rgba(0, 220, 180, 0.2) 0%, transparent 70%);
+  .neon-bg .blob-3 {
+    width: 500px; height: 500px; bottom: 0; left: 35%;
+    background: radial-gradient(circle, rgba(0, 240, 200, 0.25) 0%, transparent 70%);
   }
-  .neon-glow .orb-4 {
-    width: 350px; height: 350px;
-    top: 50%; left: 10%;
-    background: radial-gradient(circle, rgba(255, 80, 180, 0.2) 0%, transparent 70%);
+  .neon-bg .blob-4 {
+    width: 400px; height: 400px; top: 45%; left: 5%;
+    background: radial-gradient(circle, rgba(255, 60, 180, 0.25) 0%, transparent 70%);
   }
-  .neon-glow .orb-5 {
-    width: 300px; height: 300px;
-    bottom: 35%; right: 15%;
-    background: radial-gradient(circle, rgba(0, 200, 255, 0.15) 0%, transparent 70%);
+  .neon-bg .blob-5 {
+    width: 350px; height: 350px; bottom: 30%; right: 10%;
+    background: radial-gradient(circle, rgba(0, 180, 255, 0.2) 0%, transparent 70%);
   }
   .container {
     max-width: 1100px; margin: 0 auto;
@@ -110,19 +100,21 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 18px 22px; margin-bottom: 20px;
     flex-wrap: wrap; gap: 12px;
-    background: rgba(8, 10, 26, 0.4);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(0, 180, 255, 0.15);
+    background: rgba(8, 8, 24, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #00d4ff;
     border-radius: var(--radius);
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   }
   .header-left { display: flex; align-items: center; gap: 14px; }
   .header h1 {
-    font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #00d4ff 0%, #c084fc 50%, #f472b6 100%);
+    font-size: 22px; font-weight: 700; letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #00d4ff 0%, #c084fc 40%, #f472b6 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
   }
   .update-badge {
     font-size: 12px; color: var(--text2);
@@ -340,19 +332,19 @@
 
   .section-header {
     display: flex; align-items: center; gap: 12px;
-    padding: 13px 18px; cursor: pointer;
+    padding: 14px 18px; cursor: pointer;
     border-bottom: 1px solid var(--glass-border);
     transition: background 0.15s;
     user-select: none;
   }
-  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header:hover { background: rgba(255,255,255,0.03); }
   .section-header .group-tag {
-    width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0;
+    width: 4px; height: 20px; border-radius: 3px; flex-shrink: 0;
   }
-  .group-tag.cctv { background: linear-gradient(var(--blue), #0284c7); }
-  .group-tag.weishi { background: linear-gradient(var(--yellow), #d97706); }
-  .group-tag.difang { background: linear-gradient(var(--green), #16a34a); }
-  .group-tag.beiyong { background: linear-gradient(var(--text3), #475569); }
+  .group-tag.cctv { background: linear-gradient(180deg, #00d4ff, #0284c7); }
+  .group-tag.weishi { background: linear-gradient(180deg, #fbbf24, #d97706); }
+  .group-tag.difang { background: linear-gradient(180deg, #4ade80, #16a34a); }
+  .group-tag.beiyong { background: linear-gradient(180deg, #64748b, #475569); }
 
   .section-header .title {
     font-size: 14px; font-weight: 600;
@@ -464,12 +456,12 @@
 </style>
 </head>
 <body>
-<div class="neon-glow">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
-  <div class="orb orb-5"></div>
+<div class="neon-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
 </div>
 <div class="container" id="app">
   <div class="loading" id="loading">
