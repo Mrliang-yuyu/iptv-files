@@ -447,15 +447,36 @@ function startPlayback(url, name) {
   video.removeAttribute('src');
   video.style.display = 'none';
   state.style.display = 'flex';
+  state.querySelector('.spinner').style.display = 'block';
   stateText.textContent = '加载中…';
   isPlaying = false;
   document.getElementById('playBtn').textContent = '▶';
   
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const isHLS = url.includes('.m3u8');
+  // Check for HTTPS mixed content issue
+  const isHTTPS = location.protocol === 'https:';
+  const isHTTPStream = url.startsWith('http:');
   
-  if (isHLS && !isIOS && Hls.isSupported()) {
-    // Android/Desktop: use hls.js
+  if (isHTTPS && isHTTPStream) {
+    // Try to use Cloudflare Worker proxy
+    const proxyUrl = '/pstream?url=' + encodeURIComponent(url);
+    tryLoadStream(proxyUrl, video, state);
+  } else {
+    tryLoadStream(url, video, state);
+  }
+  
+  // Update scroll position  
+  const flist = getFiltered();
+  const idx = flist.indexOf(channels[currentChannelIdx]);
+  const el = document.querySelector('.ch-item:nth-child(' + (idx + 1) + ')');
+  if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function tryLoadStream(url, video, state) {
+  const stateText = document.getElementById('stateText');
+  const isHLS = url.includes('.m3u8');
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+  if (isHLS && !isIOS && typeof Hls !== 'undefined' && Hls.isSupported()) {
     const hls = new Hls();
     hlsInstance = hls;
     hls.loadSource(url);
@@ -463,35 +484,56 @@ function startPlayback(url, name) {
     hls.on(Hls.Events.MANIFEST_PARSED, () => {
       video.style.display = 'block';
       state.style.display = 'none';
-      video.play().then(() => { isPlaying = true; document.getElementById('playBtn').textContent = '⏸'; }).catch(e => { stateText.textContent = '播放被阻断，请点击播放'; state.style.display = 'flex'; state.querySelector('.spinner').style.display = 'none'; });
+      video.play().then(() => { isPlaying = true; document.getElementById('playBtn').textContent = '⏸'; }).catch(function(e) { 
+        stateText.textContent = '点击播放按钮开始';
+        state.style.display = 'flex';
+        var s = state.querySelector('.spinner');
+        if (s) s.style.display = 'none';
+      });
     });
-    hls.on(Hls.Events.ERROR, (ev, data) => {
-      if (data.fatal) { stateText.textContent = '播放失败: ' + (data.type || '未知错误'); state.style.display = 'flex'; state.querySelector('.spinner').style.display = 'none'; }
+    hls.on(Hls.Events.ERROR, function(ev, data) {
+      if (data.fatal) { 
+        stateText.textContent = '播放失败: ' + (data.type || '无法连接');
+        state.style.display = 'flex';
+        var s = state.querySelector('.spinner');
+        if (s) s.style.display = 'none';
+        // Try native fallback
+        video.src = url;
+        video.style.display = 'block';
+        video.play()['catch'](function(){});
+      }
     });
   } else {
-    // iOS (native HLS) or direct stream
     video.src = url;
     video.style.display = 'block';
-    video.play().then(() => {
-      state.style.display = 'none';
-      isPlaying = true;
-      document.getElementById('playBtn').textContent = '⏸';
-    }).catch(e => {
-      stateText.textContent = '点击播放';
-      state.style.display = 'flex';
-      state.querySelector('.spinner').style.display = 'none';
-      video.addEventListener('play', () => { isPlaying = true; state.style.display = 'none'; document.getElementById('playBtn').textContent = '⏸'; }, { once: true });
-    });
-    video.addEventListener('error', () => {
-      stateText.textContent = '播放失败';
-      state.style.display = 'flex';
-      state.querySelector('.spinner').style.display = 'none';
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(function() {
+        state.style.display = 'none';
+        isPlaying = true;
+        document.getElementById('playBtn').textContent = '⏸';
+      })['catch'](function(e) {
+        stateText.textContent = '点击播放';
+        state.style.display = 'flex';
+        var s = state.querySelector('.spinner');
+        if (s) s.style.display = 'none';
+        video.addEventListener('play', function handler() {
+          isPlaying = true;
+          state.style.display = 'none';
+          document.getElementById('playBtn').textContent = '⏸';
+          video.removeEventListener('play', handler);
+        });
+      });
+    }
+    video.addEventListener('error', function() {
+      if (!state.style.display || state.style.display === 'flex') {
+        stateText.textContent = '播放失败';
+        state.style.display = 'flex';
+        var s = state.querySelector('.spinner');
+        if (s) s.style.display = 'none';
+      }
     });
   }
-  
-  // Update scroll position
-  const el = document.querySelector(`.ch-item:nth-child(${getFiltered().indexOf(channels[idx]) + 1})`);
-  if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 function togglePlay() {
