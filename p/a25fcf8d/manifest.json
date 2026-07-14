@@ -1,0 +1,14 @@
+{
+  "name": "IPTV Player",
+  "short_name": "IPTV",
+  "description": "Personal IPTV player",
+  "start_url": "player.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f1f4f9",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='20' fill='%232563eb'/%3E%3Cpath d='M96 32 A64 64 0 0 1 96 160' stroke='%232563eb' stroke-width='16' fill='none' stroke-linecap='round'/%3E%3Cpath d='M96 56 A40 40 0 0 1 96 136' stroke='%232563eb' stroke-width='14' fill='none' stroke-linecap='round'/%3E%3Cpath d='M96 76 A20 20 0 0 1 96 116' stroke='%232563eb' stroke-width='10' fill='none' stroke-linecap='round'/%3E%3C/svg%3E", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='60' fill='%232563eb'/%3E%3Cpath d='M256 80 A176 176 0 0 1 256 432' stroke='%232563eb' stroke-width='40' fill='none' stroke-linecap='round'/%3E%3Cpath d='M256 144 A112 112 0 0 1 256 368' stroke='%232563eb' stroke-width='32' fill='none' stroke-linecap='round'/%3E%3Cpath d='M256 208 A48 48 0 0 1 256 304' stroke='%232563eb' stroke-width='24' fill='none' stroke-linecap='round'/%3E%3C/svg%3E", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}

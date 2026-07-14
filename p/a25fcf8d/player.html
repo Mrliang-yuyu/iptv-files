@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<title>IPTV Player</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@0.14.17/dist/hls.min.js"></script>
+<style>
+:root {
+  --bg: #f1f4f9; --card: #ffffff; --card-border: #e2e6ed;
+  --text: #1a1f36; --text2: #5a6178; --text3: #8b92a5;
+  --accent: #2563eb; --accent2: #3b82f6; --accent-light: #eef2ff;
+  --green: #22c55e; --green-bg: #f0fdf4;
+  --yellow: #eab308; --yellow-bg: #fefce8;
+  --red: #ef4444; --red-bg: #fef2f2;
+  --shadow: 0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --header-h: 52px;
+  --tab-h: 44px;
+}
+[data-theme="dark"] {
+  --bg: #11151f; --card: #1c2230; --card-border: #2a3142;
+  --text: #edf2f7; --text2: #a0aec0; --text3: #66748a;
+  --accent: #60a5fa; --accent2: #3b82f6; --accent-light: #1e293b;
+  --green: #22c55e; --green-bg: #132e1a;
+  --yellow: #eab308; --yellow-bg: #2a2410;
+  --red: #ef4444; --red-bg: #2a1215;
+  --shadow: 0 1px 3px rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text3); border-radius: 3px; }
+
+/* Header */
+.header { height: var(--header-h); display: flex; align-items: center; padding: 0 16px; background: var(--card); border-bottom: 1px solid var(--card-border); gap: 8px; flex-shrink: 0; }
+.header .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; flex-shrink: 0; }
+.header .brand svg { width: 22px; height: 22px; }
+.header .brand span { font-size: 15px; font-weight: 600; color: var(--text); }
+.header .back { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; color: var(--text2); font-size: 18px; flex-shrink: 0; }
+.header .back:hover { background: var(--bg); }
+.header .spacer { flex: 1; }
+.header .theme-btn { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--card-border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: .2s; flex-shrink: 0; }
+.header .theme-btn:active { transform: scale(.88); }
+
+/* Split Layout */
+.app { display: flex; height: calc(100vh - var(--header-h)); }
+.channel-panel { width: 360px; min-width: 360px; display: flex; flex-direction: column; border-right: 1px solid var(--card-border); background: var(--card); }
+.player-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; background: #000; position: relative; }
+
+/* Player */
+.player-wrap { flex: 1; display: flex; align-items: center; justify-content: center; background: #000; position: relative; }
+.player-wrap video { width: 100%; height: 100%; object-fit: contain; }
+.player-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.player-overlay.show { opacity: 1; pointer-events: auto; }
+.player-overlay .top-bar { padding: 16px; background: linear-gradient(180deg, rgba(0,0,0,.7), transparent); }
+.player-overlay .top-bar .ch-name { color: #fff; font-size: 16px; font-weight: 600; }
+.player-overlay .top-bar .ch-program { color: rgba(255,255,255,.7); font-size: 13px; margin-top: 2px; }
+.player-overlay .bottom-controls { padding: 16px; background: linear-gradient(0deg, rgba(0,0,0,.7), transparent); display: flex; align-items: center; justify-content: center; gap: 32px; }
+.player-overlay .bottom-controls .ctrl-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: .2s; }
+.player-overlay .bottom-controls .ctrl-btn:active { transform: scale(.85); background: rgba(255,255,255,.25); }
+.player-overlay .bottom-controls .ctrl-btn.play-btn { width: 56px; height: 56px; font-size: 24px; background: var(--accent); }
+
+/* Error/loading */
+.player-state { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255,255,255,.6); font-size: 14px; gap: 8px; }
+.player-state .spinner { width: 32px; height: 32px; border: 3px solid rgba(255,255,255,.1); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Empty state */
+.empty-player { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:rgba(255,255,255,.4); background:#0a0a0c; }
+.empty-player svg { width:48px; height:48px; opacity:.4; }
+.empty-player span { font-size:14px; }
+
+/* EPG info in player area */
+.player-epg { padding: 10px 16px; background: var(--card); border-top: 1px solid var(--card-border); min-height: 72px; display: flex; flex-direction: column; justify-content: center; }
+.player-epg .epg-none { color: var(--text3); font-size: 12px; }
+.player-epg .epg-timebar { display: flex; align-items: center; gap: 8px; }
+.player-epg .epg-timebar .now { font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.player-epg .epg-timebar .prog-name { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-epg .epg-timebar .prog-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+.player-epg .epg-next { display: flex; align-items: center; gap: 8px; margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--card-border); }
+.player-epg .epg-next .label { font-size: 11px; color: var(--text3); white-space: nowrap; }
+.player-epg .epg-next .next-name { font-size: 12px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-epg .epg-next .next-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+
+/* Channel search */
+.search-box { padding: 10px 14px; border-bottom: 1px solid var(--card-border); flex-shrink: 0; }
+.search-box input { width: 100%; padding: 8px 12px; border-radius: var(--radius-sm); border: 1.5px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 13px; outline: none; transition: .2s; }
+.search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+.search-box input::placeholder { color: var(--text3); }
+
+/* Group tabs */
+.group-tabs { display: flex; gap: 4px; padding: 8px 14px; overflow-x: auto; flex-shrink: 0; border-bottom: 1px solid var(--card-border); -webkit-overflow-scrolling: touch; }
+.group-tabs .tab { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; background: var(--bg); color: var(--text2); cursor: pointer; border: 1px solid transparent; transition: .2s; flex-shrink: 0; }
+.group-tabs .tab.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+.group-tabs .tab:active { transform: scale(.92); }
+.group-tabs .tab .badge { margin-left: 4px; font-size: 10px; opacity: .6; }
+
+/* Channel list */
+.channel-list { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.ch-list-inner { padding: 4px 0; }
+.ch-item { display: flex; align-items: center; padding: 8px 14px; cursor: pointer; transition: .15s; border-left: 3px solid transparent; gap: 10px; }
+.ch-item:hover { background: var(--bg); }
+.ch-item.active { background: var(--accent-light); border-left-color: var(--accent); }
+.ch-item:active { transform: scale(.97); }
+.ch-item .ch-icon { width: 32px; height: 32px; border-radius: 6px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text2); flex-shrink: 0; overflow: hidden; }
+.ch-item .ch-icon img { width: 24px; height: 24px; object-fit: contain; }
+.ch-item .ch-info { flex: 1; min-width: 0; }
+.ch-item .ch-info .ch-name { font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ch-item .ch-info .ch-prog { font-size: 11px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.ch-item .ch-play { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--accent-light); color: var(--accent); font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
+.ch-item .ch-fav { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; font-size: 14px; color: var(--text3); transition: .2s; }
+.ch-item .ch-fav.active { color: var(--yellow); }
+.ch-item .ch-fav:active { transform: scale(.8); }
+.ch-item.active .ch-play { background: var(--accent); color: #fff; }
+
+/* No results */
+.no-results { padding: 40px 20px; text-align: center; color: var(--text3); font-size: 14px; }
+
+/* Mobile */
+@media (max-width: 820px) {
+  .channel-panel { width: 100%; min-width: 0; border-right: none; }
+  .player-panel { width: 100%; }
+  .app.mode-list .channel-panel { display: flex; }
+  .app.mode-list .player-panel { display: none; }
+  .app.mode-player .channel-panel { display: none; }
+  .app.mode-player .player-panel { display: flex; }
+  .player-epg { min-height: 60px; }
+  .mobile-nav { display: flex!important; }
+}
+@media (min-width: 821px) {
+  .mobile-nav { display: none!important; }
+}
+
+/* Mobile bottom nav */
+.mobile-nav { display: none; height: 48px; background: var(--card); border-top: 1px solid var(--card-border); flex-shrink: 0; }
+.mobile-nav .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 10px; color: var(--text3); cursor: pointer; border: none; background: none; padding: 0; transition: .2s; }
+.mobile-nav .nav-btn.active { color: var(--accent); }
+.mobile-nav .nav-btn .icon { font-size: 18px; line-height: 1; }
+.mobile-nav .nav-btn:active { transform: scale(.92); }
+
+/* Favorites badge on tab */
+.fav-badge { display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; font-size: 9px; min-width: 16px; height: 16px; border-radius: 8px; margin-left: 4px; padding: 0 4px; }
+
+/* Scroll hint */
+.scroll-hint { padding: 6px 14px; font-size: 11px; color: var(--text3); flex-shrink: 0; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 4px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <a class="back" href="./index.html">‹</a>
+  <div class="brand" onclick="toggleMode()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="2.5" fill="var(--accent)"/>
+      <path d="M12 4a8 8 0 0 1 0 16"/>
+      <path d="M12 7a5 5 0 0 1 0 10"/>
+      <path d="M12 9.5a2.5 2.5 0 0 1 0 5" stroke-width="1.5"/>
+    </svg>
+    <span>IPTV Player</span>
+  </div>
+  <div class="spacer"></div>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+</div>
+
+<div class="app mode-list" id="app">
+  <!-- Channel Panel -->
+  <div class="channel-panel" id="channelPanel">
+    <div class="search-box">
+      <input id="searchInput" placeholder="搜索频道…" oninput="onSearch()" autocomplete="off">
+    </div>
+    <div class="group-tabs" id="groupTabs"></div>
+    <div class="scroll-hint"><span>▼</span> 点击频道播放 · 点击 ☆ 收藏</div>
+    <div class="channel-list" id="channelList">
+      <div class="ch-list-inner" id="channelListInner"></div>
+    </div>
+  </div>
+
+  <!-- Player Panel -->
+  <div class="player-panel" id="playerPanel">
+    <div class="player-wrap" id="playerWrap">
+      <div class="empty-player" id="emptyPlayer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>选择一个频道开始播放</span>
+      </div>
+      <video id="videoEl" playsinline preload="auto" style="display:none"></video>
+      <div class="player-overlay" id="playerOverlay">
+        <div class="top-bar">
+          <div class="ch-name" id="nowChName">—</div>
+          <div class="ch-program" id="nowChProg">—</div>
+        </div>
+        <div class="bottom-controls">
+          <button class="ctrl-btn" onclick="prevChannel()">⏮</button>
+          <button class="ctrl-btn play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+          <button class="ctrl-btn" onclick="nextChannel()">⏭</button>
+        </div>
+      </div>
+      <div class="player-state" id="playerState" style="display:none">
+        <div class="spinner"></div>
+        <span id="stateText">加载中…</span>
+      </div>
+    </div>
+    <div class="player-epg" id="playerEpg">
+      <div class="epg-none">节目信息加载中…</div>
+    </div>
+    <!-- Mobile Nav -->
+    <div class="mobile-nav">
+      <button class="nav-btn active" onclick="switchMobileMode('list')"><span class="icon">📋</span>频道</button>
+      <button class="nav-btn" onclick="switchMobileMode('player')"><span class="icon">▶️</span>播放</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== Config ==========
+const BASE = 'https://iptv-live-btg.pages.dev/p/a25fcf8d';
+const M3U_URL = BASE + '/live.m3u?_=' + Date.now();
+const EPG_URL = BASE + '/e.xml?_=' + Date.now();
+const STATUS_URL = BASE + '/status.json?_=' + Date.now();
+
+let channels = [];
+let epgData = {};
+let favorites = JSON.parse(localStorage.getItem('iptv-favs') || '[]');
+let currentChannelIdx = -1;
+let currentGroup = '全部';
+let searchQuery = '';
+let isPlaying = false;
+let hlsInstance = null;
+let overlayTimer = null;
+let isMobile = window.innerWidth <= 820;
+
+// ========== Theme ==========
+const theme = localStorage.getItem('iptv-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+document.getElementById('themeBtn').textContent = theme === 'dark' ? '🌙' : '☀️';
+function toggleTheme() {
+  const t = document.documentElement.getAttribute('data-theme');
+  const n = t === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('iptv-theme', n);
+  document.getElementById('themeBtn').textContent = n === 'dark' ? '🌙' : '☀️';
+}
+
+// ========== Parse M3U ==========
+function parseM3U(text) {
+  const lines = text.split('\n');
+  const result = [];
+  let ch = null;
+  for (let line of lines) {
+    line = line.trim();
+    if (line.startsWith('#EXTINF')) {
+      ch = { name: '', url: '', group: '未分组', logo: '' };
+      const m = line.match(/group-title="([^"]*)"/);
+      if (m) ch.group = m[1];
+      const lm = line.match(/tvg-logo="([^"]*)"/);
+      if (lm) ch.logo = lm[1];
+      const nm = line.split(',').pop().trim();
+      if (nm) ch.name = nm;
+    } else if (ch && line && !line.startsWith('#') && line.startsWith('http')) {
+      ch.url = line.split('|')[0].trim();
+      if (ch.name && ch.url) result.push(ch);
+      ch = null;
+    }
+  }
+  return result;
+}
+
+// ========== Parse EPG ==========
+function parseEPG(xmlText) {
+  const data = {};
+  const progRegex = /<programme[^>]*start="([^"]*)"[^>]*stop="([^"]*)"[^>]*channel="([^"]*)">[\s\S]*?<title>([\s\S]*?)<\/title>/g;
+  let m;
+  while ((m = progRegex.exec(xmlText)) !== null) {
+    const chId = m[3].trim();
+    const title = m[4].trim().replace(/<!\[CDATA\[|\]\]>/g, '');
+    const startStr = m[1];
+    const stopStr = m[2];
+    const start = parseXmltvTime(startStr);
+    const stop = parseXmltvTime(stopStr);
+    if (!data[chId]) data[chId] = [];
+    data[chId].push({ title, start, stop, startStr, stopStr });
+  }
+  // Sort each channel's programs
+  for (let k in data) {
+    data[k].sort((a, b) => a.start - b.start);
+  }
+  return data;
+}
+function parseXmltvTime(s) {
+  // 20260714000000 +0800
+  const m = s.match(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/);
+  if (!m) return 0;
+  return new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}+08:00`).getTime();
+}
+function getProgram(chName, epgMap) {
+  const now = Date.now();
+  // Try exact match first
+  let list = epgMap[chName];
+  if (!list) {
+    // Try fuzzy match (remove HD/suffix)
+    const base = chName.replace(/HD|高清|超高清|\(.*?\)/g, '').trim();
+    for (let k in epgMap) {
+      const kb = k.replace(/HD|高清|超高清|\(.*?\)/g, '').trim();
+      if (kb === base || k.includes(base) || base.includes(k)) {
+        list = epgMap[k];
+        break;
+      }
+    }
+  }
+  if (!list) return null;
+  const current = list.find(p => p.start <= now && p.stop > now);
+  const nextIdx = list.findIndex(p => p.start > now);
+  const next = nextIdx >= 0 ? list[nextIdx] : null;
+  return { current, next };
+}
+
+// ========== Load Data ==========
+async function loadData() {
+  try {
+    const m3uRes = await fetch(M3U_URL);
+    const m3uText = await m3uRes.text();
+    channels = parseM3U(m3uText);
+    console.log('Loaded', channels.length, 'channels');
+  } catch(e) { console.error('Failed to load m3u', e); }
+
+  try {
+    const epgRes = await fetch(EPG_URL);
+    const epgText = await epgRes.text();
+    epgData = parseEPG(epgText);
+    console.log('Loaded EPG for', Object.keys(epgData).length, 'channels');
+  } catch(e) { console.error('Failed to load EPG', e); }
+
+  renderGroups();
+  renderChannels();
+}
+
+// ========== Groups ==========
+function getGroups() {
+  const groups = ['全部'];
+  const set = new Set();
+  for (let c of channels) {
+    if (c.group && !set.has(c.group)) { set.add(c.group); groups.push(c.group); }
+  }
+  return groups;
+}
+function renderGroups() {
+  const groups = getGroups();
+  const container = document.getElementById('groupTabs');
+  container.innerHTML = groups.map(g => `<div class="tab${g===currentGroup?' active':''}" onclick="setGroup('${g.replace(/'/g,"\\'")}')">${g}</div>`).join('');
+}
+
+// ========== Filtered Channels ==========
+function getFiltered() {
+  let list = channels;
+  if (currentGroup !== '全部') list = list.filter(c => c.group === currentGroup);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    list = list.filter(c => c.name.toLowerCase().includes(q));
+  }
+  return list;
+}
+
+// ========== Render Channel List ==========
+function renderChannels() {
+  const list = getFiltered();
+  const container = document.getElementById('channelListInner');
+  
+  if (list.length === 0) {
+    container.innerHTML = '<div class="no-results">没有匹配的频道</div>';
+    return;
+  }
+  
+  let html = '';
+  for (let i = 0; i < list.length; i++) {
+    const c = list[i];
+    const isActive = channels.indexOf(c) === currentChannelIdx;
+    const isFav = favorites.includes(c.name);
+    const prog = getProgram(c.name, epgData);
+    const progText = prog && prog.current ? prog.current.title : '';
+    
+    html += `<div class="ch-item${isActive?' active':''}" onclick="playChannel(${channels.indexOf(c)})">
+      <div class="ch-icon">${c.logo ? `<img src="${c.logo}" onerror="this.style.display='none';this.parentNode.textContent='${c.name.charAt(0)}'">` : c.name.charAt(0)}</div>
+      <div class="ch-info">
+        <div class="ch-name">${c.name}</div>
+        ${progText ? `<div class="ch-prog">${progText}</div>` : ''}
+      </div>
+      <div class="ch-fav${isFav?' active':''}" onclick="event.stopPropagation();toggleFav('${c.name.replace(/'/g,"\\'")}')">${isFav?'★':'☆'}</div>
+      <div class="ch-play">▶</div>
+    </div>`;
+  }
+  container.innerHTML = html;
+}
+
+// ========== Navigation ==========
+function setGroup(g) {
+  currentGroup = g;
+  searchQuery = '';
+  document.getElementById('searchInput').value = '';
+  renderGroups();
+  renderChannels();
+  document.getElementById('channelList').scrollTop = 0;
+}
+function onSearch() {
+  searchQuery = document.getElementById('searchInput').value;
+  renderChannels();
+}
+
+// ========== Playback ==========
+function playChannel(idx) {
+  if (idx < 0 || idx >= channels.length) return;
+  currentChannelIdx = idx;
+  const ch = channels[idx];
+  document.getElementById('emptyPlayer').style.display = 'none';
+  
+  // Update UI
+  document.getElementById('nowChName').textContent = ch.name;
+  renderChannels();
+  updateEpg(ch.name);
+  showOverlay();
+  
+  // On mobile, switch to player view
+  if (isMobile) switchMobileMode('player');
+  
+  // Start playback
+  startPlayback(ch.url, ch.name);
+}
+
+function startPlayback(url, name) {
+  const video = document.getElementById('videoEl');
+  const state = document.getElementById('playerState');
+  const stateText = document.getElementById('stateText');
+  
+  // Stop current
+  if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+  video.pause();
+  video.removeAttribute('src');
+  video.style.display = 'none';
+  state.style.display = 'flex';
+  stateText.textContent = '加载中…';
+  isPlaying = false;
+  document.getElementById('playBtn').textContent = '▶';
+  
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isHLS = url.includes('.m3u8');
+  
+  if (isHLS && !isIOS && Hls.isSupported()) {
+    // Android/Desktop: use hls.js
+    const hls = new Hls();
+    hlsInstance = hls;
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.style.display = 'block';
+      state.style.display = 'none';
+      video.play().then(() => { isPlaying = true; document.getElementById('playBtn').textContent = '⏸'; }).catch(e => { stateText.textContent = '播放被阻断，请点击播放'; state.style.display = 'flex'; state.querySelector('.spinner').style.display = 'none'; });
+    });
+    hls.on(Hls.Events.ERROR, (ev, data) => {
+      if (data.fatal) { stateText.textContent = '播放失败: ' + (data.type || '未知错误'); state.style.display = 'flex'; state.querySelector('.spinner').style.display = 'none'; }
+    });
+  } else {
+    // iOS (native HLS) or direct stream
+    video.src = url;
+    video.style.display = 'block';
+    video.play().then(() => {
+      state.style.display = 'none';
+      isPlaying = true;
+      document.getElementById('playBtn').textContent = '⏸';
+    }).catch(e => {
+      stateText.textContent = '点击播放';
+      state.style.display = 'flex';
+      state.querySelector('.spinner').style.display = 'none';
+      video.addEventListener('play', () => { isPlaying = true; state.style.display = 'none'; document.getElementById('playBtn').textContent = '⏸'; }, { once: true });
+    });
+    video.addEventListener('error', () => {
+      stateText.textContent = '播放失败';
+      state.style.display = 'flex';
+      state.querySelector('.spinner').style.display = 'none';
+    });
+  }
+  
+  // Update scroll position
+  const el = document.querySelector(`.ch-item:nth-child(${getFiltered().indexOf(channels[idx]) + 1})`);
+  if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function togglePlay() {
+  const video = document.getElementById('videoEl');
+  if (video.paused) {
+    video.play().then(() => { isPlaying = true; document.getElementById('playBtn').textContent = '⏸'; }).catch(() => {});
+  } else {
+    video.pause(); isPlaying = false; document.getElementById('playBtn').textContent = '▶';
+  }
+}
+
+function prevChannel() {
+  const list = getFiltered();
+  const idx = list.findIndex(c => channels.indexOf(c) === currentChannelIdx);
+  if (idx > 0) playChannel(channels.indexOf(list[idx - 1]));
+}
+function nextChannel() {
+  const list = getFiltered();
+  const idx = list.findIndex(c => channels.indexOf(c) === currentChannelIdx);
+  if (idx < list.length - 1) playChannel(channels.indexOf(list[idx + 1]));
+}
+
+// ========== Overlay ==========
+function showOverlay() {
+  const overlay = document.getElementById('playerOverlay');
+  overlay.classList.add('show');
+  clearTimeout(overlayTimer);
+  overlayTimer = setTimeout(() => overlay.classList.remove('show'), 3000);
+}
+document.getElementById('playerWrap').addEventListener('click', (e) => {
+  if (e.target.closest('.bottom-controls') || e.target.closest('.top-bar')) return;
+  const overlay = document.getElementById('playerOverlay');
+  overlay.classList.toggle('show');
+  if (overlay.classList.contains('show')) {
+    clearTimeout(overlayTimer);
+    overlayTimer = setTimeout(() => overlay.classList.remove('show'), 3000);
+  }
+});
+
+// ========== EPG ==========
+function updateEpg(chName) {
+  const container = document.getElementById('playerEpg');
+  const prog = getProgram(chName, epgData);
+  if (!prog || (!prog.current && !prog.next)) {
+    container.innerHTML = '<div class="epg-none">暂无节目信息</div>';
+    return;
+  }
+  let html = '';
+  if (prog.current) {
+    const end = new Date(prog.current.stop).toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit'});
+    html += `<div class="epg-timebar"><span class="now">● 现在</span><span class="prog-name">${prog.current.title}</span><span class="prog-time">~${end}</span></div>`;
+    document.getElementById('nowChProg').textContent = prog.current.title;
+  }
+  if (prog.next) {
+    const nextStart = new Date(prog.next.start).toLocaleTimeString('zh-CN', {hour:'2-digit', minute:'2-digit'});
+    html += `<div class="epg-next"><span class="label">接下来</span><span class="next-name">${prog.next.title}</span><span class="next-time">${nextStart}</span></div>`;
+  }
+  container.innerHTML = html;
+}
+
+// ========== Favorites ==========
+function toggleFav(name) {
+  const idx = favorites.indexOf(name);
+  if (idx >= 0) favorites.splice(idx, 1);
+  else favorites.push(name);
+  localStorage.setItem('iptv-favs', JSON.stringify(favorites));
+  renderChannels();
+}
+
+// ========== Mode Toggle (Mobile) ==========
+function toggleMode() {
+  if (!isMobile) return;
+  const app = document.getElementById('app');
+  if (app.classList.contains('mode-list')) switchMobileMode('player');
+  else switchMobileMode('list');
+}
+function switchMobileMode(mode) {
+  const app = document.getElementById('app');
+  app.classList.remove('mode-list', 'mode-player');
+  app.classList.add('mode-' + mode);
+  document.querySelectorAll('.mobile-nav .nav-btn').forEach((el, i) => {
+    el.classList.toggle('active', (i===0 && mode==='list') || (i===1 && mode==='player'));
+  });
+}
+
+// ========== Init ==========
+loadData();
+
+// Resize handler
+window.addEventListener('resize', () => {
+  isMobile = window.innerWidth <= 820;
+});
+</script>
+</body>
+</html>
