@@ -736,7 +736,7 @@
   let filter = 'all';
   let searchQuery = '';
   let expandedCh = null;
-  let collapsedGroups = [];
+  let collapsedGroups = [...groupKeys]; // 默认全部折叠
   let refreshStatus = null;
   let refreshMsg = '';
 
@@ -786,7 +786,14 @@
 
   window.setFilter = function(f) {
     filter = f; expandedCh = null;
-    collapsedGroups = []; // 切换筛选时重置折叠状态
+    if (f === 'all') {
+      collapsedGroups = [...groupKeys]; // 全部→折叠
+    } else if (f === 'bad') {
+      collapsedGroups = []; // 异常→展开所有
+    } else {
+      // 选单个分类→只展开该分类
+      collapsedGroups = groupKeys.filter(k => k !== f);
+    }
     render();
   };
   window.setSearch = function(q) { searchQuery = q; render(); };
