@@ -943,7 +943,6 @@
 
     // ── 频道列表由 renderSections() 渲染到 #sections-root ──
 
-    html += `<div id="debug-info" style="padding:4px 12px;font-size:10px;color:rgba(255,255,255,0.3);font-family:monospace"></div>`;
     html += `<div id="sections-root"></div>`;
     html += `<div class="footer">✦ 数据每2天自动更新 · 手动刷新后约1-2分钟完成 ✦</div>`;
     app.innerHTML = html;
@@ -980,16 +979,7 @@
       renderGroups = [{ key: '异常频道', channels: badChs, isBad: true }];
     }
 
-    // DEBUG: 写入诊断信息
-    if (window.__debugCount === undefined) window.__debugCount = 0;
-    window.__debugCount++;
-    const debugInfo = document.getElementById('debug-info');
-    if (debugInfo) {
-      debugInfo.innerHTML = 'buildSectionsHTML#' + window.__debugCount
-        + ' 分组数:' + renderGroups.length
-        + ' 分组名:' + renderGroups.map(r=>r.key).join(',')
-        + ' 频道:' + data.channels.length;
-    }
+
 
     if (renderGroups.length === 0) {
       return `<div class="empty-state"><div class="big">🔍</div><h3>无匹配频道</h3><p>试试其他搜索词</p></div>`;
@@ -1078,7 +1068,6 @@
           <div class="section-body" style="display:${collapsed?'none':'block'}">${sectionBodyHtml}</div></div>`;
       }
 
-      groupsHtml += sectionHtml;
       groupsHtml += sectionHtml;
     });
 
