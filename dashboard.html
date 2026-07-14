@@ -97,6 +97,17 @@
   }
   .header-actions { display: flex; align-items: center; gap: 10px; }
   .header-logo { display: inline-flex; width: 24px; height: 24px; vertical-align: middle; }
+  .home-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--text2); cursor: pointer;
+    font-size: 14px; display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .home-btn:hover { border-color: var(--accent); }
+  .home-btn:active { transform: scale(0.88); }
   .theme-toggle {
     width: 34px; height: 34px; border-radius: 50%;
     border: 1px solid var(--card-border);
@@ -718,6 +729,7 @@
           <h1><span class="accent-dot"></span><span class="header-logo"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="2.5" fill="var(--accent)" stroke="none"/><path d="M14 34 A18 18 0 0 1 34 34" stroke="var(--accent)" stroke-width="2.5" fill="none" opacity="0.85"/><path d="M9 29 A24 24 0 0 1 39 29" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.5"/><path d="M4 24 A30 30 0 0 1 44 24" stroke="var(--accent)" stroke-width="1.5" fill="none" opacity="0.25"/></svg></span> IPTV 频道状态 <span class="update-capsule"><span class="dot"></span>${data.lastUpdate||'未知'}</span></h1>
         </div>
         <div class="header-actions">
+          <a href="/" class="home-btn" title="返回首页">🏠</a>
           <button class="theme-toggle" onclick="toggleTheme()" title="切换日夜模式">${getThemeIcon()}</button>
           <button class="refresh-btn" onclick="triggerRefresh()" ${btnDisabled?'disabled':''}>${btnLabel}</button>
         </div>
