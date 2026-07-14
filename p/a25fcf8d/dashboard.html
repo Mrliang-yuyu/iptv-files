@@ -484,35 +484,72 @@
   /* ── Phone ── */
   @media (max-width: 520px) {
     body { padding: 8px; }
-    .card-header { padding: 12px 14px; gap: 8px; }
-    .card-header h1 { font-size: 17px; }
-    .card-row { gap: 8px; }
+    .container { padding: 0 8px; }
 
-    .refresh-btn { padding: 6px 12px; font-size: 12px; }
+    /* 顶部导航 */
+    .top-nav { gap: 4px; }
+    .back-link, .config-link { font-size: 11px; padding: 2px 6px; }
 
+    /* 头部卡片 */
+    .card-header { padding: 10px 12px; gap: 6px; }
+    .card-header h1 { font-size: 15px; }
+    .header-logo { width: 20px; height: 20px; }
 
+    /* 三大卡片 → 纵向堆叠 */
+    .card-row { flex-direction: column; gap: 8px; }
+    .card-row .group-card { padding: 10px 14px; }
+    .card-row .group-card:nth-child(1) { flex: 1; }
+    .card-row .group-card:nth-child(2) { flex: 1; }
+    .card-row .group-card:nth-child(3) { flex: 1; }
 
+    /* 健康卡 */
+    .health-card-wrap { gap: 10px; }
+    .health-card-wrap .donut-sm { width: 44px; height: 44px; }
+    .health-card-wrap .donut-sm .hole { inset: 6px; }
+    .health-card-wrap .donut-sm .hole .n { font-size: 12px; }
+    .health-card-wrap .donut-sm .hole .l { font-size: 6px; }
+    .health-card-wrap .legend .item { font-size: 11px; }
 
+    /* 统计卡 */
+    .stat-grid { flex-wrap: wrap; gap: 6px; justify-content: flex-start; }
+    .stat-grid .s-item { flex: 0 0 33%; }
+    .stat-grid .s-item .n { font-size: 16px; }
+    .stat-grid .s-item .l { font-size: 9px; }
 
+    /* URL 卡 */
+    .url-wrap .u-row .val { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .url-wrap .u-row .cpy { font-size: 10px; padding: 1px 5px; }
 
+    /* 工具栏 */
+    .toolbar { padding: 8px 10px; gap: 6px; }
+    .search-input { min-width: 100px; font-size: 12px; padding: 5px 10px; }
+    .filter-bar { gap: 4px; flex-wrap: wrap; }
+    .filter-btn { font-size: 11px; padding: 3px 8px; }
 
-    .section-header { padding: 9px 12px; gap: 6px; }
-    .section-header .title { font-size: 13px; }
+    .refresh-btn { padding: 5px 10px; font-size: 11px; }
+    .theme-toggle { width: 30px; height: 30px; font-size: 14px; }
 
+    /* 状态栏 */
+    .status-bar { padding: 6px 10px; font-size: 12px; gap: 6px; }
 
+    /* 分组 */
+    .section-header { padding: 8px 10px; gap: 5px; }
+    .section-header .title { font-size: 12px; }
+
+    /* 频道行 */
     .channel-row {
       grid-template-columns: 1fr auto;
-      padding: 7px 12px 7px 14px;
+      padding: 6px 10px 6px 12px;
     }
-    .channel-info .name { font-size: 12px; }
+    .channel-info .name { font-size: 11px; }
     .channel-info .name .status-dot { display: inline-block; }
-    .channel-info .meta { font-size: 10px; }
-    .source-badge { font-size: 9px; padding: 1px 5px; }
+    .channel-info .meta { font-size: 9px; }
+    .source-badge { font-size: 8px; padding: 1px 4px; }
     .ch-status { display: none; }
 
-    .detail-inner { padding: 6px 10px; }
-    .detail-table td { font-size: 10px; padding: 2px 6px; }
-    .detail-table th { font-size: 10px; padding: 2px 6px; }
+    .detail-inner { padding: 5px 8px; }
+    .detail-table td { font-size: 9px; padding: 1px 4px; }
+    .detail-table th { font-size: 9px; padding: 1px 4px; }
   }
 </style>
 </head>
