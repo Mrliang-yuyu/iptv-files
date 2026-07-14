@@ -32,13 +32,13 @@ http://74.91.26.218:82/live/cctv14hd.m3u8
 #EXTINF:-1 group-title="央视",CCTV-15音乐HD
 http://74.91.26.218:82/live/cctv15hd.m3u8
 #EXTINF:-1 group-title="央视",CCTV-16奥林匹克HD
-http://74.91.26.218:82/live/cctv16hd.m3u8
+http://112.85.93.6:7788/608807422
 #EXTINF:-1 group-title="央视",CCTV-17农业农村HD
 http://74.91.26.218:82/live/cctv17hd.m3u8
 #EXTINF:-1 group-title="央视",CCTV-4K超高清
 http://74.91.26.218:82/live/cctv4k.m3u8
 #EXTINF:-1 group-title="央视",CGTN高清
-http://74.91.26.218:82/live/cgtnhd.m3u8
+http://112.85.93.6:7788/609017205
 #EXTINF:-1 group-title="央视",CCTV-8K (8K)
 https://cdn3.163189.xyz/163189/cctv8k
 #EXTINF:-1 group-title="央视",CCTV-Storm Football (1080p)

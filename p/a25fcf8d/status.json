@@ -173,8 +173,8 @@
       "name": "CCTV-16奥林匹克HD",
       "group": "央视",
       "main": {
-        "url": "http://74.91.26.218:82/live/cctv16hd.m3u8",
-        "latency": 0.52,
+        "url": "http://112.85.93.6:7788/608807422",
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": []
@@ -203,8 +203,8 @@
       "name": "CGTN高清",
       "group": "央视",
       "main": {
-        "url": "http://74.91.26.218:82/live/cgtnhd.m3u8",
-        "latency": 0.51,
+        "url": "http://112.85.93.6:7788/609017205",
+        "latency": 0.4,
         "status": "ok"
       },
       "backups": []
