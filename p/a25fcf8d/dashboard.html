@@ -484,96 +484,35 @@
   /* ── Phone ── */
   @media (max-width: 520px) {
     body { padding: 8px; }
-    .container { padding: 0; }
+    .card-header { padding: 12px 14px; gap: 8px; }
+    .card-header h1 { font-size: 17px; }
+    .card-row { gap: 8px; }
 
-    /* 顶部导航 */
-    .top-nav { gap: 4px; margin-bottom: 4px; }
-    .back-link, .config-link { font-size: 11px; padding: 2px 6px; }
+    .refresh-btn { padding: 6px 12px; font-size: 12px; }
 
-    /* 头部卡片 */
-    .card-header { padding: 10px 12px; gap: 6px; border-radius: 10px; }
-    .card-header h1 { font-size: 15px; }
-    .header-logo { width: 20px; height: 20px; }
-    .update-capsule { font-size: 10px; padding: 2px 6px; }
 
-    /* 三卡：健康+网址并排，统计单独 */
-    .card-row { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 8px; 
-    }
-    .card-row .group-card { padding: 10px 12px; }
-    .card-row .group-card:nth-child(3) { grid-column: 1 / -1; }
 
-    /* 健康卡横排居中 */
-    .health-card-wrap { gap: 12px; justify-content: center; }
-    .health-card-wrap .donut-sm { width: 48px; height: 48px; flex-shrink: 0; }
-    .health-card-wrap .donut-sm .hole { inset: 6px; }
-    .health-card-wrap .donut-sm .hole .n { font-size: 14px; }
-    .health-card-wrap .donut-sm .hole .l { font-size: 7px; }
-    .health-card-wrap .legend .item { font-size: 12px; }
 
-    /* 统计卡：3+2居中排列 */
-    .stat-grid {
-      display: flex; flex-wrap: wrap;
-      gap: 8px 4px;
-      justify-content: center;
-      max-width: 300px; margin: 0 auto;
-    }
-    .stat-grid .s-item { flex: 0 0 30%; text-align: center; }
-    .stat-grid .s-item .n { font-size: 17px; }
-    .stat-grid .s-item .l { font-size: 10px; margin-top: 2px; }
 
-    /* URL 卡：两端对齐 */
-    .url-wrap .u-row { justify-content: space-between; }
-    .url-wrap .u-row .val { font-size: 11px; }
-    .url-wrap .u-row .cpy { font-size: 10px; padding: 1px 6px; flex-shrink: 0; }
 
-    /* 工具栏：搜索一行，筛选水平滚动一行 */
-    .toolbar { 
-      padding: 8px 10px; gap: 6px; 
-      flex-direction: column; align-items: stretch;
-    }
-    .search-input { font-size: 12px; padding: 6px 10px; min-width: 0; }
-    .filter-bar {
-      display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 4px;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 2px;
-    }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .filter-btn { font-size: 11px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; }
 
-    .refresh-btn { padding: 5px 10px; font-size: 11px; }
-    .theme-toggle { width: 30px; height: 30px; font-size: 14px; }
+    .section-header { padding: 9px 12px; gap: 6px; }
+    .section-header .title { font-size: 13px; }
 
-    .status-bar { padding: 6px 10px; font-size: 12px; gap: 6px; }
 
-    /* 分组 */
-    .section-header { padding: 8px 10px; gap: 5px; }
-    .section-header .title { font-size: 12px; }
-    .section-header .health-bar { height: 4px; }
-    .section-header .health-fill { height: 4px; }
-    .section-header .rate-badge { font-size: 10px; padding: 0 4px; }
-
-    /* 频道行 */
     .channel-row {
       grid-template-columns: 1fr auto;
-      padding: 6px 10px 6px 12px;
+      padding: 7px 12px 7px 14px;
     }
     .channel-info .name { font-size: 12px; }
-    .channel-info .name .status-dot { display: inline-block; width: 6px; height: 6px; }
+    .channel-info .name .status-dot { display: inline-block; }
     .channel-info .meta { font-size: 10px; }
     .source-badge { font-size: 9px; padding: 1px 5px; }
     .ch-status { display: none; }
 
-    .detail-inner { padding: 5px 8px; }
-    .detail-table td { font-size: 10px; padding: 2px 5px; }
-    .detail-table th { font-size: 10px; padding: 2px 5px; }
-
-    .loading, .error-state, .empty-state { padding: 40px 16px; }
-    .loading .spinner { width: 24px; height: 24px; border-width: 2px; }
-
-    .search-input { flex: 1 1 auto; }
+    .detail-inner { padding: 6px 10px; }
+    .detail-table td { font-size: 10px; padding: 2px 6px; }
+    .detail-table th { font-size: 10px; padding: 2px 6px; }
   }
 </style>
 </head>
@@ -591,7 +530,7 @@
   let data;
 
   try {
-    const res = await fetch('https://iptv-live-btg.pages.dev/p/a25fcf8d/status.json?_=' + Date.now());
+    const res = await fetch('https://iptv-live-btg.pages.dev/status.json?_=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch (e) {
@@ -677,7 +616,7 @@
   // ── Refresh ──
   async function fetchRefreshStatus() {
     try {
-      const r = await fetch('https://iptv-live-btg.pages.dev/p/a25fcf8d/refresh.json?_='+Date.now());
+      const r = await fetch('https://iptv-live-btg.pages.dev/refresh.json?_='+Date.now());
       if (r.ok) return await r.json();
     } catch(e) {}
     return null;
@@ -744,7 +683,7 @@
           if (rf.status==='running') { refreshStatus='running'; refreshMsg='⏳ 正在测速中'+(rf.progress?' ('+rf.progress+')':'...'); render(); }
           else if (rf.status==='completed') { refreshStatus='completed'; refreshMsg='✅ 测速完成，自动部署中'+(rf.duration?' ('+rf.duration+'秒)':''); render(); }
         }
-        const sr = await fetch('https://iptv-live-btg.pages.dev/p/a25fcf8d/status.json?_='+Date.now());
+        const sr = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now());
         if (sr.ok) {
           const nd = await sr.json();
           if (nd.lastUpdate !== lastUpdateBefore && lastUpdateBefore !== null) {
@@ -794,7 +733,7 @@
     const icons = { ok:'✓', slow:'⚠', bad:'✕' };
 
     let html = `
-      <div class="top-nav"><a href="/" class="back-link"><span class="back-arrow">←</span> 返回首页</a><a href="https://iptv-live-btg.pages.dev/p/a25fcf8d/config.html" class="config-link">配置方法</a></div>
+      <div class="top-nav"><a href="/" class="back-link"><span class="back-arrow">←</span> 返回首页</a><a href="/config.html" class="config-link">查看配置方法</a></div>
       <div class="card-header">
         <div class="header-left">
           <h1><span class="accent-dot"></span><span class="header-logo"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="2.5" fill="var(--accent)" stroke="none"/><path d="M14 34 A18 18 0 0 1 34 34" stroke="var(--accent)" stroke-width="2.5" fill="none" opacity="0.85"/><path d="M9 29 A24 24 0 0 1 39 29" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.5"/><path d="M4 24 A30 30 0 0 1 44 24" stroke="var(--accent)" stroke-width="1.5" fill="none" opacity="0.25"/></svg></span> IPTV 频道状态 <span class="update-capsule"><span class="dot"></span>${data.lastUpdate||'未知'}</span></h1>
@@ -838,13 +777,13 @@
           <div class="url-wrap">
             <div class="u-row">
               <span class="lbl">📋</span>
-              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u'}</span>
-              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev/p/a25fcf8d/live.m3u'}')">复制</span>
+              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/live.m3u</span>
+              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/live.m3u')">复制</span>
             </div>
             <div class="u-row">
               <span class="lbl">📆</span>
-              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml'}</span>
-              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev/p/a25fcf8d/e.xml'}')">复制</span>
+              <span class="val" onclick="this.select()">${'https://iptv-live-btg.pages.dev'}/e.xml</span>
+              <span class="cpy" onclick="copyUrl(this,'${'https://iptv-live-btg.pages.dev'}/e.xml')">复制</span>
             </div>
           </div>
         </div>
@@ -1007,7 +946,7 @@
 
   setInterval(async () => {
     if (refreshStatus==='requested'||refreshStatus==='running') return;
-    try { const r = await fetch('https://iptv-live-btg.pages.dev/p/a25fcf8d/status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
+    try { const r = await fetch('https://iptv-live-btg.pages.dev/status.json?_='+Date.now()); if (r.ok) { data = await r.json(); render(); } } catch(e) {}
   }, 60000);
 })();
 
