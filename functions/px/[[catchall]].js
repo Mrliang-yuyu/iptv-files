@@ -1,10 +1,10 @@
 // IPTV Stream Proxy — bypasses mixed-content blocking for HTTP video streams
 // Served via Cloudflare Pages Functions at the same domain.
-// Request pattern: /p/a25fcf8d/px/{encodeURIComponent(targetUrl)}
+// Request pattern: /px/{encodeURIComponent(targetUrl)}
 export async function onRequest(context) {
   const { request } = context;
   const url = new URL(request.url);
-  const proxyPath = url.pathname.replace('/p/a25fcf8d/px/', '');
+  const proxyPath = url.pathname.replace('/px/', '');
 
   if (!proxyPath) return new Response('Missing target URL', { status: 400 });
 
@@ -34,7 +34,7 @@ export async function onRequest(context) {
         try {
           const abs = /^https?:\/\//i.test(t) ? t : new URL(t, baseDir).href;
           if (!abs.startsWith('http://')) return abs;
-          return '/p/a25fcf8d/px/' + encodeURIComponent(abs);
+          return '/px/' + encodeURIComponent(abs);
         } catch { return line; }
       });
 
