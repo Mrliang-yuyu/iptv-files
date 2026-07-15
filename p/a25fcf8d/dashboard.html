@@ -618,6 +618,12 @@
 
   // ── Refresh ──
   async function fetchRefreshStatus() {
+    // 先尝试从 NAS 面板实时获取（进度条实时更新）
+    try {
+      const r = await fetch(NAS_API+'/probe-status?_='+Date.now(), {mode:'cors'});
+      if (r.ok) { const d = await r.json(); if (d.status) return d; }
+    } catch(e) {}
+    // 回退到 CF Pages 的 refresh.json
     try {
       const r = await fetch('https://iptv-live-btg.pages.dev/refresh.json?_='+Date.now());
       if (r.ok) return await r.json();
@@ -665,12 +671,20 @@
   window.triggerRefresh = function() {
     if (refreshStatus==='sending'||refreshStatus==='requested'||refreshStatus==='running') return;
     refreshStatus = 'sending'; refreshMsg = '发送请求...'; render();
-    const sent = navigator.sendBeacon('https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43','probe_trigger');
-    if (sent) { refreshStatus='requested'; refreshMsg='已发送请求，等待测速开始...'; render(); startRefreshPoll(); }
-    else { refreshStatus='failed'; refreshMsg='请求发送失败'; render(); }
+    // 通过 NAS 面板触发（在国内访问更可靠）
+    fetch(NAS_API+'/trigger-probe', {mode:'cors', cache:'no-store'})
+      .then(r => { if (r.ok) { refreshStatus='requested'; refreshMsg='已发送请求，等待测速开始...'; render(); startRefreshPoll(); }
+        else { refreshStatus='failed'; refreshMsg='请求发送失败'; render(); }
+      }).catch(() => {
+        // 备用：webhook.site 直连
+        const sent = navigator.sendBeacon('https://webhook.site/d59be1a7-192a-4fde-acc6-021ed592ae43','probe_trigger');
+        if (sent) { refreshStatus='requested'; refreshMsg='已发送请求，等待测速开始...'; render(); startRefreshPoll(); }
+        else { refreshStatus='failed'; refreshMsg='请求发送失败'; render(); }
+      });
   };
 
   let refreshPollTimer = null;
+  const NAS_API = 'https://nas.luac1998.ccwu.cc/api/public';
   function startRefreshPoll() {
     if (refreshPollTimer) clearInterval(refreshPollTimer);
     const start = Date.now(), maxWait=180000;
