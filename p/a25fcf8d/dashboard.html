@@ -593,6 +593,8 @@
   let refreshStatus = null;
   let refreshMsg = '';
   let refreshProgress = null;
+  let refreshStartTime = null;
+  let refreshTimer = null;
 
   function computeBreakdown() {
     let ok=0, slow=0, bad=0;
@@ -683,16 +685,16 @@
         if (rf) {
                     if (rf.status==='running') {
             refreshStatus='running';
-            const step=rf.step||'测速中'; const pct=rf.progress||0; const sec=rf.elapsed||0;
-            refreshMsg='⏳ '+step+' ('+sec+'秒)';
-            refreshProgress={pct, step, sec};
+            const step=rf.step||'测速中'; const pct=rf.progress||0;
+            refreshStartTime=Date.now();
+            refreshProgress={pct, step, sec:0};
             render();
           }
                     else if (rf.status==='completed') {
             refreshStatus='completed';
-            const sec=rf.elapsed||rf.duration||0;
-            refreshMsg='✅ 测速完成，自动部署中 ('+sec+'秒)';
-            refreshProgress={pct:100, step:'完成', sec};
+            refreshMsg='✅ 测速完成，自动部署中';
+            refreshProgress={pct:100, step:'完成', sec:0};
+            refreshStartTime=null;
             render();
           }
         }
@@ -735,6 +737,17 @@
     const btnLabel = btnMap[refreshStatus] || '🔄 手动测速';
     const btnDisabled = refreshStatus && refreshStatus!=='failed' && refreshStatus!=='completed';
 
+    // 实时计时器
+    if (refreshStartTime && !refreshTimer) {
+      refreshTimer = setInterval(() => {
+        if (refreshProgress) {
+          refreshProgress.sec = Math.floor((Date.now() - refreshStartTime) / 1000);
+          render();
+        }
+      }, 1000);
+    } else if (!refreshStartTime && refreshTimer) {
+      clearInterval(refreshTimer); refreshTimer = null;
+    }
     const sp = refreshProgress||{};
     const showProg = refreshStatus==='running'||refreshStatus==='completed';
     const statusBar = refreshStatus ? `
