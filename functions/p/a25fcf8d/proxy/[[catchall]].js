@@ -42,7 +42,8 @@ export async function onRequest(context) {
         headers: {
           'Content-Type': 'application/vnd.apple.mpegurl',
           'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'no-cache',
+          'Cache-Control': 'no-cache, no-store',
+          'CDN-Cache-Control': 'no-store',
         },
       });
     }
@@ -50,7 +51,8 @@ export async function onRequest(context) {
     // ── Direct stream proxy (MPEG-TS / .ts segments / etc.) ──
     const h = new Headers(resp.headers);
     h.set('Access-Control-Allow-Origin', '*');
-    h.set('Cache-Control', 'no-cache');
+    h.set('Cache-Control', 'no-cache, no-store');
+    h.set('CDN-Cache-Control', 'no-store');
     return new Response(resp.body, { status: resp.status, headers: h });
 
   } catch (e) {
