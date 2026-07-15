@@ -231,7 +231,7 @@ function toggleTheme() {
 // Proxy: HTTP streams go through Cloudflare Pages Function (bypasses mixed-content blocking)
 function streamUrl(url) {
   if (location.protocol === 'https:' && url.startsWith('http://')) {
-    return '/p/a25fcf8d/proxy/' + encodeURIComponent(url);
+    return '/p/a25fcf8d/px/' + encodeURIComponent(url);
   }
   return url;
 }
