@@ -1,11 +1,11 @@
 {
-  "lastUpdate": "2026-07-15 18:02 北京时间",
-  "duration": 23.1,
+  "lastUpdate": "2026-07-15 18:03 北京时间",
+  "duration": 23.5,
   "stats": {
     "channels": 101,
     "totalSources": 301,
-    "availableSources": 190,
-    "okRate": 63.1,
+    "availableSources": 196,
+    "okRate": 65.1,
     "mainWithIssues": 1
   },
   "channels": [
@@ -14,7 +14,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv1hd.m3u8",
-        "latency": 1.1,
+        "latency": 2.4,
         "status": "ok"
       },
       "backups": []
@@ -24,7 +24,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv2hd.m3u8",
-        "latency": 1.16,
+        "latency": 1.38,
         "status": "ok"
       },
       "backups": []
@@ -34,7 +34,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv3hd.m3u8",
-        "latency": 1.1,
+        "latency": 1.11,
         "status": "ok"
       },
       "backups": []
@@ -44,7 +44,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv4hd.m3u8",
-        "latency": 1.05,
+        "latency": 1.08,
         "status": "ok"
       },
       "backups": []
@@ -54,7 +54,7 @@
       "group": "央视",
       "main": {
         "url": "http://112.85.93.6:7788/641886683",
-        "latency": 0.53,
+        "latency": 0.36,
         "status": "ok"
       },
       "backups": []
@@ -64,7 +64,7 @@
       "group": "央视",
       "main": {
         "url": "http://112.85.93.6:7788/641886773",
-        "latency": 0.59,
+        "latency": 0.28,
         "status": "ok"
       },
       "backups": []
@@ -74,7 +74,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv6hd.m3u8",
-        "latency": 1.17,
+        "latency": 1.36,
         "status": "ok"
       },
       "backups": []
@@ -84,7 +84,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv7hd.m3u8",
-        "latency": 1.15,
+        "latency": 1.62,
         "status": "ok"
       },
       "backups": []
@@ -94,7 +94,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv8hd.m3u8",
-        "latency": 1.17,
+        "latency": 3.31,
         "status": "ok"
       },
       "backups": []
@@ -104,7 +104,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv9hd.m3u8",
-        "latency": 1.19,
+        "latency": 2.26,
         "status": "ok"
       },
       "backups": []
@@ -114,7 +114,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv10hd.m3u8",
-        "latency": 1.26,
+        "latency": 2.3,
         "status": "ok"
       },
       "backups": []
@@ -124,7 +124,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv11hd.m3u8",
-        "latency": 1.17,
+        "latency": 1.44,
         "status": "ok"
       },
       "backups": []
@@ -134,7 +134,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv12hd.m3u8",
-        "latency": 1.16,
+        "latency": 1.41,
         "status": "ok"
       },
       "backups": []
@@ -144,7 +144,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv13hd.m3u8",
-        "latency": 1.05,
+        "latency": 1.34,
         "status": "ok"
       },
       "backups": []
@@ -154,7 +154,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv14hd.m3u8",
-        "latency": 1.15,
+        "latency": 1.36,
         "status": "ok"
       },
       "backups": []
@@ -164,7 +164,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv15hd.m3u8",
-        "latency": 1.03,
+        "latency": 1.3,
         "status": "ok"
       },
       "backups": []
@@ -174,7 +174,7 @@
       "group": "央视",
       "main": {
         "url": "http://112.85.93.6:7788/608807422",
-        "latency": 0.31,
+        "latency": 1.31,
         "status": "ok"
       },
       "backups": []
@@ -184,7 +184,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv17hd.m3u8",
-        "latency": 1.22,
+        "latency": 1.04,
         "status": "ok"
       },
       "backups": []
@@ -194,7 +194,7 @@
       "group": "央视",
       "main": {
         "url": "http://74.91.26.218:82/live/cctv4k.m3u8",
-        "latency": 0.58,
+        "latency": 0.5,
         "status": "ok"
       },
       "backups": []
@@ -204,7 +204,7 @@
       "group": "央视",
       "main": {
         "url": "http://112.85.93.6:7788/609017205",
-        "latency": 0.42,
+        "latency": 0.28,
         "status": "ok"
       },
       "backups": []
@@ -214,7 +214,7 @@
       "group": "央视",
       "main": {
         "url": "https://cdn3.163189.xyz/163189/cctv8k",
-        "latency": 0.49,
+        "latency": 0.39,
         "status": "错误"
       },
       "backups": []
@@ -224,7 +224,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvzq.m3u8",
-        "latency": 0.64,
+        "latency": 0.48,
         "status": "ok"
       },
       "backups": []
@@ -234,7 +234,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvyy.m3u8",
-        "latency": 0.54,
+        "latency": 0.82,
         "status": "ok"
       },
       "backups": []
@@ -244,7 +244,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvjc.m3u8",
-        "latency": 0.62,
+        "latency": 0.81,
         "status": "ok"
       },
       "backups": []
@@ -254,7 +254,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvdyjc.m3u8",
-        "latency": 0.6,
+        "latency": 0.5,
         "status": "ok"
       },
       "backups": []
@@ -264,7 +264,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvhx.m3u8",
-        "latency": 0.59,
+        "latency": 0.5,
         "status": "ok"
       },
       "backups": []
@@ -274,7 +274,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvzp.m3u8",
-        "latency": 0.63,
+        "latency": 0.48,
         "status": "ok"
       },
       "backups": []
@@ -284,7 +284,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvdl.m3u8",
-        "latency": 0.62,
+        "latency": 0.5,
         "status": "ok"
       },
       "backups": []
@@ -294,7 +294,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvns.m3u8",
-        "latency": 0.62,
+        "latency": 0.52,
         "status": "ok"
       },
       "backups": []
@@ -304,7 +304,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvjk.m3u8",
-        "latency": 0.54,
+        "latency": 0.81,
         "status": "ok"
       },
       "backups": []
@@ -314,7 +314,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvwq.m3u8",
-        "latency": 0.5,
+        "latency": 0.62,
         "status": "ok"
       },
       "backups": []
@@ -324,7 +324,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvtq.m3u8",
-        "latency": 0.54,
+        "latency": 1.34,
         "status": "ok"
       },
       "backups": []
@@ -334,7 +334,7 @@
       "group": "央视",
       "main": {
         "url": "http://69.30.245.50/live/cctvgl.m3u8",
-        "latency": 1.3,
+        "latency": 0.55,
         "status": "ok"
       },
       "backups": []
@@ -344,24 +344,24 @@
       "group": "备用",
       "main": {
         "url": "http://183.247.194.196:7788/961023778",
-        "latency": 0.39,
+        "latency": 0.38,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://112.85.93.6:7788/961023778",
-          "latency": 0.45,
+          "latency": 0.44,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/961023778",
-          "latency": 0.34,
+          "latency": 0.27,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/961023778",
-          "latency": 0.27,
-          "status": "HTTP 604"
+          "latency": 5.01,
+          "status": "错误"
         }
       ]
     },
@@ -370,23 +370,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/849116810",
-        "latency": 0.18,
+        "latency": 0.16,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://2280.eu.org:1234/849116810",
-          "latency": 0.21,
+          "latency": 0.37,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/849116810",
-          "latency": 0.43,
+          "latency": 0.38,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/849116810",
-          "latency": 0.53,
+          "latency": 0.57,
           "status": "ok"
         }
       ]
@@ -396,23 +396,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/651632648",
-        "latency": 0.5,
+        "latency": 0.43,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/651632648",
-          "latency": 3.56,
+          "latency": 1.23,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/651632648",
-          "latency": 0.85,
+          "latency": 0.32,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/651632648",
-          "latency": 0.36,
+          "latency": 0.59,
           "status": "HTTP 604"
         }
       ]
@@ -422,23 +422,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/956904896",
-        "latency": 0.3,
+        "latency": 0.43,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/956904896",
-          "latency": 0.51,
+          "latency": 0.43,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/956904896",
-          "latency": 1.8,
+          "latency": 0.56,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/956904896",
-          "latency": 0.28,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -448,49 +448,49 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/630287636",
-        "latency": 0.38,
+        "latency": 0.42,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/630287636",
-          "latency": 0.56,
+          "latency": 0.73,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/630287636",
-          "latency": 0.87,
+          "latency": 0.46,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/630287636",
-          "latency": 0.27,
+          "latency": 0.38,
           "status": "HTTP 604"
         }
       ]
     },
     {
       "name": "吉林卫视",
-      "group": "卫视",
+      "group": "备用",
       "main": {
-        "url": "http://112.85.93.6:7788/947472500",
-        "latency": 0.41,
+        "url": "http://182.85.163.168:5678/947472500",
+        "latency": 0.38,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/947472500",
-          "latency": 0.51,
+          "url": "http://112.85.93.6:7788/947472500",
+          "latency": 0.47,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/947472500",
-          "latency": 0.95,
+          "latency": 5.52,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/947472500",
-          "latency": 0.3,
+          "latency": 0.24,
           "status": "HTTP 604"
         }
       ]
@@ -500,23 +500,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/608917627",
-        "latency": 0.44,
+        "latency": 0.31,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608917627",
-          "latency": 2.24,
+          "latency": 1.1,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/608917627",
-          "latency": 0.55,
+          "latency": 1.61,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608917627",
-          "latency": 0.27,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -526,18 +526,18 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738910535",
-        "latency": 0.29,
+        "latency": 0.32,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/738910535",
-          "latency": 0.43,
+          "latency": 0.42,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/738910535",
-          "latency": 4.76,
+          "latency": 1.26,
           "status": "ok"
         },
         {
@@ -552,23 +552,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/608831231",
-        "latency": 0.4,
+        "latency": 0.59,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608831231",
-          "latency": 0.77,
+          "latency": 1.7,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/608831231",
-          "latency": 0.48,
+          "latency": 1.36,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608831231",
-          "latency": 0.3,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -578,23 +578,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/623899368",
-        "latency": 0.34,
+        "latency": 0.37,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/623899368",
-          "latency": 6.04,
-          "status": "错误"
+          "latency": 0.43,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/623899368",
-          "latency": 1.74,
+          "latency": 0.3,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/623899368",
-          "latency": 0.27,
+          "latency": 0.32,
           "status": "HTTP 604"
         }
       ]
@@ -604,23 +604,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/783847495",
-        "latency": 0.32,
+        "latency": 0.35,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/783847495",
-          "latency": 0.44,
+          "latency": 0.76,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/783847495",
-          "latency": 2.63,
+          "latency": 3.1,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/783847495",
-          "latency": 0.27,
+          "latency": 0.25,
           "status": "HTTP 604"
         }
       ]
@@ -630,23 +630,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/962042070",
-        "latency": 0.36,
+        "latency": 0.4,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/962042070",
-          "latency": 0.6,
+          "latency": 0.59,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/962042070",
-          "latency": 0.84,
+          "latency": 3.36,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/962042070",
-          "latency": 0.29,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -656,49 +656,49 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/790187291",
-        "latency": 0.31,
+        "latency": 0.38,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/790187291",
-          "latency": 6.03,
-          "status": "错误"
+          "latency": 0.57,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/790187291",
-          "latency": 0.77,
+          "latency": 0.38,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/790187291",
-          "latency": 0.29,
+          "latency": 0.32,
           "status": "HTTP 604"
         }
       ]
     },
     {
       "name": "海南卫视",
-      "group": "卫视",
+      "group": "备用",
       "main": {
-        "url": "http://112.85.93.6:7788/947472502",
-        "latency": 0.35,
+        "url": "http://182.85.163.168:5678/947472502",
+        "latency": 0.47,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/947472502",
-          "latency": 0.47,
+          "url": "http://112.85.93.6:7788/947472502",
+          "latency": 0.53,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/947472502",
-          "latency": 6.04,
-          "status": "错误"
+          "latency": 0.78,
+          "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/947472502",
-          "latency": 0.31,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -708,23 +708,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/849119120",
-        "latency": 0.38,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/849119120",
-          "latency": 0.65,
+          "latency": 1.96,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/849119120",
-          "latency": 0.36,
+          "latency": 0.3,
           "status": "HTTP 604"
         },
         {
           "url": "http://182.85.163.168:5678/849119120",
-          "latency": 0.43,
+          "latency": 0.52,
           "status": "HTTP 604"
         }
       ]
@@ -734,23 +734,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472496",
-        "latency": 0.33,
+        "latency": 0.36,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/947472496",
-          "latency": 0.79,
+          "latency": 0.66,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/947472496",
-          "latency": 0.37,
+          "latency": 0.34,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/947472496",
-          "latency": 0.36,
+          "latency": 0.32,
           "status": "HTTP 604"
         }
       ]
@@ -760,23 +760,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/630291707",
-        "latency": 0.44,
+        "latency": 0.5,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/630291707",
-          "latency": 1.75,
+          "latency": 1.16,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/630291707",
-          "latency": 0.36,
+          "latency": 0.41,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/630291707",
-          "latency": 0.23,
+          "latency": 0.34,
           "status": "HTTP 604"
         }
       ]
@@ -786,23 +786,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738910914",
-        "latency": 0.36,
+        "latency": 0.38,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/738910914",
-          "latency": 0.42,
+          "latency": 0.44,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/738910914",
-          "latency": 6.01,
-          "status": "错误"
+          "latency": 0.65,
+          "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/738910914",
-          "latency": 0.28,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -817,18 +817,18 @@
       },
       "backups": [
         {
-          "url": "http://183.247.194.196:7788/738910838",
-          "latency": 0.4,
+          "url": "http://182.85.163.168:5678/738910838",
+          "latency": 0.79,
           "status": "ok"
         },
         {
-          "url": "http://182.85.163.168:5678/738910838",
-          "latency": 0.58,
-          "status": "ok"
+          "url": "http://183.247.194.196:7788/738910838",
+          "latency": 6.03,
+          "status": "错误"
         },
         {
           "url": "http://2280.eu.org:1234/738910838",
-          "latency": 0.28,
+          "latency": 0.3,
           "status": "HTTP 604"
         }
       ]
@@ -838,23 +838,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/947472506",
-        "latency": 0.37,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/947472506",
-          "latency": 1.13,
+          "url": "http://183.247.194.196:7788/947472506",
+          "latency": 0.84,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/947472506",
-          "latency": 1.57,
+          "url": "http://182.85.163.168:5678/947472506",
+          "latency": 1.15,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/947472506",
-          "latency": 0.23,
+          "latency": 0.25,
           "status": "HTTP 604"
         }
       ]
@@ -864,23 +864,23 @@
       "group": "卫视",
       "main": {
         "url": "http://112.85.93.6:7788/738906901",
-        "latency": 0.55,
+        "latency": 0.32,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/738906901",
-          "latency": 0.58,
+          "latency": 0.64,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/738906901",
-          "latency": 1.13,
+          "latency": 4.25,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/738906901",
-          "latency": 0.3,
+          "latency": 0.34,
           "status": "HTTP 604"
         }
       ]
@@ -890,23 +890,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/651632657",
-        "latency": 0.34,
+        "latency": 0.44,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/651632657",
-          "latency": 0.76,
+          "latency": 0.83,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/651632657",
-          "latency": 1.4,
-          "status": "ok"
+          "latency": 6.03,
+          "status": "错误"
         },
         {
           "url": "http://2280.eu.org:1234/651632657",
-          "latency": 0.31,
+          "latency": 0.32,
           "status": "HTTP 604"
         }
       ]
@@ -916,23 +916,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/608780988",
-        "latency": 0.48,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608780988",
-          "latency": 6.01,
-          "status": "错误"
+          "latency": 0.64,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/608780988",
-          "latency": 0.42,
+          "latency": 0.79,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608780988",
-          "latency": 0.36,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -942,23 +942,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/617290047",
-        "latency": 0.47,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/617290047",
-          "latency": 2.54,
+          "latency": 0.5,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/617290047",
-          "latency": 0.48,
+          "latency": 1.36,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/617290047",
-          "latency": 0.29,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -968,23 +968,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/955227985",
-        "latency": 0.43,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/955227985",
-          "latency": 0.57,
+          "url": "http://183.247.194.196:7788/955227985",
+          "latency": 0.76,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/955227985",
-          "latency": 0.73,
+          "url": "http://182.85.163.168:5678/955227985",
+          "latency": 0.91,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/955227985",
-          "latency": 0.26,
+          "latency": 0.24,
           "status": "HTTP 604"
         }
       ]
@@ -994,23 +994,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/955227996",
-        "latency": 0.4,
+        "latency": 0.35,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/955227996",
-          "latency": 0.89,
+          "url": "http://183.247.194.196:7788/955227996",
+          "latency": 0.83,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/955227996",
-          "latency": 1.64,
+          "url": "http://182.85.163.168:5678/955227996",
+          "latency": 1.72,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/955227996",
-          "latency": 0.26,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -1020,23 +1020,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731832",
-        "latency": 0.31,
+        "latency": 0.37,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731832",
-          "latency": 6.04,
-          "status": "错误"
+          "latency": 1.44,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731832",
-          "latency": 0.53,
+          "latency": 0.76,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731832",
-          "latency": 0.23,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1046,23 +1046,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731747",
-        "latency": 0.29,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731747",
-          "latency": 0.57,
+          "latency": 0.69,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731747",
-          "latency": 0.39,
+          "latency": 0.52,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731747",
-          "latency": 0.29,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -1072,23 +1072,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/626064674",
-        "latency": 0.34,
+        "latency": 0.38,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/626064674",
-          "latency": 0.59,
+          "latency": 6.0,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/626064674",
-          "latency": 0.36,
+          "latency": 0.33,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/626064674",
-          "latency": 0.29,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -1098,23 +1098,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/628008321",
-        "latency": 0.3,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/628008321",
-          "latency": 6.03,
-          "status": "错误"
+          "latency": 1.0,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/628008321",
-          "latency": 0.33,
+          "latency": 0.36,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/628008321",
-          "latency": 0.23,
+          "latency": 0.26,
           "status": "HTTP 604"
         }
       ]
@@ -1130,17 +1130,17 @@
       "backups": [
         {
           "url": "http://182.85.163.168:5678/955227979",
-          "latency": 0.43,
+          "latency": 0.37,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/955227979",
-          "latency": 1.03,
+          "latency": 1.15,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/955227979",
-          "latency": 0.23,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -1150,23 +1150,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731818",
-        "latency": 0.3,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731818",
-          "latency": 1.36,
+          "latency": 3.71,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731818",
-          "latency": 1.36,
+          "latency": 0.6,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731818",
-          "latency": 0.25,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1176,23 +1176,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731826",
-        "latency": 0.35,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731826",
-          "latency": 6.02,
-          "status": "错误"
+          "latency": 1.29,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731826",
-          "latency": 0.31,
+          "latency": 0.48,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731826",
-          "latency": 0.27,
+          "latency": 0.36,
           "status": "HTTP 604"
         }
       ]
@@ -1202,18 +1202,18 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639737327",
-        "latency": 0.41,
+        "latency": 0.37,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639737327",
-          "latency": 1.03,
+          "latency": 0.82,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639737327",
-          "latency": 2.72,
+          "latency": 1.03,
           "status": "ok"
         },
         {
@@ -1228,23 +1228,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731825",
-        "latency": 0.4,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731825",
-          "latency": 0.94,
+          "latency": 5.26,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731825",
-          "latency": 1.8,
+          "latency": 1.5,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731825",
-          "latency": 0.26,
+          "latency": 0.37,
           "status": "HTTP 604"
         }
       ]
@@ -1254,23 +1254,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731715",
-        "latency": 0.55,
+        "latency": 0.47,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/639731715",
-          "latency": 0.86,
+          "latency": 1.2,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/639731715",
-          "latency": 0.31,
+          "latency": 0.74,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/639731715",
-          "latency": 0.37,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1280,23 +1280,23 @@
       "group": "地方台",
       "main": {
         "url": "http://112.85.93.6:7788/639731783",
-        "latency": 0.44,
+        "latency": 0.35,
         "status": "ok"
       },
       "backups": [
-        {
-          "url": "http://182.85.163.168:5678/639731783",
-          "latency": 0.52,
-          "status": "ok"
-        },
         {
           "url": "http://183.247.194.196:7788/639731783",
           "latency": 1.15,
           "status": "ok"
         },
         {
+          "url": "http://182.85.163.168:5678/639731783",
+          "latency": 1.63,
+          "status": "ok"
+        },
+        {
           "url": "http://2280.eu.org:1234/639731783",
-          "latency": 0.38,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -1306,23 +1306,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/608807420",
-        "latency": 0.37,
+        "latency": 0.35,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/608807420",
-          "latency": 0.42,
+          "latency": 0.51,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/608807420",
-          "latency": 6.01,
-          "status": "错误"
+          "latency": 1.67,
+          "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/608807420",
-          "latency": 0.26,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1331,24 +1331,24 @@
       "name": "CCTV2财经",
       "group": "备用",
       "main": {
-        "url": "http://183.247.194.196:7788/631780532",
-        "latency": 0.43,
+        "url": "http://112.85.93.6:7788/631780532",
+        "latency": 0.41,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://112.85.93.6:7788/631780532",
-          "latency": 0.53,
-          "status": "ok"
+          "url": "http://183.247.194.196:7788/631780532",
+          "latency": 6.03,
+          "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/631780532",
-          "latency": 0.91,
+          "latency": 0.78,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/631780532",
-          "latency": 0.32,
+          "latency": 0.26,
           "status": "HTTP 604"
         }
       ]
@@ -1358,23 +1358,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/624878271",
-        "latency": 0.36,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/624878271",
-          "latency": 0.42,
+          "latency": 0.51,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/624878271",
-          "latency": 0.68,
+          "latency": 0.54,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/624878271",
-          "latency": 0.29,
+          "latency": 0.35,
           "status": "HTTP 604"
         }
       ]
@@ -1384,23 +1384,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/631780421",
-        "latency": 0.36,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/631780421",
-          "latency": 0.48,
+          "url": "http://183.247.194.196:7788/631780421",
+          "latency": 0.52,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/631780421",
-          "latency": 0.65,
+          "url": "http://182.85.163.168:5678/631780421",
+          "latency": 1.23,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/631780421",
-          "latency": 0.37,
+          "latency": 0.32,
           "status": "HTTP 604"
         }
       ]
@@ -1410,23 +1410,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/608807419",
-        "latency": 0.42,
+        "latency": 0.4,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608807419",
-          "latency": 6.02,
+          "latency": 6.03,
           "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/608807419",
-          "latency": 0.71,
+          "latency": 0.75,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608807419",
-          "latency": 0.27,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1436,23 +1436,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/608807416",
-        "latency": 0.41,
+        "latency": 0.36,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/608807416",
-          "latency": 0.81,
+          "latency": 0.62,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/608807416",
-          "latency": 0.42,
+          "latency": 0.98,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/608807416",
-          "latency": 0.32,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -1462,23 +1462,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/641886683",
-        "latency": 0.53,
+        "latency": 0.36,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/641886683",
-          "latency": 2.91,
+          "latency": 5.61,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/641886683",
-          "latency": 0.35,
+          "latency": 0.66,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/641886683",
-          "latency": 0.42,
+          "latency": 0.3,
           "status": "HTTP 604"
         }
       ]
@@ -1488,23 +1488,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/641886773",
-        "latency": 0.59,
+        "latency": 0.28,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://183.247.194.196:7788/641886773",
-          "latency": 0.95,
+          "url": "http://182.85.163.168:5678/641886773",
+          "latency": 0.6,
           "status": "ok"
         },
         {
-          "url": "http://182.85.163.168:5678/641886773",
-          "latency": 1.7,
+          "url": "http://183.247.194.196:7788/641886773",
+          "latency": 0.7,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/641886773",
-          "latency": 0.35,
+          "latency": 0.26,
           "status": "HTTP 604"
         }
       ]
@@ -1513,24 +1513,24 @@
       "name": "CCTV6电影",
       "group": "备用",
       "main": {
-        "url": "http://183.247.194.196:7788/624878396",
-        "latency": 0.42,
+        "url": "http://112.85.93.6:7788/624878396",
+        "latency": 0.32,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://112.85.93.6:7788/624878396",
-          "latency": 0.46,
-          "status": "ok"
+          "url": "http://183.247.194.196:7788/624878396",
+          "latency": 6.02,
+          "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/624878396",
-          "latency": 0.31,
+          "latency": 0.54,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/624878396",
-          "latency": 0.25,
+          "latency": 0.28,
           "status": "HTTP 604"
         }
       ]
@@ -1540,23 +1540,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/673168121",
-        "latency": 0.42,
+        "latency": 0.29,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/673168121",
-          "latency": 0.64,
+          "latency": 0.44,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/673168121",
-          "latency": 6.03,
-          "status": "错误"
+          "latency": 0.79,
+          "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/673168121",
-          "latency": 0.27,
+          "latency": 0.38,
           "status": "HTTP 604"
         }
       ]
@@ -1566,23 +1566,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/624878356",
-        "latency": 0.35,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/624878356",
-          "latency": 0.86,
-          "status": "ok"
+          "latency": 6.03,
+          "status": "错误"
         },
         {
           "url": "http://182.85.163.168:5678/624878356",
-          "latency": 0.48,
+          "latency": 0.49,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/624878356",
-          "latency": 0.2,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -1592,23 +1592,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/673168140",
-        "latency": 0.28,
+        "latency": 0.36,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/673168140",
-          "latency": 6.01,
-          "status": "错误"
+          "latency": 0.92,
+          "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/673168140",
-          "latency": 0.45,
+          "latency": 0.48,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/673168140",
-          "latency": 0.29,
+          "latency": 0.38,
           "status": "HTTP 604"
         }
       ]
@@ -1618,23 +1618,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/624878405",
-        "latency": 0.37,
+        "latency": 0.42,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/624878405",
-          "latency": 4.22,
+          "latency": 2.48,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/624878405",
-          "latency": 0.97,
+          "latency": 0.35,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/624878405",
-          "latency": 0.26,
+          "latency": 0.3,
           "status": "HTTP 604"
         }
       ]
@@ -1644,23 +1644,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/667987558",
-        "latency": 0.36,
+        "latency": 0.32,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/667987558",
-          "latency": 0.65,
+          "latency": 3.26,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/667987558",
-          "latency": 0.53,
+          "latency": 0.6,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/667987558",
-          "latency": 0.28,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -1670,23 +1670,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/673168185",
-        "latency": 0.4,
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/673168185",
-          "latency": 0.41,
+          "latency": 0.58,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/673168185",
-          "latency": 0.56,
+          "latency": 2.55,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/673168185",
-          "latency": 0.39,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -1695,24 +1695,24 @@
       "name": "CCTV13新闻",
       "group": "备用",
       "main": {
-        "url": "http://182.85.163.168:5678/608807423",
-        "latency": 0.38,
+        "url": "http://112.85.93.6:7788/608807423",
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://112.85.93.6:7788/608807423",
-          "latency": 0.42,
+          "url": "http://182.85.163.168:5678/608807423",
+          "latency": 0.49,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/608807423",
-          "latency": 0.87,
+          "latency": 0.54,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/608807423",
-          "latency": 0.22,
+          "latency": 0.28,
           "status": "HTTP 604"
         }
       ]
@@ -1722,23 +1722,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/624878440",
-        "latency": 0.37,
+        "latency": 0.39,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/624878440",
-          "latency": 0.58,
+          "latency": 0.54,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/624878440",
-          "latency": 4.57,
+          "latency": 0.82,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/624878440",
-          "latency": 0.24,
+          "latency": 0.26,
           "status": "HTTP 604"
         }
       ]
@@ -1748,23 +1748,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/673168223",
-        "latency": 0.57,
+        "latency": 0.42,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/673168223",
-          "latency": 1.34,
+          "latency": 0.79,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/673168223",
-          "latency": 0.52,
+          "latency": 0.8,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/673168223",
-          "latency": 0.27,
+          "latency": 0.26,
           "status": "HTTP 604"
         }
       ]
@@ -1774,23 +1774,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/673168256",
-        "latency": 0.35,
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/673168256",
-          "latency": 0.38,
+          "latency": 0.44,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/673168256",
-          "latency": 0.51,
+          "latency": 1.6,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/673168256",
-          "latency": 0.29,
+          "latency": 0.34,
           "status": "HTTP 604"
         }
       ]
@@ -1800,23 +1800,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/609006487",
-        "latency": 0.5,
+        "latency": 0.55,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://183.247.194.196:7788/609006487",
-          "latency": 4.13,
+          "latency": 5.11,
           "status": "ok"
         },
         {
           "url": "http://182.85.163.168:5678/609006487",
-          "latency": 0.42,
+          "latency": 0.54,
           "status": "HTTP 604"
         },
         {
           "url": "http://2280.eu.org:1234/609006487",
-          "latency": 0.3,
+          "latency": 0.51,
           "status": "HTTP 604"
         }
       ]
@@ -1825,25 +1825,25 @@
       "name": "CGTN阿拉伯语",
       "group": "备用",
       "main": {
-        "url": "http://112.85.93.6:7788/609154345",
-        "latency": 0.33,
+        "url": "http://183.247.194.196:7788/609154345",
+        "latency": 0.45,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/609154345",
-          "latency": 0.43,
+          "url": "http://112.85.93.6:7788/609154345",
+          "latency": 0.55,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/609154345",
-          "latency": 5.64,
+          "url": "http://182.85.163.168:5678/609154345",
+          "latency": 0.68,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/609154345",
-          "latency": 0.31,
-          "status": "HTTP 604"
+          "latency": 5.02,
+          "status": "错误"
         }
       ]
     },
@@ -1852,23 +1852,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/609006450",
-        "latency": 0.39,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/609006450",
-          "latency": 0.83,
+          "latency": 0.66,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/609006450",
-          "latency": 4.28,
+          "latency": 4.88,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/609006450",
-          "latency": 0.29,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -1878,23 +1878,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/609006476",
-        "latency": 0.51,
+        "latency": 0.3,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/609006476",
-          "latency": 0.52,
+          "latency": 0.86,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/609006476",
-          "latency": 0.7,
+          "latency": 1.67,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/609006476",
-          "latency": 0.25,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -1904,23 +1904,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/609006446",
-        "latency": 0.35,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/609006446",
-          "latency": 0.43,
+          "url": "http://183.247.194.196:7788/609006446",
+          "latency": 0.89,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/609006446",
-          "latency": 0.67,
+          "url": "http://182.85.163.168:5678/609006446",
+          "latency": 1.03,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/609006446",
-          "latency": 0.28,
+          "latency": 0.27,
           "status": "HTTP 604"
         }
       ]
@@ -1930,23 +1930,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/609017205",
-        "latency": 0.42,
+        "latency": 0.28,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/609017205",
-          "latency": 0.65,
+          "latency": 0.58,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/609017205",
-          "latency": 0.93,
+          "latency": 1.68,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/609017205",
-          "latency": 0.25,
+          "latency": 0.34,
           "status": "HTTP 604"
         }
       ]
@@ -1956,23 +1956,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/708869532",
-        "latency": 0.34,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/708869532",
-          "latency": 0.62,
+          "latency": 0.67,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/708869532",
-          "latency": 2.91,
+          "latency": 3.72,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/708869532",
-          "latency": 0.31,
+          "latency": 0.24,
           "status": "HTTP 604"
         }
       ]
@@ -1982,23 +1982,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/624878970",
-        "latency": 0.38,
+        "latency": 0.34,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/624878970",
-          "latency": 0.58,
+          "url": "http://183.247.194.196:7788/624878970",
+          "latency": 0.8,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/624878970",
-          "latency": 1.22,
+          "url": "http://182.85.163.168:5678/624878970",
+          "latency": 1.43,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/624878970",
-          "latency": 0.29,
+          "latency": 0.33,
           "status": "HTTP 604"
         }
       ]
@@ -2008,23 +2008,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/884121956",
-        "latency": 0.28,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
-          "url": "http://182.85.163.168:5678/884121956",
-          "latency": 0.51,
+          "url": "http://183.247.194.196:7788/884121956",
+          "latency": 1.11,
           "status": "ok"
         },
         {
-          "url": "http://183.247.194.196:7788/884121956",
-          "latency": 1.4,
+          "url": "http://182.85.163.168:5678/884121956",
+          "latency": 1.24,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/884121956",
-          "latency": 0.35,
+          "latency": 0.31,
           "status": "HTTP 604"
         }
       ]
@@ -2034,23 +2034,23 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/956923159",
-        "latency": 0.43,
+        "latency": 0.33,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/956923159",
-          "latency": 0.61,
+          "latency": 0.47,
           "status": "ok"
         },
         {
           "url": "http://183.247.194.196:7788/956923159",
-          "latency": 2.84,
+          "latency": 1.14,
           "status": "ok"
         },
         {
           "url": "http://2280.eu.org:1234/956923159",
-          "latency": 0.28,
+          "latency": 0.29,
           "status": "HTTP 604"
         }
       ]
@@ -2060,13 +2060,13 @@
       "group": "备用",
       "main": {
         "url": "http://112.85.93.6:7788/956923145",
-        "latency": 0.35,
+        "latency": 0.31,
         "status": "ok"
       },
       "backups": [
         {
           "url": "http://182.85.163.168:5678/956923145",
-          "latency": 0.3,
+          "latency": 0.65,
           "status": "HTTP 604"
         },
         {
@@ -2081,7 +2081,7 @@
       "group": "卫视",
       "main": {
         "url": "http://183.207.248.71/gitv/live1/G_GUIZHOU/G_GUIZHOU",
-        "latency": 6.03,
+        "latency": 5.57,
         "status": "ok"
       },
       "backups": []
