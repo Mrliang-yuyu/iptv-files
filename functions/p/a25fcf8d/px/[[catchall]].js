@@ -49,7 +49,16 @@ export async function onRequest(context) {
     }
 
     // ── Direct stream proxy (MPEG-TS / .ts segments / etc.) ──
-    const h = new Headers(resp.headers);
+    const h = new Headers();
+    // Only forward essential headers
+    const ct = resp.headers.get('Content-Type');
+    if (ct) h.set('Content-Type', ct);
+    const cl = resp.headers.get('Content-Length');
+    if (cl) h.set('Content-Length', cl);
+    const range = resp.headers.get('Content-Range');
+    if (range) h.set('Content-Range', range);
+    const accept = resp.headers.get('Accept-Ranges');
+    if (accept) h.set('Accept-Ranges', accept);
     h.set('Access-Control-Allow-Origin', '*');
     h.set('Cache-Control', 'no-cache, no-store');
     h.set('CDN-Cache-Control', 'no-store');
