@@ -115,7 +115,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .install-banner .x:active { background: rgba(255,255,255,.2); }
 
 /* ===== Refresh overlay ===== */
-.refresh-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: none; align-items: center; justify-content: center; }
+
 
 /* ===== Mobile ===== */
 @media (max-width: 820px) {
@@ -146,13 +146,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 </style>
 </head>
 <body>
-
-<div class="refresh-overlay" id="refreshOverlay">
-  <div style="text-align:center;color:var(--text3)">
-    <div class="spinner" style="margin:0 auto 12px"></div>
-    <span>更新数据中…</span>
-  </div>
-</div>
 
 <div class="install-banner" id="installBanner">
   <span>📲 安装 IPTV Player 到主屏幕</span>
@@ -235,57 +228,9 @@ function toggleTheme() {
   document.getElementById('themeBtn').textContent = t === 'dark' ? '🌙' : '☀️';
 }
 
-// ===== Remote hint =====
-const isHTTPS = location.protocol === 'https:';
-if (isHTTPS) {
-  document.getElementById('remoteHint').textContent = '⚠️ HTTPS 远程模式 · 部分浏览器可能限制播放';
-}
-
-// ===== Service Worker Registration =====
-// SW proxies HTTP streams on HTTPS. First visit needs SW to activate.
-let swReady = !isHTTPS; // HTTP doesn't need SW proxy
-
-if ('serviceWorker' in navigator && isHTTPS) {
-  // Show preparing overlay if SW not yet controlling the page
-  if (!navigator.serviceWorker.controller) {
-    document.getElementById('refreshOverlay').style.display = 'flex';
-    document.getElementById('refreshOverlay').querySelector('span').textContent = '正在准备播放器…';
-  }
-  
-  navigator.serviceWorker.register('./sw.js', { scope: '/p/a25fcf8d/' }).then(reg => {
-    if (navigator.serviceWorker.controller) {
-      // SW already active
-      swReady = true;
-      document.getElementById('refreshOverlay').style.display = 'none';
-    }
-    // Listen for activation
-    function onActivated() {
-      swReady = true;
-      document.getElementById('refreshOverlay').style.display = 'none';
-    }
-    if (reg.installing) {
-      reg.installing.addEventListener('statechange', function handler() {
-        if (reg.installing.state === 'activated') onActivated();
-      });
-    }
-    if (reg.waiting) {
-      reg.waiting.addEventListener('statechange', function handler() {
-        if (reg.waiting.state === 'activated') onActivated();
-      });
-    }
-    navigator.serviceWorker.addEventListener('controllerchange', onActivated);
-  }).catch(e => {
-    console.warn('SW unavailable, HTTPS streams may be blocked', e);
-    swReady = true; // Allow anyway
-    document.getElementById('refreshOverlay').style.display = 'none';
-  });
-} else {
-  swReady = true;
-}
-
-// Proxy helper: use SW proxy on HTTPS when ready, direct on HTTP
+// Proxy: HTTP streams go through Cloudflare Pages Function (bypasses mixed-content blocking)
 function streamUrl(url) {
-  if (isHTTPS && url.startsWith('http://') && swReady) {
+  if (location.protocol === 'https:' && url.startsWith('http://')) {
     return '/p/a25fcf8d/proxy/' + encodeURIComponent(url);
   }
   return url;
@@ -447,13 +392,6 @@ function toggleFav(idx) {
 // ===== Playback =====
 function playChannel(idx) {
   if (idx < 0 || idx >= channels.length) return;
-  if (isHTTPS && !swReady) {
-    document.getElementById('emptyState').querySelector('span').textContent = '⏳ 准备中…';
-    document.getElementById('emptyState').style.display = 'flex';
-    function retry() { if (swReady) playChannel(idx); else setTimeout(retry, 300); }
-    setTimeout(retry, 300);
-    return;
-  }
   currentIdx = idx;
   let ch = channels[idx];
   document.getElementById('emptyState').style.display = 'none';
