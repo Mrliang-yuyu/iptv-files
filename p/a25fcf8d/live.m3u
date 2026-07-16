@@ -66,47 +66,47 @@ http://69.30.245.50/live/cctvtq.m3u8
 #EXTINF:-1 group-title="央视",CCTV-Golf & Tennis (1080p)
 http://69.30.245.50/live/cctvgl.m3u8
 #EXTINF:-1 group-title="卫视",三沙卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225732/index.m3u8
+http://74.91.26.218:82/live/sansha.m3u8
 #EXTINF:-1 group-title="卫视",东南卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225697/index.m3u8
+http://74.91.26.218:82/live/dongnan.m3u8
 #EXTINF:-1 group-title="卫视",东方卫视
-http://118.81.195.79:9003/hls/23/index.m3u8
+http://74.91.26.218:82/live/dfws.m3u8
 #EXTINF:-1 group-title="卫视",中国农林卫视
 #http://112.85.93.6:7788/956904896
 #EXTINF:-1 group-title="卫视",北京卫视
-http://go.bkpcp.top/mg/bjws
+http://74.91.26.218:82/live/beijing.m3u8
 #EXTINF:-1 group-title="卫视",吉林卫视
-http://118.81.195.79:9003/hls/34/index.m3u8
+http://74.91.26.218:82/live/jilin.m3u8
 #EXTINF:-1 group-title="卫视",大湾区卫视
 #http://112.85.93.6:7788/608917627
 #EXTINF:-1 group-title="卫视",宁夏卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225726/index.m3u8
+http://74.91.26.218:82/live/ningxia.m3u8
 #EXTINF:-1 group-title="卫视",广东卫视
-http://118.81.195.79:9003/hls/26/index.m3u8
+http://74.91.26.218:82/live/guangdong.m3u8
 #EXTINF:-1 group-title="卫视",江苏卫视
-http://39.134.24.166/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226200/index.m3u8
+http://74.91.26.218:82/live/jiangsu.m3u8
 #EXTINF:-1 group-title="卫视",江西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225705/index.m3u8
+http://74.91.26.218:82/live/jiangxi.m3u8
 #EXTINF:-1 group-title="卫视",河北卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225699/index.m3u8
+http://74.91.26.218:82/live/hebei.m3u8
 #EXTINF:-1 group-title="卫视",河南卫视
-http://118.81.195.79:9003/hls/30/index.m3u8
+http://74.91.26.218:82/live/henan.m3u8
 #EXTINF:-1 group-title="卫视",海南卫视
-http://118.81.195.79:9003/hls/28/index.m3u8
+http://74.91.26.218:82/live/hainan.m3u8
 #EXTINF:-1 group-title="卫视",海峡卫视
 #http://2280.eu.org:1234/849119120
 #EXTINF:-1 group-title="卫视",湖北卫视
-http://118.81.195.79:9003/hls/32/index.m3u8
+http://74.91.26.218:82/live/hubei.m3u8
 #EXTINF:-1 group-title="卫视",辽宁卫视
-http://39.134.39.37/PLTV/88888888/224/3221226209/index.m3u8
+http://74.91.26.218:82/live/liaoning.m3u8
 #EXTINF:-1 group-title="卫视",重庆卫视
-http://118.81.195.79:9003/hls/22/index.m3u8
+http://74.91.26.218:82/live/chongqing.m3u8
 #EXTINF:-1 group-title="卫视",陕西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225704/index.m3u8
+http://74.91.26.218:82/live/shanxi.m3u8
 #EXTINF:-1 group-title="卫视",青海卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225725/index.m3u8
+http://74.91.26.218:82/live/qinghai.m3u8
 #EXTINF:-1 group-title="卫视",黑龙江卫视
-http://118.81.195.79:9003/hls/31/index.m3u8
+http://74.91.26.218:82/live/heilongjiang.m3u8
 #EXTINF:-1 group-title="地方台",上海新闻综合
 #http://112.85.93.6:7788/651632657
 #EXTINF:-1 group-title="地方台",上海第一财经
@@ -372,11 +372,11 @@ http://182.85.163.168:5678/956923159
 #EXTINF:-1 group-title="备用",财富天下
 #http://2280.eu.org:1234/956923159
 #EXTINF:-1 group-title="备用",三沙卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225732/index.m3u8
+http://74.91.26.218:82/live/sansha.m3u8
 #EXTINF:-1 group-title="备用",三沙卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225732/index.m3u8
+http://74.91.26.218:82/live/sansha.m3u8
 #EXTINF:-1 group-title="备用",三沙卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225732/index.m3u8
+http://74.91.26.218:82/live/sansha.m3u8
 #EXTINF:-1 group-title="备用",上海新闻综合
 #http://183.247.194.196:7788/651632657
 #EXTINF:-1 group-title="备用",上海新闻综合
@@ -396,17 +396,17 @@ http://182.85.163.168:5678/617290047
 #EXTINF:-1 group-title="备用",上视东方影视
 #http://2280.eu.org:1234/617290047
 #EXTINF:-1 group-title="备用",东南卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225697/index.m3u8
+http://74.91.26.218:82/live/dongnan.m3u8
 #EXTINF:-1 group-title="备用",东南卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225697/index.m3u8
+http://74.91.26.218:82/live/dongnan.m3u8
 #EXTINF:-1 group-title="备用",东南卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225697/index.m3u8
+http://74.91.26.218:82/live/dongnan.m3u8
 #EXTINF:-1 group-title="备用",东方卫视
-http://118.81.195.79:9003/hls/23/index.m3u8
+http://74.91.26.218:82/live/dfws.m3u8
 #EXTINF:-1 group-title="备用",东方卫视
-http://182.85.163.168:5678/651632648
+http://74.91.26.218:82/live/dfws.m3u8
 #EXTINF:-1 group-title="备用",东方卫视
-http://118.81.195.79:9003/hls/23/index.m3u8
+http://74.91.26.218:82/live/dfws.m3u8
 #EXTINF:-1 group-title="备用",中国农林卫视
 #http://183.247.194.196:7788/956904896
 #EXTINF:-1 group-title="备用",中国农林卫视
@@ -420,11 +420,11 @@ http://112.25.48.68/live/program/live/btws/1300000/mnf.m3u8
 #EXTINF:-1 group-title="备用",兵团卫视
 http://112.25.48.68/live/program/live/btws/1300000/mnf.m3u8
 #EXTINF:-1 group-title="备用",北京卫视
-http://go.bkpcp.top/mg/bjws
+http://74.91.26.218:82/live/beijing.m3u8
 #EXTINF:-1 group-title="备用",北京卫视
-http://go.bkpcp.top/mg/bjws
+http://74.91.26.218:82/live/beijing.m3u8
 #EXTINF:-1 group-title="备用",北京卫视
-http://go.bkpcp.top/mg/bjws
+http://74.91.26.218:82/live/beijing.m3u8
 #EXTINF:-1 group-title="备用",南通新闻综合
 #http://183.247.194.196:7788/955227985
 #EXTINF:-1 group-title="备用",南通新闻综合
@@ -432,11 +432,11 @@ http://182.85.163.168:5678/955227985
 #EXTINF:-1 group-title="备用",南通新闻综合
 #http://2280.eu.org:1234/955227985
 #EXTINF:-1 group-title="备用",吉林卫视
-http://118.81.195.79:9003/hls/34/index.m3u8
+http://74.91.26.218:82/live/jilin.m3u8
 #EXTINF:-1 group-title="备用",吉林卫视
-http://182.85.163.168:5678/947472500
+http://74.91.26.218:82/live/jilin.m3u8
 #EXTINF:-1 group-title="备用",吉林卫视
-http://118.81.195.79:9003/hls/34/index.m3u8
+http://74.91.26.218:82/live/jilin.m3u8
 #EXTINF:-1 group-title="备用",大湾区卫视
 #http://183.247.194.196:7788/608917627
 #EXTINF:-1 group-title="备用",大湾区卫视
@@ -444,11 +444,11 @@ http://182.85.163.168:5678/608917627
 #EXTINF:-1 group-title="备用",大湾区卫视
 #http://2280.eu.org:1234/608917627
 #EXTINF:-1 group-title="备用",宁夏卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225726/index.m3u8
+http://74.91.26.218:82/live/ningxia.m3u8
 #EXTINF:-1 group-title="备用",宁夏卫视
-http://182.85.163.168:5678/738910535
+http://74.91.26.218:82/live/ningxia.m3u8
 #EXTINF:-1 group-title="备用",宁夏卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225726/index.m3u8
+http://74.91.26.218:82/live/ningxia.m3u8
 #EXTINF:-1 group-title="备用",宜兴新闻综合
 #http://183.247.194.196:7788/955227996
 #EXTINF:-1 group-title="备用",宜兴新闻综合
@@ -462,11 +462,11 @@ http://182.85.163.168:5678/639731832
 #EXTINF:-1 group-title="备用",宿迁新闻综合
 #http://2280.eu.org:1234/639731832
 #EXTINF:-1 group-title="备用",广东卫视
-http://118.81.195.79:9003/hls/26/index.m3u8
+http://74.91.26.218:82/live/guangdong.m3u8
 #EXTINF:-1 group-title="备用",广东卫视
-http://182.85.163.168:5678/608831231
+http://74.91.26.218:82/live/guangdong.m3u8
 #EXTINF:-1 group-title="备用",广东卫视
-http://118.81.195.79:9003/hls/26/index.m3u8
+http://74.91.26.218:82/live/guangdong.m3u8
 #EXTINF:-1 group-title="备用",徐州新闻综合
 http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225867/index.m3u8
 #EXTINF:-1 group-title="备用",徐州新闻综合
@@ -474,11 +474,11 @@ http://182.85.163.168:5678/639731747
 #EXTINF:-1 group-title="备用",徐州新闻综合
 http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225867/index.m3u8
 #EXTINF:-1 group-title="备用",江苏卫视
-http://39.134.24.166/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226200/index.m3u8
+http://74.91.26.218:82/live/jiangsu.m3u8
 #EXTINF:-1 group-title="备用",江苏卫视
-http://182.85.163.168:5678/623899368
+http://74.91.26.218:82/live/jiangsu.m3u8
 #EXTINF:-1 group-title="备用",江苏卫视
-http://39.134.24.166/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226200/index.m3u8
+http://74.91.26.218:82/live/jiangsu.m3u8
 #EXTINF:-1 group-title="备用",江苏国际
 #http://183.247.194.196:7788/626064674
 #EXTINF:-1 group-title="备用",江苏国际
@@ -492,11 +492,11 @@ http://182.85.163.168:5678/628008321
 #EXTINF:-1 group-title="备用",江苏教育
 http://223.110.245.151/ott.js.chinamobile.com/PLTV/3/224/3221225923/index.m3u8
 #EXTINF:-1 group-title="备用",江西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225705/index.m3u8
+http://74.91.26.218:82/live/jiangxi.m3u8
 #EXTINF:-1 group-title="备用",江西卫视
-http://182.85.163.168:5678/783847495
+http://74.91.26.218:82/live/jiangxi.m3u8
 #EXTINF:-1 group-title="备用",江西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225705/index.m3u8
+http://74.91.26.218:82/live/jiangxi.m3u8
 #EXTINF:-1 group-title="备用",江阴新闻综合
 http://182.85.163.168:5678/955227979
 #EXTINF:-1 group-title="备用",江阴新闻综合
@@ -504,17 +504,17 @@ http://182.85.163.168:5678/955227979
 #EXTINF:-1 group-title="备用",江阴新闻综合
 #http://2280.eu.org:1234/955227979
 #EXTINF:-1 group-title="备用",河北卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225699/index.m3u8
+http://74.91.26.218:82/live/hebei.m3u8
 #EXTINF:-1 group-title="备用",河北卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225699/index.m3u8
+http://74.91.26.218:82/live/hebei.m3u8
 #EXTINF:-1 group-title="备用",河北卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225699/index.m3u8
+http://74.91.26.218:82/live/hebei.m3u8
 #EXTINF:-1 group-title="备用",河南卫视
-http://118.81.195.79:9003/hls/30/index.m3u8
+http://74.91.26.218:82/live/henan.m3u8
 #EXTINF:-1 group-title="备用",河南卫视
-http://182.85.163.168:5678/790187291
+http://74.91.26.218:82/live/henan.m3u8
 #EXTINF:-1 group-title="备用",河南卫视
-http://118.81.195.79:9003/hls/30/index.m3u8
+http://74.91.26.218:82/live/henan.m3u8
 #EXTINF:-1 group-title="备用",泰州新闻综合
 #http://183.247.194.196:7788/639731818
 #EXTINF:-1 group-title="备用",泰州新闻综合
@@ -522,11 +522,11 @@ http://182.85.163.168:5678/639731818
 #EXTINF:-1 group-title="备用",泰州新闻综合
 #http://2280.eu.org:1234/639731818
 #EXTINF:-1 group-title="备用",海南卫视
-http://118.81.195.79:9003/hls/28/index.m3u8
+http://74.91.26.218:82/live/hainan.m3u8
 #EXTINF:-1 group-title="备用",海南卫视
-http://182.85.163.168:5678/947472502
+http://74.91.26.218:82/live/hainan.m3u8
 #EXTINF:-1 group-title="备用",海南卫视
-http://118.81.195.79:9003/hls/28/index.m3u8
+http://74.91.26.218:82/live/hainan.m3u8
 #EXTINF:-1 group-title="备用",海峡卫视
 http://182.85.163.168:5678/849119120
 #EXTINF:-1 group-title="备用",海峡卫视
@@ -540,11 +540,11 @@ http://182.85.163.168:5678/639731826
 #EXTINF:-1 group-title="备用",淮安新闻综合
 #http://2280.eu.org:1234/639731826
 #EXTINF:-1 group-title="备用",湖北卫视
-http://118.81.195.79:9003/hls/32/index.m3u8
+http://74.91.26.218:82/live/hubei.m3u8
 #EXTINF:-1 group-title="备用",湖北卫视
-http://182.85.163.168:5678/947472496
+http://74.91.26.218:82/live/hubei.m3u8
 #EXTINF:-1 group-title="备用",湖北卫视
-http://118.81.195.79:9003/hls/32/index.m3u8
+http://74.91.26.218:82/live/hubei.m3u8
 #EXTINF:-1 group-title="备用",溧水新闻综合
 #http://183.247.194.196:7788/639737327
 #EXTINF:-1 group-title="备用",溧水新闻综合
@@ -558,11 +558,11 @@ http://182.85.163.168:5678/639731825
 #EXTINF:-1 group-title="备用",盐城新闻综合
 #http://2280.eu.org:1234/639731825
 #EXTINF:-1 group-title="备用",辽宁卫视
-http://39.134.39.37/PLTV/88888888/224/3221226209/index.m3u8
+http://74.91.26.218:82/live/liaoning.m3u8
 #EXTINF:-1 group-title="备用",辽宁卫视
-http://182.85.163.168:5678/630291707
+http://74.91.26.218:82/live/liaoning.m3u8
 #EXTINF:-1 group-title="备用",辽宁卫视
-http://39.134.39.37/PLTV/88888888/224/3221226209/index.m3u8
+http://74.91.26.218:82/live/liaoning.m3u8
 #EXTINF:-1 group-title="备用",连云港新闻综合
 #http://183.247.194.196:7788/639731715
 #EXTINF:-1 group-title="备用",连云港新闻综合
@@ -570,11 +570,11 @@ http://182.85.163.168:5678/639731715
 #EXTINF:-1 group-title="备用",连云港新闻综合
 #http://2280.eu.org:1234/639731715
 #EXTINF:-1 group-title="备用",重庆卫视
-http://118.81.195.79:9003/hls/22/index.m3u8
+http://74.91.26.218:82/live/chongqing.m3u8
 #EXTINF:-1 group-title="备用",重庆卫视
-http://182.85.163.168:5678/738910914
+http://74.91.26.218:82/live/chongqing.m3u8
 #EXTINF:-1 group-title="备用",重庆卫视
-http://118.81.195.79:9003/hls/22/index.m3u8
+http://74.91.26.218:82/live/chongqing.m3u8
 #EXTINF:-1 group-title="备用",镇江新闻综合
 #http://183.247.194.196:7788/639731783
 #EXTINF:-1 group-title="备用",镇江新闻综合
@@ -582,23 +582,23 @@ http://182.85.163.168:5678/639731783
 #EXTINF:-1 group-title="备用",镇江新闻综合
 #http://2280.eu.org:1234/639731783
 #EXTINF:-1 group-title="备用",陕西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225704/index.m3u8
+http://74.91.26.218:82/live/shanxi.m3u8
 #EXTINF:-1 group-title="备用",陕西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225704/index.m3u8
+http://74.91.26.218:82/live/shanxi.m3u8
 #EXTINF:-1 group-title="备用",陕西卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225704/index.m3u8
+http://74.91.26.218:82/live/shanxi.m3u8
 #EXTINF:-1 group-title="备用",青海卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225725/index.m3u8
+http://74.91.26.218:82/live/qinghai.m3u8
 #EXTINF:-1 group-title="备用",青海卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225725/index.m3u8
+http://74.91.26.218:82/live/qinghai.m3u8
 #EXTINF:-1 group-title="备用",青海卫视
-http://39.134.115.163:8080/PLTV/88888910/224/3221225725/index.m3u8
+http://74.91.26.218:82/live/qinghai.m3u8
 #EXTINF:-1 group-title="备用",黑龙江卫视
-http://118.81.195.79:9003/hls/31/index.m3u8
+http://74.91.26.218:82/live/heilongjiang.m3u8
 #EXTINF:-1 group-title="备用",黑龙江卫视
-http://182.85.163.168:5678/738906901
+http://74.91.26.218:82/live/heilongjiang.m3u8
 #EXTINF:-1 group-title="备用",黑龙江卫视
-http://118.81.195.79:9003/hls/31/index.m3u8
+http://74.91.26.218:82/live/heilongjiang.m3u8
 
 
 
@@ -621,7 +621,9 @@ http://118.81.195.79:9003/hls/31/index.m3u8
 
 
 #EXTINF:-1 group-title="卫视",贵州卫视 (576p)
-http://183.207.248.71/gitv/live1/G_GUIZHOU/G_GUIZHOU
+http://74.91.26.218:82/live/guizhou.m3u8
+
+
 
 
 
