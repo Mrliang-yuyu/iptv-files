@@ -120,7 +120,7 @@ http://118.81.195.79:9003/hls/31/index.m3u8
 #EXTINF:-1 group-title="地方台",宿迁新闻综合
 #http://112.85.93.6:7788/639731832
 #EXTINF:-1 group-title="地方台",徐州新闻综合
-#http://112.85.93.6:7788/639731747
+http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225867/index.m3u8
 #EXTINF:-1 group-title="地方台",江苏国际
 #http://112.85.93.6:7788/626064674
 #EXTINF:-1 group-title="地方台",江苏教育
@@ -184,9 +184,9 @@ https://cgtn.cdn.ytaws.net/cgtn/cgtn_docu.m3u8
 #EXTINF:-1 group-title="备用",CGTN西班牙语
 #http://112.85.93.6:7788/609006450
 #EXTINF:-1 group-title="备用",CGTN法语
-#http://112.85.93.6:7788/609006476
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN俄语
-#http://112.85.93.6:7788/609006446
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN
 http://69.30.245.50/live/cgtn.m3u8
 #EXTINF:-1 group-title="备用",中学生
@@ -330,17 +330,17 @@ http://182.85.163.168:5678/609006450
 #EXTINF:-1 group-title="备用",CGTN西班牙语
 #http://2280.eu.org:1234/609006450
 #EXTINF:-1 group-title="备用",CGTN法语
-#http://183.247.194.196:7788/609006476
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN法语
 http://182.85.163.168:5678/609006476
 #EXTINF:-1 group-title="备用",CGTN法语
-#http://2280.eu.org:1234/609006476
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN俄语
-#http://183.247.194.196:7788/609006446
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN俄语
 http://182.85.163.168:5678/609006446
 #EXTINF:-1 group-title="备用",CGTN俄语
-#http://2280.eu.org:1234/609006446
+http://gslbserv.itv.cmvideo.cn/7745129417417101820/1.m3u8?channel-id=cmvideo&Contentid=7745129417417101820&p=1&programid=7745129417417101820&stbId=0010050008000001&clienttype=2&termid=2&userToken=default&usergroup=default001
 #EXTINF:-1 group-title="备用",CGTN
 http://69.30.245.50/live/cgtn.m3u8
 #EXTINF:-1 group-title="备用",CGTN
@@ -468,11 +468,11 @@ http://182.85.163.168:5678/608831231
 #EXTINF:-1 group-title="备用",广东卫视
 http://118.81.195.79:9003/hls/26/index.m3u8
 #EXTINF:-1 group-title="备用",徐州新闻综合
-#http://183.247.194.196:7788/639731747
+http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225867/index.m3u8
 #EXTINF:-1 group-title="备用",徐州新闻综合
 http://182.85.163.168:5678/639731747
 #EXTINF:-1 group-title="备用",徐州新闻综合
-#http://2280.eu.org:1234/639731747
+http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221225867/index.m3u8
 #EXTINF:-1 group-title="备用",江苏卫视
 http://39.134.24.166/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226200/index.m3u8
 #EXTINF:-1 group-title="备用",江苏卫视
@@ -622,6 +622,7 @@ http://118.81.195.79:9003/hls/31/index.m3u8
 
 #EXTINF:-1 group-title="卫视",贵州卫视 (576p)
 http://183.207.248.71/gitv/live1/G_GUIZHOU/G_GUIZHOU
+
 
 
 
